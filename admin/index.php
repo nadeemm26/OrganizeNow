@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Please enter both username and password.';
     } else {
         // Query the database
-        $stmt = $cnn->prepare('SELECT * FROM admin WHERE username = ? LIMIT 1');
+        $stmt = $conn->prepare('SELECT * FROM admin WHERE username = ? LIMIT 1');
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();

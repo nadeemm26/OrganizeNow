@@ -235,6 +235,7 @@ $logout_url = 'logout.php';
             color: #000;
             text-decoration: none;
         }
+        
     </style>
 </head>
 
@@ -313,11 +314,10 @@ $logout_url = 'logout.php';
         <div id="user-management" class="section" style="display: none;">
             <?php
             // Connect to the database
-            // Replace these credentials with your actual database details
             $host = 'localhost';
             $username = 'root';
             $password = '';
-            $database = 'um'; // Replace with your database name
+            $database = 'um'; 
 
             $conn = new mysqli($host, $username, $password, $database);
 
@@ -326,7 +326,7 @@ $logout_url = 'logout.php';
             }
 
             // Fetch customers from the database
-            $query = 'SELECT * FROM user'; // Replace 'customers' with your table name
+            $query = 'SELECT * FROM user'; 
             $result = $conn->query($query);
             ?>
 
@@ -334,9 +334,9 @@ $logout_url = 'logout.php';
             <p>Manage all registered users here.</p>
             <!-- <button class="add-user">Add User</button> -->
             <!-- Add User Button -->
-            <button id="addUserBtn">Add User</button>
+            <button id="addUserBtn" ><a href="../usignup.php">Add User</a></button>
 
-            <!-- Popup Modal -->
+            <!-- Popup Modal
             <div id="addUserModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
@@ -354,7 +354,7 @@ $logout_url = 'logout.php';
                         <button type="submit">Register</button>
                     </form>
                 </div>
-            </div>
+            </div> -->
 
             <table class="table">
                 <thead>
@@ -375,7 +375,13 @@ $logout_url = 'logout.php';
                                 <td><?php echo $row['email']; ?></td>
                                 <td><?php echo $row['mobile']; ?></td>
                                 <td>
-                                    <button onclick="editUser(<?php echo $row['id']; ?>)">Edit</button>
+                                    <!-- <form action="../usignup.php" method="post">
+                                        <input type="hidden" name="edit" value="<?php echo $row['id']; ?>">
+                                        <button type="submit" name="editbtn"> Edit</button>
+                                    </form> -->
+                                    <button><a href='edit_user.php?id=<?php echo $row['id']; ?>'>Edit</a></button>
+                                    
+                                    <!-- <button onclick="editUser(<?php echo $row['id']; ?>)">Edit</button> -->
                                     <button onclick="deleteUser(<?php echo $row['id']; ?>)">Delete</button>
                                 </td>
                             </tr>
@@ -387,46 +393,17 @@ $logout_url = 'logout.php';
                     <?php endif; ?>
                 </tbody>
             </table>
-
-            <script>
-                function editUser(userId) {
-                    alert('Edit functionality for user ID: ' + userId + ' coming soon!');
-                    // You can open a modal or redirect to another page for editing
-                }
-
-                function deleteUser(userId) {
-                    if (confirm('Are you sure you want to delete this user?')) {
-                        $.ajax({
-                            url: 'delete_user.php',
-                            method: 'POST',
-                            data: {
-                                id: userId
-                            },
-                            success: function(response) {
-                                alert('User deleted successfully!');
-                                location.reload();
-                            },
-                            error: function() {
-                                alert('Error deleting user.');
-                            }
-                        });
-                    }
-                }
-            </script>
-
-            <!-- <h2>User Management</h2> -->
-
         </div>
 
         <!-- Merchant Management -->
         <div id="merchant-management" class="section" style="display: none;">
             <?php
             // Connect to the database
-            // Replace these credentials with your actual database details
+            
             $host = 'localhost';
             $username = 'root';
             $password = '';
-            $database = 'um'; // Replace with your database name
+            $database = 'um'; 
 
             $conn = new mysqli($host, $username, $password, $database);
 
@@ -435,12 +412,13 @@ $logout_url = 'logout.php';
             }
 
             // Fetch customers from the database
-            $query = 'SELECT * FROM merchant'; // Replace 'customers' with your table name
+            $query = 'SELECT * FROM merchant'; 
             $result = $conn->query($query);
             ?>
 
             <h2>Merchant Management</h2>
             <p>Manage all registered Merchant here.</p>
+            <button id="addUserBtn" ><a href="../msignup.php">Add Merchant</a></button>
             <table border="1">
                 <thead>
                     <tr>
@@ -464,8 +442,10 @@ $logout_url = 'logout.php';
                                 <td><?php echo $row['email']; ?></td>
                                 <td><?php echo $row['mobile']; ?></td>
                                 <td>
-                                    <button onclick="editUser(<?php echo $row['id']; ?>)">Edit</button>
-                                    <button onclick="deleteUser(<?php echo $row['id']; ?>)">Delete</button>
+                                <button><a href='edit_merchant.php?id=<?php echo $row['id']; ?>'>Edit</a></button>
+                                <button><a href="delete_merchant.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this merchant?')">Delete</a></button>   
+                                <!-- <button onclick="editUser(<?php echo $row['id']; ?>)">Edit</button> -->
+                                <!-- <button onclick="deleteUser(<?php echo $row['id']; ?>)">Delete</button> -->
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -476,32 +456,6 @@ $logout_url = 'logout.php';
                     <?php endif; ?>
                 </tbody>
             </table>
-
-            <script>
-                function editUser(userId) {
-                    alert('Edit functionality for user ID: ' + userId + ' coming soon!');
-                    // You can open a modal or redirect to another page for editing
-                }
-
-                function deleteUser(userId) {
-                    if (confirm('Are you sure you want to delete this user?')) {
-                        $.ajax({
-                            url: 'delete_user.php',
-                            method: 'POST',
-                            data: {
-                                id: userId
-                            },
-                            success: function(response) {
-                                alert('User deleted successfully!');
-                                location.reload();
-                            },
-                            error: function() {
-                                alert('Error deleting user.');
-                            }
-                        });
-                    }
-                }
-            </script>
         </div>
 
         <!-- Payment Management -->
@@ -572,7 +526,7 @@ $logout_url = 'logout.php';
     </script>
     <!-- .................................. -->
     <!-- script for add user in admin -->
-    <script>
+    <!-- <script>
         // Get elements
         const addUserBtn = document.getElementById('addUserBtn');
         const modal = document.getElementById('addUserModal');
@@ -594,7 +548,7 @@ $logout_url = 'logout.php';
                 modal.style.display = 'none';
             }
         });
-    </script>
+    </script> -->
 
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->

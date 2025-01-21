@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <!-- <form action="ulogin_process.php" method="POST" onsubmit="return validateLogin()"> -->
     <form action="ulogin_process.php" method="POST">
         <h2>User Login</h2>
         <label for="email">Email:</label>
@@ -20,6 +20,25 @@
         <p>Don't have an account? <a href="usignup.php">Register as User</a> or <a href="msignup.php">Register as Merchant</a></p>
         <p>have an account? <a href="mlogin.php">Login as Merchant</a></p>
     </form>
+    <!-- <script>
+        function validateLogin() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
 
+        if (email === "" || password === "") {
+            alert("Please fill in all fields.");
+            return false;
+        }
+
+        // Simple email format validation
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+
+        return true; // All validations passed
+        }
+    </script> -->
 </body>
 </html>

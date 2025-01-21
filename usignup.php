@@ -10,22 +10,22 @@
 
 <body>
 
-    <form onsubmit="data()" action="usave_process.php" method="POST">
-        
- <h2>User Registration Form</h2>
+    <!-- <form onsubmit="data()" action="usave_process.php" method="POST"> -->
+    <form onsubmit="return validateSignup()" action="usave_process.php" method="POST">
+        <h2>User Registration Form</h2>
 
 
         <br><label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="text" id="name" name="name" ><br><br>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="email" id="email" name="email" ><br><br>
 
         <label for="mobile">Mobile:</label>
-        <input type="number" id="mobile" name="mobile" required><br><br>
+        <input type="number" id="mobile" name="mobile" ><br><br>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="password" id="password" name="password" ><br><br>
 
 
         <input type="checkbox" name="checkboxx" id="checkboxx" required>
@@ -37,9 +37,37 @@
         <p>Already have an account? <a href="ulogin.php">Login as User</a></p>
 
     </form>
+    <script>
+        function validateSignup() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var mobile = document.getElementById('mobile').value;
+            var password = document.getElementById('password').value;
+
+            if (name === "" || email === "" || mobile === "" || password === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+
+            // Validate mobile number (10 digits)
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return false;
+            }
+
+            // Simple email format validation
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            return true; // All validations passed
+        }
+    </script>
 
     <body>
-    <!-- <script>
+        <!-- <script>
         function data()
         {
             var a=document.getElementById('name').value;
@@ -65,4 +93,3 @@
     </script> -->
 
 </html>
-
