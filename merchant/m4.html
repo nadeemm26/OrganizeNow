@@ -1,0 +1,135 @@
+<html>
+ <head>
+  <title>
+   Event Booking System - Home Screen
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f0e1;
+        }
+  </style>
+ </head>
+ <body class="p-4">
+  <div class="max-w-screen-xl mx-auto">
+   <!-- Header -->
+   <header class="flex justify-between items-center py-4">
+    <div class="flex items-center space-x-4">
+     <img alt="User avatar" class="rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/OPBFAZefqBkDMUCdAvSQSvOUxqjLYS6otDi1o12XZ8WaFZHUA.jpg" width="40"/>
+     <input class="border rounded-full px-4 py-2" placeholder="Search Events" type="text"/>
+    </div>
+    <button class="bg-blue-500 text-white px-4 py-2 rounded-full flex items-center space-x-2">
+     <span>
+      Sign up
+     </span>
+     <i class="fas fa-user">
+     </i>
+    </button>
+   </header>
+   <!-- Main Content -->
+   <main class="bg-white p-4 rounded-lg shadow-md">
+    <h1 class="text-center text-xl font-bold mb-4">
+     Upcoming Events
+    </h1>
+    <div class="flex flex-col md:flex-row justify-between items-center">
+     <div class="flex flex-col items-center space-y-4 md:space-y-0 md:space-x-4 md:flex-row">
+      <div class="grid grid-cols-2 gap-4">
+       <img alt="Event icon 1" class="border p-2" height="80" src="https://storage.googleapis.com/a1aa/image/0u5cn5ARRcbxEhYMkLRh1UAklqoWkDmWHW9f4vd3wchRjsDKA.jpg" width="80"/>
+       <img alt="Event icon 2" class="border p-2" height="80" src="https://storage.googleapis.com/a1aa/image/Vo2FCIB19tJwHxOaLJYyUqz7TUjFJfzFsmnKAxcyaJaPjsDKA.jpg" width="80"/>
+       <img alt="Event icon 3" class="border p-2" height="80" src="https://storage.googleapis.com/a1aa/image/PWble0X9UfloM0PsxMn2RL6C8lX0bpOa4UqGYZ5LDYeNNyOoA.jpg" width="80"/>
+       <img alt="Event icon 4" class="border p-2" height="80" src="https://storage.googleapis.com/a1aa/image/ouImZceaMqXwF6GGyA8uZ9VYhDm5nrgDuaQVqU0OuokOjsDKA.jpg" width="80"/>
+      </div>
+      <div class="hidden md:block border-l h-24">
+      </div>
+      <div class="text-center border p-4 rounded-lg">
+       <p>
+        Filter events by category in real time
+       </p>
+      </div>
+     </div>
+    </div>
+   </main>
+   <!-- Event List -->
+   <section class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="border p-4 rounded-lg text-center">
+     <img alt="Event 1" class="mx-auto mb-2" height="80" src="https://storage.googleapis.com/a1aa/image/fK4fkgeVVIbrWpWrD73ifRKfUKQ10c2d3RUnM7LARuII0I7gC.jpg" width="80"/>
+     <p>
+      Event Name 1
+     </p>
+     <p>
+      Date: 2023-10-01
+     </p>
+     <p>
+      Price: $50
+     </p>
+     <button class="bg-blue-500 text-white px-4 py-2 rounded-full mt-2">
+      Book Now
+      <i class="fas fa-ticket-alt">
+      </i>
+     </button>
+    </div>
+    <div class="border p-4 rounded-lg text-center">
+     <img alt="Event 2" class="mx-auto mb-2" height="80" src="https://storage.googleapis.com/a1aa/image/zTVtGaJYkvIIJpS4zCYEBbCmTbSjkxDeJDSFUcEn9p9PjsDKA.jpg" width="80"/>
+     <p>
+      Event Name 2
+     </p>
+     <p>
+      Date: 2023-10-05
+     </p>
+     <p>
+      Price: $30
+     </p>
+     <button class="bg-blue-500 text-white px-4 py-2 rounded-full mt-2">
+      Book Now
+      <i class="fas fa-ticket-alt">
+      </i>
+     </button>
+    </div>
+    <div class="border p-4 rounded-lg text-center">
+     <img alt="Event 3" class="mx-auto mb-2" height="80" src="https://storage.googleapis.com/a1aa/image/WP5S2xv0KU4nCxghz9669Fp4qDcb4QGto1QSTMtsIDqoR2BF.jpg" width="80"/>
+     <p>
+      Event Name 3
+     </p>
+     <p>
+      Date: 2023-10-10
+     </p>
+     <p>
+      Price: $40
+     </p>
+     <button class="bg-blue-500 text-white px-4 py-2 rounded-full mt-2">
+      Book Now
+      <i class="fas fa-ticket-alt">
+      </i>
+     </button>
+    </div>
+    <div class="border p-4 rounded-lg text-center">
+     <img alt="Event 4" class="mx-auto mb-2" height="80" src="https://storage.googleapis.com/a1aa/image/feG3LGXm0GvbAkJLDtNI5TK0sCkxdfARxIiYMWToeCIXakdQB.jpg" width="80"/>
+     <p>
+      Event Name 4
+     </p>
+     <p>
+      Date: 2023-10-15
+     </p>
+     <p>
+      Price: $60
+     </p>
+     <button class="bg-blue-500 text-white px-4 py-2 rounded-full mt-2">
+      Book Now
+      <i class="fas fa-ticket-alt">
+      </i>
+     </button>
+    </div>
+   </section>
+   <!-- Footer -->
+   <footer class="mt-4 text-center">
+    <p>
+     Footer
+    </p>
+   </footer>
+  </div>
+ </body>
+</html>

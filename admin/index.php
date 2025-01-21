@@ -4,7 +4,7 @@ require('db_config.php');
 
 // Check if admin is already logged in
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-    header('Location: dashboard.php'); // Redirect to the admin dashboard
+    header('Location: dashboard2.php'); // Redirect to the admin dashboard
     exit;
 }
 

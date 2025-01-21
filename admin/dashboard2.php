@@ -380,9 +380,9 @@ $logout_url = 'logout.php';
                                         <button type="submit" name="editbtn"> Edit</button>
                                     </form> -->
                                     <button><a href='edit_user.php?id=<?php echo $row['id']; ?>'>Edit</a></button>
-                                    
+                                    <button><a href="delete_user.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></button> 
                                     <!-- <button onclick="editUser(<?php echo $row['id']; ?>)">Edit</button> -->
-                                    <button onclick="deleteUser(<?php echo $row['id']; ?>)">Delete</button>
+                                    <!-- <button onclick="deleteUser(<?php echo $row['id']; ?>)">Delete</button> -->
                                 </td>
                             </tr>
                         <?php endwhile; ?>
