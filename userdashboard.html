@@ -1,0 +1,340 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   User Dashboard
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100 text-gray-900">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 p-4 flex justify-between items-center text-white">
+   <div class="flex items-center space-x-4">
+    <img alt="Company logo, a stylized icon representing the brand" class="w-10 h-10" src="https://placehold.co/50x50"/>
+    <h1 class="text-2xl font-bold">
+     Eventify
+    </h1>
+   </div>
+   <ul class="flex space-x-6">
+    <li>
+     <a class="hover:text-green-500" href="#">
+      Dashboard
+     </a>
+    </li>
+    <li>
+     <a class="hover:text-green-500" href="#">
+      Events
+     </a>
+    </li>
+    <li>
+     <a class="hover:text-green-500" href="#">
+      Profile
+     </a>
+    </li>
+    <li>
+     <a class="hover:text-green-500" href="#">
+      Support
+     </a>
+    </li>
+   </ul>
+   <div class="flex items-center space-x-4">
+    <button class="bg-green-500 px-4 py-2 rounded-full">
+     Log Out
+    </button>
+   </div>
+  </nav>
+  <!-- Main Content -->
+  <div class="p-6">
+   <!-- Upcoming Events -->
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">
+     Upcoming Events
+    </h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Music Concert
+      </h3>
+      <p class="text-sm text-gray-600">
+       Date: 2023-10-15
+      </p>
+      <p class="text-sm text-gray-600">
+       Time: 7:00 PM
+      </p>
+      <p class="text-sm text-gray-600">
+       Location: Madison Square Garden, New York
+      </p>
+      <a class="text-green-500 hover:underline" href="#">
+       View Event
+      </a>
+     </div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Art Exhibition
+      </h3>
+      <p class="text-sm text-gray-600">
+       Date: 2023-11-01
+      </p>
+      <p class="text-sm text-gray-600">
+       Time: 10:00 AM
+      </p>
+      <p class="text-sm text-gray-600">
+       Location: The Louvre, Paris
+      </p>
+      <a class="text-green-500 hover:underline" href="#">
+       View Event
+      </a>
+     </div>
+    </div>
+   </section>
+   <!-- Past Events -->
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">
+     Past Events
+    </h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Tech Conference
+      </h3>
+      <p class="text-sm text-gray-600">
+       Date: 2023-09-20
+      </p>
+      <p class="text-sm text-gray-600">
+       Location: Silicon Valley, California
+      </p>
+      <a class="text-green-500 hover:underline" href="#">
+       Leave a Review
+      </a>
+     </div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Food Festival
+      </h3>
+      <p class="text-sm text-gray-600">
+       Date: 2023-08-15
+      </p>
+      <p class="text-sm text-gray-600">
+       Location: Central Park, New York
+      </p>
+      <a class="text-green-500 hover:underline" href="#">
+       Leave a Review
+      </a>
+     </div>
+    </div>
+   </section>
+   <!-- Wishlist/Favorites -->
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">
+     Wishlist/Favorites
+    </h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Jazz Night
+      </h3>
+      <p class="text-sm text-gray-600">
+       Date: 2023-12-05
+      </p>
+      <p class="text-sm text-gray-600">
+       Location: Blue Note, New York
+      </p>
+      <a class="text-green-500 hover:underline" href="#">
+       Book Now
+      </a>
+     </div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Film Festival
+      </h3>
+      <p class="text-sm text-gray-600">
+       Date: 2023-11-20
+      </p>
+      <p class="text-sm text-gray-600">
+       Location: Cannes, France
+      </p>
+      <a class="text-green-500 hover:underline" href="#">
+       Book Now
+      </a>
+     </div>
+    </div>
+   </section>
+   <!-- Notifications -->
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">
+     Notifications
+    </h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+     <div class="mb-4">
+      <p class="text-sm text-gray-600">
+       Reminder: Your event "Music Concert" is coming up on 2023-10-15.
+      </p>
+     </div>
+     <div class="mb-4">
+      <p class="text-sm text-gray-600">
+       Booking Confirmed: You have successfully booked "Art Exhibition" on 2023-11-01.
+      </p>
+     </div>
+     <div class="mb-4">
+      <p class="text-sm text-gray-600">
+       Special Offer: Get 20% off on your next booking with code SAVE20.
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- Profile Management -->
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">
+     Profile Management
+    </h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+     <form>
+      <div class="mb-4">
+       <label class="block text-sm font-medium text-gray-700">
+        Name
+       </label>
+       <input class="mt-1 p-2 w-full border rounded-md" placeholder="John Doe" type="text"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-sm font-medium text-gray-700">
+        Email
+       </label>
+       <input class="mt-1 p-2 w-full border rounded-md" placeholder="john.doe@example.com" type="email"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-sm font-medium text-gray-700">
+        Payment Method
+       </label>
+       <input class="mt-1 p-2 w-full border rounded-md" placeholder="Visa **** 1234" type="text"/>
+      </div>
+      <button class="bg-green-500 px-4 py-2 rounded-full text-white" type="submit">
+       Update Profile
+      </button>
+     </form>
+    </div>
+   </section>
+   <!-- Booking History -->
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">
+     Booking History
+    </h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Music Concert
+      </h3>
+      <p class="text-sm text-gray-600">
+       Status: Confirmed
+      </p>
+     </div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Art Exhibition
+      </h3>
+      <p class="text-sm text-gray-600">
+       Status: Pending
+      </p>
+     </div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Tech Conference
+      </h3>
+      <p class="text-sm text-gray-600">
+       Status: Attended
+      </p>
+     </div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Food Festival
+      </h3>
+      <p class="text-sm text-gray-600">
+       Status: Cancelled
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- Recommendations -->
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">
+     Recommendations
+    </h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Rock Concert
+      </h3>
+      <p class="text-sm text-gray-600">
+       Date: 2023-12-10
+      </p>
+      <p class="text-sm text-gray-600">
+       Location: Wembley Stadium, London
+      </p>
+      <a class="text-green-500 hover:underline" href="#">
+       View Event
+      </a>
+     </div>
+     <div class="mb-4">
+      <h3 class="text-lg font-semibold">
+       Classical Music Night
+      </h3>
+      <p class="text-sm text-gray-600">
+       Date: 2023-12-15
+      </p>
+      <p class="text-sm text-gray-600">
+       Location: Sydney Opera House, Sydney
+      </p>
+      <a class="text-green-500 hover:underline" href="#">
+       View Event
+      </a>
+     </div>
+    </div>
+   </section>
+   <!-- Support/Help -->
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4">
+     Support/Help
+    </h2>
+    <div class="bg-white p-4 rounded-lg shadow-md">
+     <h3 class="text-lg font-semibold mb-4">
+      FAQs
+     </h3>
+     <div class="mb-4">
+      <h4 class="text-md font-semibold">
+       How do I book an event?
+      </h4>
+      <p class="text-sm text-gray-600">
+       You can book an event by clicking on the "Book Now" button on the event page.
+      </p>
+     </div>
+     <div class="mb-4">
+      <h4 class="text-md font-semibold">
+       How do I cancel a booking?
+      </h4>
+      <p class="text-sm text-gray-600">
+       You can cancel a booking from your booking history section.
+      </p>
+     </div>
+     <h3 class="text-lg font-semibold mb-4">
+      Contact Us
+     </h3>
+     <p class="text-sm text-gray-600">
+      For further assistance, please contact our support team at
+      <a class="text-green-500 hover:underline" href="mailto:support@example.com">
+       support@example.com
+      </a>
+      .
+     </p>
+    </div>
+   </section>
+  </div>
+ </body>
+</html>

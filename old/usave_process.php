@@ -10,9 +10,8 @@ $password=$_POST['password'];
 mysqli_query($cnn,"INSERT INTO user VALUES(null,'$name','$email','$mobile','$password')");
 header("location:ulogin.php");
 
-
-
-// if (empty($name) || empty($email) || empty($mobile) || empty($password)) {
+?>
+<!-- // if (empty($name) || empty($email) || empty($mobile) || empty($password)) {
 //     header('location:usignup.php?error=emptyfields');
 //     exit();
 // }
@@ -38,6 +37,4 @@ header("location:ulogin.php");
 // {
 //     $id = $_POST['edit'];
 //     echo $id;
-// }
-
-?>
+// } -->

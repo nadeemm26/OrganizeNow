@@ -53,8 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login Panel</title>
+    <link rel="stylesheet" href="../style.css">
     <style>
-        body {
+        /* body {
             font-family: Arial, sans-serif;
             background-color: #8687ae;
             display: flex;
@@ -78,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .login-container input {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
@@ -97,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .login-container button:hover {
             background-color: #45a049;
-        }
+        } */
 
         .error {
             color: red;
@@ -109,11 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <div class="login-container">
-        <h2>Admin Login</h2>
-        <?php if (isset($error)): ?>
-            <div class="error"> <?= htmlspecialchars($error) ?> </div>
-        <?php endif; ?>
         <form method="POST" action="">
+            <?php if (isset($error)): ?>
+                <div class="error"> <?= htmlspecialchars($error) ?> </div>
+            <?php endif; ?>
+            <h2>Admin Login</h2>
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>

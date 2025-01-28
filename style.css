@@ -8,10 +8,12 @@ body {
     align-items: center;
     height: 100vh;
 }
+
 h2 {
     color: #333;
     text-align: center;
 }
+
 form {
     background-color: rgb(255, 255, 255);
     padding: 20px;
@@ -20,12 +22,14 @@ form {
     max-width: 400px;
     width: 100%;
 }
+
 label {
     font-size: 1rem;
-    color: #555;        
+    color: #555;
     /* display: block; */
     margin-bottom: 2px;
 }
+
 input[type="text"],
 input[type="email"],
 input[type="number"],
@@ -38,7 +42,8 @@ button {
     border: 1px solid #ddd;
     font-size: 1rem;
 }
-input{
+
+input {
     width: 4%;
     padding: 10px;
     margin: 2px 0px;
@@ -46,6 +51,7 @@ input{
     border: 1px solid #ddd;
     font-size: 1rem;
 }
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus,
@@ -53,34 +59,39 @@ input[type="password"]:focus {
     border-color: #007bff;
     outline: none;
 }
+
 button {
     background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
 }
+
 button:hover {
     background-color: #0056b3;
 }
+
 input[type="radio"] {
     margin-right: 2px;
 }
+
 label input[type="radio"] {
     display: inline;
 }
+
 /* Responsive Design */
 @media (max-width: 600px) {
-form {
-    padding: 15px;
-    max-width: 95%;
-}
+    form {
+        padding: 15px;
+        max-width: 95%;
+    }
 
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="password"],
-button {
-    font-size: 0.9rem;
-    padding: 8px;
-}
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
 }
