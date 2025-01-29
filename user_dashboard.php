@@ -13,21 +13,6 @@ if (isset($_GET['logout'])) {
 }
 ?>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
-</head>
-
-<body>
-    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h2>
-    <p>This is your dashboard.</p>
-    <a href="?logout=true">Logout</a>
-</body>
-
 </html> -->
 <!DOCTYPE html>
 <html lang="en">
