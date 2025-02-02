@@ -254,42 +254,6 @@ if (isset($_GET['logout'])) {
             });
         </script>
     </section>
-
-
-
-
-    <!-- Admin Dashboard
-    <div id="dashboard" class="dashboard-section" style="display: none;">
-        <aside class="sidebar">
-            <h3>Admin Dashboard</h3>
-            <ul>
-                <li><a href="#user-management" onclick="showSection('user-management')">User Management</a></li>
-                <li><a href="#merchant-management" onclick="showSection('merchant-management')">Merchant Management</a></li>
-                <li><a href="#payment-management" onclick="showSection('payment-management')">Payment Management</a></li>
-                <li><a href="#settings" onclick="showSection('settings')">Settings</a></li>
-            </ul>
-        </aside>
-        <main class="main-content">
-            <div id="user-management" class="admin-section">
-                <h2>User Management</h2>
-                <p>Manage all registered users here.</p>
-            </div>
-            <div id="merchant-management" class="admin-section" style="display: none;">
-                <h2>Merchant Management</h2>
-                <p>Manage vendors and service providers.</p>
-            </div>
-            <div id="payment-management" class="admin-section" style="display: none;">
-                <h2>Payment Management</h2>
-                <p>View and process payments.</p>
-            </div>
-            <div id="settings" class="admin-section" style="display: none;">
-                <h2>Settings</h2>
-                <p>Configure system settings.</p>
-            </div>
-        </main>
-    </div>
-
-    <script src="script.js"></script> -->
 </body>
 
 </html>

@@ -1,7 +1,6 @@
 <?php
-// include "dashboard.css";
-include "connection.php";
-    include "admin.php";
+    include "connection.php";
+    include "admin_sidebar.php";
 ?>
 
 <div id="dashboard" class="section">
@@ -60,3 +59,18 @@ include "connection.php";
                 </div>
             </div>
         </div>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script>
+        // Chart Setup
+        const ctx = document.getElementById('orderChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['New Order', 'Confirmed Order', 'Pickup Order', 'On the way', 'Delivered', 'Cancelled'],
+                datasets: [{
+                    data: [150, 8, 30, 50, 35, 10],
+                    backgroundColor: ['#2ecc71', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#95a5a6']
+                }]
+            }
+        });
+    </script>

@@ -1,12 +1,13 @@
 <?php
 include "connection.php";
-include "admin.php";
+include "admin_sidebar.php";
+
 
 // Fetch merchant details
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = "SELECT * FROM `merchant` WHERE id='$id'";
-    $result = mysqli_query($con, $query);
+    $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 }
 
@@ -20,47 +21,48 @@ if (isset($_POST['update'])) {
 
     $updateQuery = "UPDATE `merchant` SET name='$name', type='$type', details='$details', email='$email', mobile='$mobile' WHERE id='$id'";
 
-    if (mysqli_query($con, $updateQuery)) {
-        echo "<script>alert('Merchant updated successfully!'); window.location.href='merchant_management.php';</script>";
+    if (mysqli_query($conn, $updateQuery)) {
+        echo "<script>alert('✅Merchant updated successfully!'); window.location.href='merchant_management.php';</script>";
     } else {
-        echo "<script>alert('Error updating merchant');</script>";
+        echo "<script>alert('❌Error updating merchant');</script>";
     }
 }
 ?>
 
-<h1>Edit Merchant</h1>
+<h1>Edit Merchant Information</h1>
 <form method="POST">
     <div class="form-group">
-    <label for="name">Name:</label>
-    <input type="text" name="name" value="<?php echo $row['name']; ?>" required>
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="<?php echo $row['name']; ?>" required>
     </div>
     <div class="form-group">
-    <label for="type">Type:</label>
-    <select name="type" required>
-        <option value="catering" <?php if ($row['type'] == 'catering') echo 'selected'; ?>>Catering</option>
-        <option value="decoration" <?php if ($row['type'] == 'decoration') echo 'selected'; ?>>Decoration</option>
-        <option value="photo" <?php if ($row['type'] == 'photo') echo 'selected'; ?>>Photo</option>
-        <option value="venue" <?php if ($row['type'] == 'venue') echo 'selected'; ?>>Venue</option>
-        <option value="other" <?php if ($row['type'] == 'other') echo 'selected'; ?>>Other</option>
-    </select>
+        <label for="type">Type:</label>
+        <select name="type" required>
+            <option value="catering" <?php if ($row['type'] == 'catering') echo 'selected'; ?>>Catering</option>
+            <option value="decoration" <?php if ($row['type'] == 'decoration') echo 'selected'; ?>>Decoration</option>
+            <option value="photo" <?php if ($row['type'] == 'photo') echo 'selected'; ?>>Photo</option>
+            <option value="venue" <?php if ($row['type'] == 'venue') echo 'selected'; ?>>Venue</option>
+            <option value="other" <?php if ($row['type'] == 'other') echo 'selected'; ?>>Other</option>
+        </select>
     </div>
     <div class="form-group">
-    <label for="details">Details:</label>
-    <textarea name="details" required><?php echo $row['details']; ?></textarea>
+        <label for="details">Details:</label>
+        <textarea name="details" required><?php echo $row['details']; ?></textarea>
     </div>
     <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" name="email" value="<?php echo $row['email']; ?>" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="<?php echo $row['email']; ?>" required>
     </div>
     <div class="form-group">
-    <label for="mobile">Mobile:</label>
-    <input type="number" name="mobile" value="<?php echo $row['mobile']; ?>" required>
+        <label for="mobile">Mobile:</label>
+        <input type="number" name="mobile" value="<?php echo $row['mobile']; ?>" required>
     </div>
     <div class="form-group">
-    <button type="submit" name="update">Update</button>
-    <a href="merchant_management.php"><button type="button">Cancel</button></a>
+        <button type="submit" name="update">Update</button>
+        <a href="merchant_management.php"><button type="button">Cancel</button></a>
     </div>
 </form>
 
 </body>
+
 </html>

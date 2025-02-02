@@ -4,27 +4,27 @@ include 'connection.php';
 
 
 if (isset($_GET['id'])) {
-    $user = intval($_GET['id']); 
+    $user = intval($_GET['id']);
 
-   
+
     $sql = "DELETE FROM merchant WHERE id = ?";
-    
-    
-    $stmt = $con->prepare($sql);
+
+
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user);
 
     if ($stmt->execute()) {
         // Record deleted successfully
-        echo "<script>alert('Record deleted successfully!');</script>";
+        echo "<script>alert('✅Record deleted successfully!');</script>";
     } else {
         // Error occurred
-        echo "<script>alert('Error deleting record: " . $con->error . "');</script>";
+        echo "<script>alert('❌Error deleting record: " . $conn->error . "');</script>";
     }
 
     // Redirect back to the main page
     echo "<script>window.location.href = 'merchant_management.php';</script>";
 } else {
-    echo "<script>alert('Invalid request.');</script>";
+    echo "<script>alert('❌Invalid request.');</script>";
     echo "<script>window.location.href = 'merchant_management.php';</script>";
 }
 

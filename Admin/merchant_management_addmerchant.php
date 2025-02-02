@@ -1,10 +1,11 @@
 <?php
 include "connection.php";
-include "admin.php";
+include "admin_sidebar.php";
+
 
 $successMsg = $errorMsg = "";
 
-if (isset($_POST['submit'])) {   
+if (isset($_POST['submit'])) {
     $name = trim($_POST['name']);
     $type = $_POST['type'];
     $details = trim($_POST['details']);
@@ -14,20 +15,20 @@ if (isset($_POST['submit'])) {
 
     // Basic validation
     if (empty($name) || empty($type) || empty($details) || empty($email) || empty($mobile) || empty($password)) {
-        $errorMsg = "All fields are required!";
+        $errorMsg = "❌All fields are required!";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errorMsg = "Invalid email format!";
+        $errorMsg = "❌Invalid email format!";
     } elseif (!preg_match("/^[0-9]{10}$/", $mobile)) {
-        $errorMsg = "Invalid mobile number! Must be 10 digits.";
+        $errorMsg = "❌Invalid mobile number! Must be 10 digits.";
     } elseif (strlen($password) < 6) {
-        $errorMsg = "Password must be at least 6 characters long!";
+        $errorMsg = "❌Password must be at least 6 characters long!";
     } else {
         // Check if email already exists
         $checkEmail = "SELECT * FROM `merchant` WHERE email='$email'";
-        $result = mysqli_query($con, $checkEmail);
-        
+        $result = mysqli_query($conn, $checkEmail);
+
         if (mysqli_num_rows($result) > 0) {
-            $errorMsg = "Email already registered!";
+            $errorMsg = "✅Email already registered!";
         } else {
             // Hash the password for security
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -36,10 +37,10 @@ if (isset($_POST['submit'])) {
             $insertQuery = "INSERT INTO `merchant` (id, name, type, details, email, mobile, password) 
                             VALUES (NULL, '$name', '$type', '$details', '$email', '$mobile', '$hashedPassword')";
 
-            if (mysqli_query($con, $insertQuery)) {
-                $successMsg = "New merchant created successfully!";
+            if (mysqli_query($conn, $insertQuery)) {
+                $successMsg = "✅New merchant created successfully!";
             } else {
-                $errorMsg = "Error: " . mysqli_error($con);
+                $errorMsg = "Error: " . mysqli_error($conn);
             }
         }
     }
@@ -89,4 +90,5 @@ if (isset($_POST['submit'])) {
     </div>
 </form>
 </body>
+
 </html>

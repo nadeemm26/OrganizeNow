@@ -1,6 +1,6 @@
 <?php
     include "connection.php";
-    include "admin.php";
+    include "admin_sidebar.php";
 ?>
 
 <h1>Event Management</h1>

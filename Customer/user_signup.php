@@ -16,10 +16,10 @@ if (isset($_POST['signup'])) {
 
     $checkEmail = $conn->query("SELECT id FROM user WHERE email='$email'");
     if ($checkEmail->num_rows > 0) {
-        echo "<script>alert('Email already exists!');</script>";
+        echo "<script>alert('❌Email already exists!');</script>";
     } else {
         $conn->query("INSERT INTO user (name, email, mobile, password) VALUES ('$name', '$email', '$mobile', '$password')");
-        echo "<script>alert('Signup successful! Please login.');</script>";
+        echo "<script>alert('✅Signup successful! Please login.');</script>";
         header('Location: user_login.php');
         exit;
     }
@@ -33,7 +33,7 @@ if (isset($_POST['signup'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User SignUp</title>
-    <link rel="stylesheet" href="loginsignup.css">
+    <link rel="stylesheet" href="../Admin/all_form.css">
 </head>
 <body>
     <form onsubmit="return validateSignup()" method="post">
@@ -44,7 +44,7 @@ if (isset($_POST['signup'])) {
         <input type="password" id="password" name="password" placeholder="Enter One Time Password" ><br>
         <button type="submit" name="signup">Signup</button>
         <p>Already have an account? <a href="user_login.php">Login as User</a></p>
-        <p>Are you a merchant? <a href="merchant_signup.php">Register as Merchant</a></p>
+        <p>Are you a merchant? <a href="../Merchant/merchant_signup.php">Register as Merchant</a></p>
     </form>
     <script>
         function validateSignup() {

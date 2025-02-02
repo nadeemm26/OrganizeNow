@@ -2,8 +2,6 @@
 
 include "sidebarmerchant.php";
 
-?>
-<?php
 session_start();
 if (!isset($_SESSION['merchant_id'])) {
     header('Location: merchant_login.php');
@@ -19,9 +17,9 @@ if (isset($_GET['logout'])) {
 <!-- Your main content goes here -->
 
 <div class="header">
-    <h1>
+    <!-- <h1>
         Welcome, Merchant
-    </h1>
+    </h1> -->
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION['merchant_name']); ?>!</h2>
     <div class="profile">
         <img alt="Profile picture of the merchant" src="https://placehold.co/40x40" />

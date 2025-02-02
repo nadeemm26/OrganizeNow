@@ -1,6 +1,6 @@
 <?php
-include "connection.php";
-include "admin.php";
+    include "connection.php";
+    include "admin_sidebar.php";
 ?>
 <h1>Merchant Management</h1>
 <p>Manage all registered Merchant here.</p>
@@ -20,7 +20,7 @@ include "admin.php";
     <tbody>
         <?php
         $Select = "SELECT * FROM `merchant`";
-        $data = mysqli_query($con, $Select);
+        $data = mysqli_query($conn, $Select);
         while ($row = mysqli_fetch_assoc($data)) {
 
         ?>
@@ -37,7 +37,7 @@ include "admin.php";
                 </td>
             </tr>
 
-        <?php } ?>
+    <?php } ?>
         </tbody>
     </table>
 </div>

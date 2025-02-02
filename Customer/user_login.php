@@ -21,10 +21,10 @@ if (isset($_POST['login'])) {
             header('Location: user_dashboard.php');
             exit;
         } else {
-            echo "<script>alert('Invalid password!');</script>";
+            echo "<script>alert('❌Invalid password!');</script>";
         }
     } else {
-        echo "<script>alert('No user found with this email!');</script>";
+        echo "<script>alert('❌No user found with this email!');</script>";
     }
 }
 
@@ -36,7 +36,7 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="loginsignup.css">
+    <link rel="stylesheet" href="../Admin/all_form.css">
 </head>
 <body>
     <form method="post">
@@ -48,8 +48,8 @@ if (isset($_POST['login'])) {
 
         <button type="submit" name="login">Login</button>
        
-        <p>Don't have an account? <a href="user_signup.php">Register as User</a> or <a href="merchant_signup.php">Register as Merchant</a></p>
-        <p>have an account? <a href="merchant_login.php">Login as Merchant</a></p>
+        <p>Don't have an account? <a href="user_signup.php">Register as User</a> or <a href="../Merchant/merchant_signup.php">Register as Merchant</a></p>
+        <p>have an account? <a href="../Merchant/merchant_login.php">Login as Merchant</a></p>
     </form>
 </body>
 </html>
