@@ -1,0 +1,73 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&family=Playwrite+ES+Deco+Guides&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&family=Playwrite+ES+Deco+Guides&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    background-color: rgb(164, 74, 199);
+    color: rgb(255, 255, 255);
+    font-size: x-large;
+    height: 50px;
+    align-items: center;
+    display: flex;
+    font-family: "Kanit", serif;
+  font-weight: 400;
+  font-style: normal;
+    
+}
+nav ul{
+    list-style-type: none;
+    margin: 0 15px;
+}
+nav ul li:hover{
+    color: rgb(0, 0, 0);
+}
+.gameContainer{
+    /* background-color: rgb(208, 146, 215); */
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    
+}
+.Container{
+    display: grid;
+    grid-template-columns: repeat(3,10vw);
+    grid-template-rows: repeat(3,10vw);
+    /* margin-top: 5vh; */
+}
+.box{
+    border: 2px solid black;
+    font-size: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box:hover{
+    background-color: rgb(255, 240, 255);
+}
+.gameInfo{
+    padding: 0 25px;
+    font-family: "Cinzel", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+.image img{
+    display: none;
+}
+.br-0{
+    border-right: 0;
+}
+.bl-0{
+    border-left: 0;
+}
+.bb-0{
+    border-bottom: 0;
+}
+.bt-0{
+    border-top: 0;
+}

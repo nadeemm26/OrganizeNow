@@ -1,0 +1,346 @@
+<html>
+ <head>
+  <title>
+   Event Website
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .event-list, .event-details, .booking-form {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .event-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .event-item img {
+            width: 150px;
+            height: 100px;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+        .event-item h3 {
+            margin: 0;
+        }
+        .event-item p {
+            margin: 5px 0;
+        }
+        .event-details img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .booking-form input, .booking-form select, .booking-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .booking-form button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .booking-form button:hover {
+            background-color: #555;
+        }
+  </style>
+ </head>
+ <body>
+  <header>
+   <h1>
+    Event Website
+   </h1>
+  </header>
+  <nav>
+   <a href="#events">
+    Events
+   </a>
+   <a href="#about">
+    About
+   </a>
+   <a href="#contact">
+    Contact
+   </a>
+  </nav>
+  <div class="container">
+   <section class="event-list" id="events">
+    <h2>
+     Upcoming Events
+    </h2>
+    <div class="event-item">
+     <img alt="Image of a music concert with a large crowd and stage lighting" src="https://placehold.co/150x100"/>
+     <div>
+      <h3>
+       Music Concert
+      </h3>
+      <p>
+       Date: 2023-12-01
+      </p>
+      <p>
+       Location: Madison Square Garden, NY
+      </p>
+      <a href="#event-details-1">
+       View Details
+      </a>
+     </div>
+    </div>
+    <div class="event-item">
+     <img alt="Image of a tech conference with speakers on stage and audience" src="https://placehold.co/150x100"/>
+     <div>
+      <h3>
+       Tech Conference
+      </h3>
+      <p>
+       Date: 2023-11-15
+      </p>
+      <p>
+       Location: Silicon Valley, CA
+      </p>
+      <a href="#event-details-2">
+       View Details
+      </a>
+     </div>
+    </div>
+    <div class="event-item">
+     <img alt="Image of an art exhibition with paintings and sculptures" src="https://placehold.co/150x100"/>
+     <div>
+      <h3>
+       Art Exhibition
+      </h3>
+      <p>
+       Date: 2023-10-20
+      </p>
+      <p>
+       Location: Louvre Museum, Paris
+      </p>
+      <a href="#event-details-3">
+       View Details
+      </a>
+     </div>
+    </div>
+   </section>
+   <section class="event-details" id="event-details-1">
+    <h2>
+     Music Concert
+    </h2>
+    <img alt="Detailed image of a music concert with a band performing on stage" src="https://placehold.co/800x400"/>
+    <p>
+     Date: 2023-12-01
+    </p>
+    <p>
+     Location: Madison Square Garden, NY
+    </p>
+    <p>
+     Description: Join us for an unforgettable night of music with top artists performing live at the iconic Madison Square Garden.
+    </p>
+    <a href="#booking-form-1">
+     Book Now
+    </a>
+   </section>
+   <section class="event-details" id="event-details-2">
+    <h2>
+     Tech Conference
+    </h2>
+    <img alt="Detailed image of a tech conference with keynote speakers and audience" src="https://placehold.co/800x400"/>
+    <p>
+     Date: 2023-11-15
+    </p>
+    <p>
+     Location: Silicon Valley, CA
+    </p>
+    <p>
+     Description: Attend the premier tech conference where industry leaders discuss the latest trends and innovations in technology.
+    </p>
+    <a href="#booking-form-2">
+     Book Now
+    </a>
+   </section>
+   <section class="event-details" id="event-details-3">
+    <h2>
+     Art Exhibition
+    </h2>
+    <img alt="Detailed image of an art exhibition with various artworks on display" src="https://placehold.co/800x400"/>
+    <p>
+     Date: 2023-10-20
+    </p>
+    <p>
+     Location: Louvre Museum, Paris
+    </p>
+    <p>
+     Description: Explore the finest artworks from renowned artists at the prestigious Louvre Museum.
+    </p>
+    <a href="#booking-form-3">
+     Book Now
+    </a>
+   </section>
+   <section class="booking-form" id="booking-form-1">
+    <h2>
+     Book Music Concert
+    </h2>
+    <form>
+     <label for="name">
+      Name:
+     </label>
+     <input id="name" name="name" required="" type="text"/>
+     <label for="email">
+      Email:
+     </label>
+     <input id="email" name="email" required="" type="email"/>
+     <label for="phone">
+      Phone:
+     </label>
+     <input id="phone" name="phone" required="" type="tel"/>
+     <label for="tickets">
+      Number of Tickets:
+     </label>
+     <select id="tickets" name="tickets" required="">
+      <option value="1">
+       1
+      </option>
+      <option value="2">
+       2
+      </option>
+      <option value="3">
+       3
+      </option>
+      <option value="4">
+       4
+      </option>
+     </select>
+     <label for="message">
+      Message:
+     </label>
+     <textarea id="message" name="message"></textarea>
+     <button type="submit">
+      Submit
+     </button>
+    </form>
+   </section>
+   <section class="booking-form" id="booking-form-2">
+    <h2>
+     Book Tech Conference
+    </h2>
+    <form>
+     <label for="name">
+      Name:
+     </label>
+     <input id="name" name="name" required="" type="text"/>
+     <label for="email">
+      Email:
+     </label>
+     <input id="email" name="email" required="" type="email"/>
+     <label for="phone">
+      Phone:
+     </label>
+     <input id="phone" name="phone" required="" type="tel"/>
+     <label for="tickets">
+      Number of Tickets:
+     </label>
+     <select id="tickets" name="tickets" required="">
+      <option value="1">
+       1
+      </option>
+      <option value="2">
+       2
+      </option>
+      <option value="3">
+       3
+      </option>
+      <option value="4">
+       4
+      </option>
+     </select>
+     <label for="message">
+      Message:
+     </label>
+     <textarea id="message" name="message"></textarea>
+     <button type="submit">
+      Submit
+     </button>
+    </form>
+   </section>
+   <section class="booking-form" id="booking-form-3">
+    <h2>
+     Book Art Exhibition
+    </h2>
+    <form>
+     <label for="name">
+      Name:
+     </label>
+     <input id="name" name="name" required="" type="text"/>
+     <label for="email">
+      Email:
+     </label>
+     <input id="email" name="email" required="" type="email"/>
+     <label for="phone">
+      Phone:
+     </label>
+     <input id="phone" name="phone" required="" type="tel"/>
+     <label for="tickets">
+      Number of Tickets:
+     </label>
+     <select id="tickets" name="tickets" required="">
+      <option value="1">
+       1
+      </option>
+      <option value="2">
+       2
+      </option>
+      <option value="3">
+       3
+      </option>
+      <option value="4">
+       4
+      </option>
+     </select>
+     <label for="message">
+      Message:
+     </label>
+     <textarea id="message" name="message"></textarea>
+     <button type="submit">
+      Submit
+     </button>
+    </form>
+   </section>
+  </div>
+ </body>
+</html>

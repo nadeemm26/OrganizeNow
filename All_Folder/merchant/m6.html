@@ -1,0 +1,217 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Event Management System - Product Search
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            background-color: #f0f4f8;
+        }
+  </style>
+ </head>
+ <body class="font-sans">
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+   <div class="flex items-center space-x-4">
+    <img alt="Logo" class="rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/XKhJ5dMg6va5MJXnzstIY5Rx8K6Eq3sTUkGA0I3kfXtwksDKA.jpg" width="40"/>
+    <input class="border rounded p-2" placeholder="Search for products" type="text"/>
+    <button class="bg-blue-500 text-white p-2 rounded">
+     <i class="fas fa-search">
+     </i>
+    </button>
+   </div>
+   <div class="flex items-center space-x-4">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded">
+     Sign up
+    </button>
+    <i class="fas fa-shopping-cart text-2xl">
+    </i>
+   </div>
+  </header>
+  <div class="flex flex-col md:flex-row">
+   <aside class="bg-white shadow p-4 w-full md:w-1/4">
+    <h2 class="text-lg font-bold mb-4">
+     Categories
+    </h2>
+    <ul class="space-y-2">
+     <li>
+      Event Decorations
+     </li>
+     <li>
+      Lighting
+     </li>
+     <li>
+      Sound Systems
+     </li>
+     <li>
+      Furniture
+     </li>
+     <li>
+      Catering
+     </li>
+    </ul>
+   </aside>
+   <main class="flex-1 p-4">
+    <h2 class="text-2xl font-bold mb-4">
+     Offers
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+     <div class="bg-white shadow p-4 rounded">
+      <img alt="Event Decoration" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/5XjQg0v8HFa0IZ396CrBUIhwabRqMZz7konvPz4Lxl7uS2BF.jpg" width="100"/>
+      <h3 class="text-lg font-bold">
+       Event Decoration
+      </h3>
+      <p class="text-gray-600">
+       Rs.500
+       <span class="line-through">
+        M.R.P.: Rs.700
+       </span>
+       (20% off)
+      </p>
+      <p class="text-green-500">
+       Free Delivery
+      </p>
+      <button class="bg-blue-500 text-white p-2 rounded mt-2 w-full">
+       <i class="fas fa-cart-plus">
+       </i>
+       ADD TO Cart
+      </button>
+     </div>
+     <div class="bg-white shadow p-4 rounded">
+      <img alt="Lighting" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/mrlcSB0M98LjL995dbvyvZOjWrp7AsSNvb9EludsdTZuS2BF.jpg" width="100"/>
+      <h3 class="text-lg font-bold">
+       Lighting
+      </h3>
+      <p class="text-gray-600">
+       Rs.300
+       <span class="line-through">
+        M.R.P.: Rs.400
+       </span>
+       (25% off)
+      </p>
+      <p class="text-green-500">
+       Free Delivery
+      </p>
+      <button class="bg-blue-500 text-white p-2 rounded mt-2 w-full">
+       <i class="fas fa-cart-plus">
+       </i>
+       ADD TO Cart
+      </button>
+     </div>
+     <div class="bg-white shadow p-4 rounded">
+      <img alt="Sound System" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/zE1AqMzDWoJcCByly1f2X9nx5hn2MwANUUkKI7wzuwBdlsDKA.jpg" width="100"/>
+      <h3 class="text-lg font-bold">
+       Sound System
+      </h3>
+      <p class="text-gray-600">
+       Rs.1000
+       <span class="line-through">
+        M.R.P.: Rs.1200
+       </span>
+       (15% off)
+      </p>
+      <p class="text-green-500">
+       Free Delivery
+      </p>
+      <button class="bg-blue-500 text-white p-2 rounded mt-2 w-full">
+       <i class="fas fa-cart-plus">
+       </i>
+       ADD TO Cart
+      </button>
+     </div>
+    </div>
+   </main>
+  </div>
+  <footer class="bg-white shadow p-4 mt-4">
+   <div class="text-center">
+    Footer
+   </div>
+  </footer>
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow p-4">
+   <div class="flex justify-between items-center">
+    <input class="border rounded p-2 flex-1 mr-2" placeholder="Search for products" type="text"/>
+    <button class="bg-blue-500 text-white p-2 rounded">
+     <i class="fas fa-search">
+     </i>
+    </button>
+    <button class="bg-blue-500 text-white px-4 py-2 rounded ml-2">
+     Sign up
+    </button>
+    <i class="fas fa-shopping-cart text-2xl ml-2">
+    </i>
+   </div>
+   <div class="mt-4">
+    <button class="bg-blue-500 text-white p-2 rounded w-full">
+     Advanced Filtering
+     <i class="fas fa-filter">
+     </i>
+    </button>
+    <div class="flex justify-between mt-2">
+     <button class="bg-gray-200 p-2 rounded">
+      Decorations
+     </button>
+     <button class="bg-gray-200 p-2 rounded">
+      Lighting
+     </button>
+     <button class="bg-gray-200 p-2 rounded">
+      Sound
+     </button>
+     <button class="bg-gray-200 p-2 rounded">
+      Furniture
+     </button>
+    </div>
+   </div>
+   <div class="mt-4">
+    <h2 class="text-lg font-bold mb-2">
+     New Offers
+    </h2>
+    <div class="bg-white shadow p-4 rounded mb-2">
+     <img alt="Event Decoration" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/5XjQg0v8HFa0IZ396CrBUIhwabRqMZz7konvPz4Lxl7uS2BF.jpg" width="100"/>
+     <h3 class="text-lg font-bold">
+      Event Decoration
+     </h3>
+     <p class="text-gray-600">
+      Rs.500
+      <span class="line-through">
+       M.R.P.: Rs.700
+      </span>
+      (20% off)
+     </p>
+     <p class="text-green-500">
+      Free Delivery
+     </p>
+     <button class="bg-blue-500 text-white p-2 rounded mt-2 w-full">
+      <i class="fas fa-cart-plus">
+      </i>
+      ADD TO Cart
+     </button>
+    </div>
+    <div class="bg-white shadow p-4 rounded">
+     <img alt="Lighting" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/mrlcSB0M98LjL995dbvyvZOjWrp7AsSNvb9EludsdTZuS2BF.jpg" width="100"/>
+     <h3 class="text-lg font-bold">
+      Lighting
+     </h3>
+     <p class="text-gray-600">
+      Rs.300
+      <span class="line-through">
+       M.R.P.: Rs.400
+      </span>
+      (25% off)
+     </p>
+     <p class="text-green-500">
+      Free Delivery
+     </p>
+     <button class="bg-blue-500 text-white p-2 rounded mt-2 w-full">
+      <i class="fas fa-cart-plus">
+      </i>
+      ADD TO Cart
+     </button>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
