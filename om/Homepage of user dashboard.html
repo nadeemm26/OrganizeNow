@@ -1,0 +1,120 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   User Dashboard
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+ </head>
+ <body class="font-sans bg-gray-100">
+  <!-- Header -->
+  <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
+   <div class="flex items-center space-x-4">
+    <img alt="Company Logo" class="h-12" height="50" src="https://storage.googleapis.com/a1aa/image/SlyTU_btU_9AdxLuQX4suEj8tGDyRpSL5XVnxtFIJ0U.jpg" width="50"/>
+    <h1 class="text-2xl font-bold">
+     User Dashboard
+    </h1>
+   </div>
+   <nav class="space-x-4">
+    <a class="text-white hover:bg-gray-700 py-2 px-4 rounded" href="#">
+     Home
+    </a>
+    <a class="text-white hover:bg-gray-700 py-2 px-4 rounded" href="#">
+     Profile
+    </a>
+    <a class="text-white hover:bg-gray-700 py-2 px-4 rounded" href="#">
+     Settings
+    </a>
+    <a class="text-white hover:bg-gray-700 py-2 px-4 rounded" href="#">
+     Logout
+    </a>
+   </nav>
+   <div class="flex items-center space-x-4">
+    <span class="text-gray-300">
+     user@example.com
+    </span>
+    <img alt="User Avatar" class="rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/n1Rm98TEJzE7T9l1ebUtF6o6pUJezx5G_U8H8hU41H8.jpg" width="40"/>
+   </div>
+  </header>
+  <!-- Main Content -->
+  <main class="p-6">
+   <!-- Welcome Section -->
+   <section class="bg-white p-6 rounded shadow mb-6" data-aos="fade-down">
+    <h2 class="text-2xl font-bold">
+     Welcome, User!
+    </h2>
+    <p class="mt-2">
+     Here is your dashboard where you can manage your activities, view notifications, and more.
+    </p>
+   </section>
+   <!-- Content -->
+   <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition-shadow duration-200" data-aos="fade-up">
+     <h3 class="text-xl font-bold mb-2">
+      Recent Activities
+     </h3>
+     <p>
+      Check out your recent activities and stay updated.
+     </p>
+    </div>
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition-shadow duration-200" data-aos="fade-up" data-aos-delay="100">
+     <h3 class="text-xl font-bold mb-2">
+      Notifications
+     </h3>
+     <p>
+      View your latest notifications and alerts.
+     </p>
+    </div>
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition-shadow duration-200" data-aos="fade-up" data-aos-delay="200">
+     <h3 class="text-xl font-bold mb-2">
+      Messages
+     </h3>
+     <p>
+      Read your recent messages and stay connected.
+     </p>
+    </div>
+   </section>
+   <!-- Statistics Section -->
+   <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-4" data-aos="fade-up">
+     Your Statistics
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+     <div class="bg-white p-6 rounded shadow hover:shadow-lg transition-shadow duration-200" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="text-4xl font-bold">
+       120
+      </h3>
+      <p>
+       Posts
+      </p>
+     </div>
+     <div class="bg-white p-6 rounded shadow hover:shadow-lg transition-shadow duration-200" data-aos="fade-up" data-aos-delay="200">
+      <h3 class="text-4xl font-bold">
+       300
+      </h3>
+      <p>
+       Followers
+      </p>
+     </div>
+     <div class="bg-white p-6 rounded shadow hover:shadow-lg transition-shadow duration-200" data-aos="fade-up" data-aos-delay="300">
+      <h3 class="text-4xl font-bold">
+       150
+      </h3>
+      <p>
+       Following
+      </p>
+     </div>
+    </div>
+   </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
+  </script>
+  <script>
+   AOS.init();
+  </script>
+ </body>
+</html>

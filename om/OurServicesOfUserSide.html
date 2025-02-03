@@ -1,0 +1,115 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Our Event Services
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+  </style>
+ </head>
+ <body class="font-roboto bg-gray-100">
+  <header class="bg-white shadow-md">
+   <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-gray-800">
+     Event Services
+    </div>
+    <nav class="space-x-4">
+     <a class="text-gray-600 hover:text-gray-800" href="#">
+      Home
+     </a>
+     <a class="text-gray-600 hover:text-gray-800" href="#">
+      About
+     </a>
+     <a class="text-gray-600 hover:text-gray-800" href="#">
+      Services
+     </a>
+     <a class="text-gray-600 hover:text-gray-800" href="#">
+      Contact
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main class="container mx-auto px-6 py-12">
+   <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">
+    Our Event Services
+   </h1>
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="fade-in bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+     <img alt="A beautifully decorated wedding venue with flowers and elegant seating arrangements" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/6_GugHqfJgAvPQ7M07h-y-_v9y_4ndbbPXLvDNt7ql8.jpg" width="600"/>
+     <div class="p-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">
+       Wedding
+      </h2>
+      <p class="text-gray-600">
+       Make your special day unforgettable with our comprehensive wedding planning services.
+      </p>
+     </div>
+    </div>
+    <div class="fade-in bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+     <img alt="A couple exchanging rings during their engagement ceremony" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/KYNL690BLGnVDbLu1aTxQePomMaa6CmW7ffMko6lTqE.jpg" width="600"/>
+     <div class="p-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">
+       Engagement
+      </h2>
+      <p class="text-gray-600">
+       Celebrate your love with a memorable engagement party planned to perfection.
+      </p>
+     </div>
+    </div>
+    <div class="fade-in bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+     <img alt="A couple celebrating their anniversary with a romantic dinner setup" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/3d5QPDBgawuiJAdnULxZFtxyTYKHwBm2NaeHL3g4wuA.jpg" width="600"/>
+     <div class="p-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">
+       Anniversary
+      </h2>
+      <p class="text-gray-600">
+       Mark your milestones with a beautifully organized anniversary celebration.
+      </p>
+     </div>
+    </div>
+    <div class="fade-in bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-500 hover:scale-105">
+     <img alt="A colorful birthday party setup with balloons and a cake" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/piwGpjg2RmuwOzfuZuQqrB-RdVG9Y6va2ZnXlo6HLcU.jpg" width="600"/>
+     <div class="p-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">
+       Birthday
+      </h2>
+      <p class="text-gray-600">
+       Throw a fantastic birthday party with our expert planning and creative ideas.
+      </p>
+     </div>
+    </div>
+   </div>
+  </main>
+  <footer class="bg-white shadow-md mt-12">
+   <div class="container mx-auto px-6 py-4 text-center text-gray-600">
+    © 2023 Event Services. All rights reserved.
+   </div>
+  </footer>
+  <script>
+   document.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (position < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+  </script>
+ </body>
+</html>
