@@ -4,7 +4,7 @@ include "sidebarmerchant.php";
 
 ?>
 <?php
-    session_start();
+    // session_start();
     include "connection.php";
 
     // Ensure merchant is logged in

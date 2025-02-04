@@ -1,14 +1,24 @@
+<?php
+session_start();
+if (!isset($_SESSION['merchant_id'])) {
+    header('Location: merchant_login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrganizeNow-Merchant</title>
     <link rel="stylesheet" href="sidebarmerchant.css">
     <style>
-       
+
     </style>
 </head>
+
 <body>
     <div class="sidebar">
         <h1>OrganizeNow</h1>
@@ -18,9 +28,8 @@
             <a href="booking.php">Booking of User</a>
             <a href="payment.php">Payment</a>
             <a href="profile.php">Profile</a>
-            <a href="?logout=true">Logout</a>
+            <a href="logout.php">Logout</a>
         </div>
     </div>
 
     <div class="main-content">
-        

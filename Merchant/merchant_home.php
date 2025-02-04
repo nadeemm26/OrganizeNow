@@ -2,16 +2,8 @@
 
 include "sidebarmerchant.php";
 
-session_start();
-if (!isset($_SESSION['merchant_id'])) {
-    header('Location: merchant_login.php');
-    exit;
-}
-if (isset($_GET['logout'])) {
-    session_destroy();
-    header('Location: merchant_login.php');
-    exit;
-}
+
+
 ?>
 
 <!-- Your main content goes here -->
