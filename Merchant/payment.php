@@ -7,4 +7,5 @@ include "sidebarmerchant.php";
     <h1>
         Payments Of Booking 
     </h1>
+    <hr>
 </div>

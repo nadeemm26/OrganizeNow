@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
     if ($result->num_rows > 0) {
         $merchant = $result->fetch_assoc();
         if (password_verify($password, $merchant['password'])) {
-            $_SESSION['merchant_id'] = $merchant['id'];
+            $_SESSION['merchant_id'] = $merchant['merchant_id'];
             $_SESSION['merchant_name'] = $merchant['name'];
             header('Location: merchant_home.php');
             exit;

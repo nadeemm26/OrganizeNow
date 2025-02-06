@@ -163,53 +163,6 @@ if (isset($_GET['logout'])) {
     </style>
 </head>
 
-<body>
-    <!-- Main Navigation Bar -->
-    <header class="navbar">
-        <div class="logo">
-            <h1>OrganizeNow</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#profile" class="admin-link"><?php echo htmlspecialchars($_SESSION['user_name']); ?></a></li>
-                <li><a href="?logout=true">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Banner Section -->
-    <section id="home" class="banner">
-        <h2>Your Event, Our Expertise</h2>
-        <p>Plan your perfect event with Showtime Events.</p>
-        <button>Book Now</button>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2>Our Services</h2>
-        <div class="service-container">
-            <div class="service-item">
-                <i class="fa fa-calendar"></i>
-                <h3>Event Planning</h3>
-                <p>Customized solutions for your perfect event.</p>
-            </div>
-            <div class="service-item">
-                <i class="fa fa-cutlery"></i>
-                <h3>Catering</h3>
-                <p>Delicious menus for every occasion.</p>
-            </div>
-            <div class="service-item">
-                <i class="fa fa-map-marker"></i>
-                <h3>Venue Booking</h3>
-                <p>Find the perfect venue for your event.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <footer>

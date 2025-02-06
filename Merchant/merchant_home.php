@@ -9,16 +9,8 @@ include "sidebarmerchant.php";
 <!-- Your main content goes here -->
 
 <div class="header">
-    <!-- <h1>
-        Welcome, Merchant
-    </h1> -->
     <h2>Welcome, <?php echo htmlspecialchars($_SESSION['merchant_name']); ?>!</h2>
-    <div class="profile">
-        <img alt="Profile picture of the merchant" src="https://placehold.co/40x40" />
-        <span>
-            Merchant Name
-        </span>
-    </div>
+    <hr>
 </div>
 <div class="dashboard">
     <div class="card">
@@ -131,48 +123,8 @@ include "sidebarmerchant.php";
         </div>
     </div>
 </div>
-<div class="news">
-    <h2>
-        Latest News
-    </h2>
-    <div class="news-item">
-        <img alt="Image of a news article about event management trends" src="https://placehold.co/100x100" />
-        <div class="news-details">
-            <h4>
-                Event Management Trends 2023
-            </h4>
-            <p>
-                Stay updated with the latest trends in event management for 2023.
-            </p>
-        </div>
-    </div>
-    <div class="news-item">
-        <img alt="Image of a news article about a successful event" src="https://placehold.co/100x100" />
-        <div class="news-details">
-            <h4>
-                Successful Corporate Event
-            </h4>
-            <p>
-                Read about our recent successful corporate event held in Downtown.
-            </p>
-        </div>
-    </div>
-    <div class="news-item">
-        <img alt="Image of a news article about new event venues" src="https://placehold.co/100x100" />
-        <div class="news-details">
-            <h4>
-                New Event Venues
-            </h4>
-            <p>
-                Discover new event venues available for booking in 2023.
-            </p>
-        </div>
-    </div>
+
 </div>
-
-
-        <h2>Welcome to the Merchant Dashboard</h2>
-        <p>This is where you can manage your events, bookings, and payments.</p>
-    </div>
 </body>
+
 </html>

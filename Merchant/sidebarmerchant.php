@@ -14,9 +14,6 @@ if (!isset($_SESSION['merchant_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrganizeNow-Merchant</title>
     <link rel="stylesheet" href="sidebarmerchant.css">
-    <style>
-
-    </style>
 </head>
 
 <body>

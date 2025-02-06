@@ -90,13 +90,31 @@
      display: none;
      /* Hidden by default */
  }
+ .form-container .service-form-container{
+    display: none;
+ }
 
  .form-container h2 {
      margin: 0 0 20px 0;
      font-size: 20px;
      color: #333;
+     display: flex;
+     align-items: center;
+     justify-content: center;
  }
-
+ .form-container label{
+    font-size: 19px;
+    
+ }
+ .form-container input[type="checkbox"]{
+    width: 1%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
  .form-container input,textarea,select{
      width: 98%;
      padding: 10px;

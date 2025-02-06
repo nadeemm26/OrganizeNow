@@ -10,17 +10,17 @@ if ($conn->connect_error) {
 // Merchant signup functionality
 if (isset($_POST['signup'])) {
     $name = $conn->real_escape_string($_POST['businessname']);
-    $type = $conn->real_escape_string($_POST['type']);
+    // $type = $conn->real_escape_string($_POST['type']);
     $details = $conn->real_escape_string($_POST['businessdetails']);
     $email = $conn->real_escape_string($_POST['email']);
     $mobile = $conn->real_escape_string($_POST['merchantmobile']);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $checkEmail = $conn->query("SELECT id FROM merchant WHERE email='$email'");
+    $checkEmail = $conn->query("SELECT merchant_id FROM merchant WHERE email='$email'");
     if ($checkEmail->num_rows > 0) {
         echo "<script>alert('❌Email already exists!');</script>";
     } else {
-        $conn->query("INSERT INTO merchant (name, type, details, email, mobile, password) VALUES ('$name', '$type', '$details', '$email', '$mobile', '$password')");
+        $conn->query("INSERT INTO merchant (name, details, email, mobile, password) VALUES ('$name', '$details', '$email', '$mobile', '$password')");
         echo "<script>alert('✅Signup successful! Please login.');</script>";
         header('Location: merchant_login.php');
         exit;
@@ -44,7 +44,7 @@ if (isset($_POST['signup'])) {
         <h2>Merchant Registration</h2>
         <input type="text" id="businessname" name="businessname" placeholder="Business Name:"><br>
 
-        <label>Business Type:</label>
+        <!-- <label>Business Type:</label>
         <input type="radio" name="type" id="catring" value="catring">
         <label for="catring">Catering</label>
         <input type="radio" name="type" id="decoration" value="decoration">
@@ -54,7 +54,7 @@ if (isset($_POST['signup'])) {
         <input type="radio" name="type" id="venue" value="venue">
         <label for="venue">Venue</label>
         <input type="radio" name="type" id="other" value="other">
-        <label for="other">Other</label><br>
+        <label for="other">Other</label><br> -->
 
         <input type="text" id="businessdetails" name="businessdetails" placeholder="Business Details:"><br>
 
@@ -71,13 +71,13 @@ if (isset($_POST['signup'])) {
     <script>
         function validateSignup() {
             var name = document.getElementById('businessname').value;
-            var type = document.getElementsByName('type').value;
+            // var type = document.getElementsByName('type').value;
             var details = document.getElementById('businessdetails').value;
             var email = document.getElementById('email').value;
             var mobile = document.getElementById('merchantmobile').value;
             var password = document.getElementById('password').value;
 
-            if (name === "" || type ==="" || details ==="" || email === "" || mobile === "" || password === "") {
+            if (name === "" || details ==="" || email === "" || mobile === "" || password === "") {
                 alert("Please fill in all fields.");
                 return false;
             }
