@@ -14,7 +14,7 @@ if (isset($_POST['signup'])) {
     $mobile = $conn->real_escape_string($_POST['mobile']);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $checkEmail = $conn->query("SELECT id FROM user WHERE email='$email'");
+    $checkEmail = $conn->query("SELECT user_id FROM user WHERE email='$email'");
     if ($checkEmail->num_rows > 0) {
         echo "<script>alert('❌Email already exists!');</script>";
     } else {

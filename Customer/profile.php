@@ -8,7 +8,7 @@ $user_id = $_SESSION['user_id']; // Get user ID from session
 
 // Database connection
 include('connection.php');
-$query = "SELECT * FROM user WHERE id = ?";
+$query = "SELECT * FROM user WHERE user_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
