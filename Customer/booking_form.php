@@ -2,64 +2,71 @@
 session_start();
 include "connection.php";
 
-// Ensure user is logged in
-if (!isset($_SESSION['user_id'])) {
-    die("Access denied. Please login first.");
-}
-
-// Check if required parameters exist
-if (!isset($_GET['service_type']) || !isset($_GET['service_id']) || !isset($_GET['merchant_id'])) {
+// URL parameters check karo
+if (!isset($_GET['service']) || !isset($_GET['id']) || !isset($_GET['merchant'])) {
     die("Invalid request. Missing parameters.");
 }
 
-// Get service details from URL
-$serviceType = $_GET['service_type'];
-$serviceId = (int) $_GET['service_id'];  // Convert to integer for safety
-$merchantId = (int) $_GET['merchant_id'];
+$serviceType = $_GET['service']; // Table name
+$serviceId = (int)$_GET['id']; // Service ID
+$merchantId = (int)$_GET['merchant']; // Merchant ID
 
-// Validate service type to prevent SQL injection
-$allowedServices = ['catering_service', 'decoration_service', 'entertainment_service', 'photography_service', 'venue_booking'];
-if (!in_array($serviceType, $allowedServices)) {
+// Allowed service tables
+$services = [
+    'catering_service' => 'catering_id',
+    'decoration_service' => 'decoration_id',
+    'entertainment_service' => 'entertainment_id',
+    'photography_service' => 'photography_id',
+    'venue_booking' => 'venue_id'
+];
+
+// Check karo ki service type valid hai ya nahi
+if (!array_key_exists($serviceType, $services)) {
     die("Invalid service type.");
 }
 
-// Fetch service details
-$query = "SELECT * FROM $serviceType WHERE {$serviceType}_id = $serviceId";
+// Dynamic query based on service type
+$serviceIdColumn = $services[$serviceType];
+$query = "SELECT * FROM $serviceType WHERE $serviceIdColumn = $serviceId AND merchant_id = $merchantId";
 $result = $conn->query($query);
 
-if (!$result || $result->num_rows === 0) {
+// Check karo ki service exist karti hai ya nahi
+if ($result->num_rows == 0) {
     die("Service not found.");
 }
 
 $service = $result->fetch_assoc();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Book Service</title>
 </head>
 <body>
-    <h2>Book Service: <?php echo htmlspecialchars($service[array_keys($service)[1]]); ?></h2>
-    <form action="process_booking.php" method="POST">
-        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-        <input type="hidden" name="merchant_id" value="<?php echo $merchantId; ?>">
+    <h2>Book Now: <?php echo ucfirst(str_replace('_', ' ', $serviceType)); ?></h2>
+    
+    <form action="submit_booking.php" method="POST">
         <input type="hidden" name="service_type" value="<?php echo $serviceType; ?>">
         <input type="hidden" name="service_id" value="<?php echo $serviceId; ?>">
+        <input type="hidden" name="merchant_id" value="<?php echo $merchantId; ?>">
         
+        <label>Name:</label>
+        <input type="text" name="name" required><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label>Mobile:</label>
+        <input type="text" name="mobile" required><br>
+
         <label>Event Date:</label>
-        <input type="date" name="event_date" required>
-        
-        <label>Your Name:</label>
-        <input type="text" name="contact_name" required>
-        
-        <label>Your Email:</label>
-        <input type="email" name="contact_email" required>
-        
-        <label>Your Phone:</label>
-        <input type="text" name="contact_phone" required>
-        
-        <button type="submit">Submit Booking</button>
+        <input type="date" name="event_date" required><br>
+
+        <label>Additional Details:</label>
+        <textarea name="details"></textarea><br>
+
+        <button type="submit">Confirm Booking</button>
     </form>
 </body>
 </html>
-<?php $conn->close(); ?>

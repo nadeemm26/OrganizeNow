@@ -26,6 +26,7 @@
             padding: 0;
             background-color: #f5f7fa;
         }
+
         .navbar {
             background-color: white;
             width: auto;
@@ -61,7 +62,7 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <a href="#">User Dashboard</a>
+            <a href="main_home.php">User Dashboard</a>
         </div>
         <div class="nav-links">
             <a href="main_home.php">Home</a>
@@ -73,6 +74,3 @@
         </div>
     </div>
     <div class="container">
-
-
-    

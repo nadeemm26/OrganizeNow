@@ -2,29 +2,25 @@
 session_start();
 include "connection.php";
 
-// Ensure user is logged in
-if (!isset($_SESSION['user_id'])) {
-    die("Access denied.");
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $serviceType = $_POST['service_type'];
+    $serviceId = (int)$_POST['service_id'];
+    $merchantId = (int)$_POST['merchant_id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $mobile = $_POST['mobile'];
+    $eventDate = $_POST['event_date'];
+    $details = $_POST['details'];
 
-// Get form data
-$user_id = $_POST['user_id'];
-$merchant_id = $_POST['merchant_id'];
-$service_type = $_POST['service_type'];
-$service_id = $_POST['service_id'];
-$event_date = $_POST['event_date'];
-$contact_name = $_POST['contact_name'];
-$contact_email = $_POST['contact_email'];
-$contact_phone = $_POST['contact_phone'];
+    // Insert booking into database
+    $query = "INSERT INTO bookings (service_type, service_id, merchant_id, user_name, email, mobile, event_date, details, status) 
+              VALUES ('$serviceType', '$serviceId', '$merchantId', '$name', '$email', '$mobile', '$eventDate', '$details', 'Pending')";
 
-// Insert booking request into database
-$query = "INSERT INTO bookings (user_id, merchant_id, service_type, service_id, event_date, contact_name, contact_email, contact_phone, status)
-          VALUES ('$user_id', '$merchant_id', '$service_type', '$service_id', '$event_date', '$contact_name', '$contact_email', '$contact_phone', 'Pending')";
-
-if ($conn->query($query)) {
-    echo "Booking request submitted successfully!";
-} else {
-    echo "Error: " . $conn->error;
+    if ($conn->query($query)) {
+        echo "Booking Request Submitted Successfully!";
+    } else {
+        echo "Error: " . $conn->error;
+    }
 }
 
 $conn->close();

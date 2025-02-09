@@ -93,7 +93,7 @@ $conn->close();
     <div class="search-container">
         <form method="GET">
             <input type="text" name="search" placeholder="Search by service name or category..." value="<?= htmlspecialchars($search) ?>">
-            <button type="submit">Search</button>
+            <button class="book-btn" type="submit">Search</button>
         </form>
     </div>
 
@@ -106,7 +106,8 @@ $conn->close();
                     <p><strong>Category:</strong> <?= $service['category'] ?></p>
                     <p><strong>Type:</strong> <?= $service['type'] ?></p>
                     <p><strong>Price:</strong> ₹<?= $service['price'] ?></p>
-                    <a href="booking_form.php?name=<?= urlencode($service['name']) ?>" class="book-btn">Book Now</a>
+                    <a href="booking_form.php?service=catering_service&id=5&merchant=10
+" class="book-btn">Book Now</a>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -116,7 +117,7 @@ $conn->close();
 
 </body>
 </html>
-
+<!-- 
 <?php
 // session_start();
 include "connection.php";
@@ -172,42 +173,3 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Services</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
-        .service-card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .service-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
-        .service-card h3 { margin: 10px 0; }
-        .service-card p { color: #555; }
-        .service-card button { background: #007bff; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; border-radius: 5px; }
-        .service-card button:hover { background: #0056b3; }
-    </style>
-</head>
-<body>
-    <h2 style="text-align:center;">Available Services</h2>
-    <div class="grid-container">
-        <?php foreach ($services as $service) { ?>
-            <div class="service-card">
-                <img src="<?php echo $service['image']; ?>" alt="<?php echo $service['name']; ?>">
-                <h3><?php echo $service['name']; ?></h3>
-                <p><strong>Category:</strong> <?php echo ucfirst($service['category']); ?></p>
-                <p><?php echo $service['details']; ?></p>
-                <p><strong>Price:</strong> ₹<?php echo $service['price']; ?></p>
-                <button onclick="bookService('<?php echo $service['id']; ?>', '<?php echo $service['category']; ?>')">Book Now</button>
-            </div>
-        <?php } ?>
-    </div>
-
-    <script>
-        function bookService(id, category) {
-            window.location.href = 'book_service.php?id=' + id + '&category=' + category;
-        }
-    </script>
-</body>
-</html>
