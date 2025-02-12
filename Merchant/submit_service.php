@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // **Venue Booking Form Submission**
     if (isset($_POST['add_venue'])) {
         $venue_name = $_POST['venue_name'];
+        $service_type = $_POST['service_type'];
         $venue_type = $_POST['venue_type'];
         $capacity = $_POST['capacity'];
         $address = $_POST['address'];
@@ -29,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pincode = $_POST['pincode'];
         $price = $_POST['price'];
 
-        $sql = "INSERT INTO venue_booking (venue_name, venue_type, capacity, address, city, pincode, price_per_day, event_image, merchant_id) 
-                VALUES ('$venue_name', '$venue_type', '$capacity', '$address', '$city', '$pincode', '$price', '$event_image', '$merchant_id')";
+        $sql = "INSERT INTO venue_booking (venue_name,service_type, venue_type, capacity, address, city, pincode, price_per_day, event_image, merchant_id) 
+                VALUES ('$venue_name','$service_type', '$venue_type', '$capacity', '$address', '$city', '$pincode', '$price', '$event_image', '$merchant_id')";
     }
 
     // **Catering Service Submission**

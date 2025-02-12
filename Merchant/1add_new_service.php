@@ -21,6 +21,7 @@ include 'myevent.php';
         <form method="POST" action="submit_service.php" enctype="multipart/form-data">
 
             <input type="text" name="venue_name" placeholder="Venue Name">
+            <input type="hidden" name="service_type" value="venue booking"> 
             <select name="venue_type">
                 <option>Venue Type</option>
                 <option value="Banquet Hall">Banquet Hall</option>
@@ -61,10 +62,9 @@ include 'myevent.php';
             <input type="number" name="capacity" required>
 
             <label>Price Per Plate (Veg):</label>
-            <input type="number" name="price_veg" required>
+            <input type="number" name="price" required>
 
-            <label>Price Per Plate (Non-Veg):</label>
-            <input type="number" name="price_nonveg" required>
+            
 
             <label>Minimum Order Quantity:</label>
             <input type="number" name="min_order" required>
@@ -116,11 +116,10 @@ include 'myevent.php';
                 <option value="No">No</option>
             </select>
 
-            <label>Basic Package Price (₹):</label>
-            <input type="number" name="price_basic" required>
+            <label>Package Price (₹):</label>
+            <input type="number" name="price" required>
 
-            <label>Premium Package Price (₹):</label>
-            <input type="number" name="price_premium" required>
+            
 
             <label>Upload Event Image:</label>
             <input type="file" name="event_image" required>
@@ -151,11 +150,10 @@ include 'myevent.php';
                 <option value="No">No</option>
             </select>
 
-            <label>Basic Package Price (₹):</label>
-            <input type="number" name="price_basic" required>
+            <label>Package Price (₹):</label>
+            <input type="number" name="price" required>
 
-            <label>Premium Package Price (₹):</label>
-            <input type="number" name="price_premium" required>
+            
 
             <label>Upload Event Image:</label>
             <input type="file" name="event_image" required>
@@ -179,11 +177,10 @@ include 'myevent.php';
             <label>Performance Duration:</label>
             <input type="text" name="performance_duration" placeholder="e.g., 1 hour, 2 hours" required>
 
-            <label>Basic Package Price (₹):</label>
-            <input type="number" name="price_basic" required>
+            <label>Package Price (₹):</label>
+            <input type="number" name="price" required>
 
-            <label>Premium Package Price (₹):</label>
-            <input type="number" name="price_premium" required>
+            
 
 
             <label>Upload Event Image:</label>

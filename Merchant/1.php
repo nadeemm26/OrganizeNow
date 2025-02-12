@@ -39,8 +39,13 @@ $tables = [
                 $id_column = array_keys($row)[0]; // First column is ID
             ?>
                 <div class="card">
-                    <img src="<?php echo $row["event_image"]; ?>" alt="<?php echo $category; ?> Image">
+                    <!-- <img src="<?php echo $row["event_image"]; ?>" alt="<?php echo $category; ?> Image"> -->
+                    <img src="Merchant/<?php echo $row["event_image"]; ?>" alt="<?php echo $category; ?> Image">
                     <h5><?php echo $row["name"] ?? $row["venue_name"] ?? ''; ?></h5>
+                    <h5><?php echo $row["name"] ?? $row["decoration_types"] ?? ''; ?></h5>
+                    <h5><?php echo $row["name"] ?? $row["catering_name"] ?? ''; ?></h5>
+                    <h5><?php echo $row["name"] ?? $row["service_type"] ?? ''; ?></h5>
+                    <h5><?php echo $row["name"] ?? $row["service_name"] ?? ''; ?></h5>
                     <a class="view-btn" href="details.php?id=<?php echo $row[$id_column]; ?>&category=<?php echo $table; ?>">View More</a>
                 </div>
             <?php endwhile; ?>

@@ -36,7 +36,8 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
 
 <div class="container">
     <div class="card">
-        <img src="<?php echo $row["event_image"]; ?>" alt="Service Image">
+        <!-- <img src="<?php echo $row["event_image"]; ?>" alt="Service Image"> -->
+        <img src="Merchant/<?php echo $row["event_image"]; ?>" alt="Service Image">
         <h2><?php echo $row["name"] ?? $row["venue_name"] ?? 'Service'; ?></h2>
 
         <?php if ($table == "venue_booking"): ?>

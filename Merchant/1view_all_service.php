@@ -19,11 +19,11 @@ $serviceType = isset($_GET['service']) ? $_GET['service'] : 'catering_service';
 
 // Define table names and their respective fields
 $services = [
-    'catering_service' => ['catering_id', 'catering_name', 'cuisine_types', 'menu_details', 'capacity', 'price_veg', 'price_nonveg', 'min_order', 'event_image', 'added_on'],
-    'decoration_service' => ['decoration_id', 'decoration_types', 'description', 'custom_decoration', 'price_basic', 'price_premium', 'event_image', 'added_on'],
-    'entertainment_service' => ['entertainment_id', 'service_type', 'performance_duration', 'price_basic', 'price_premium', 'event_image', 'added_on'],
-    'photography_service' => ['photography_id', 'service_name', 'photography_types', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price_basic', 'price_premium', 'event_image', 'added_on'],
-    'venue_booking' => ['venue_id', 'venue_name', 'venue_type', 'capacity', 'address', 'city', 'pincode', 'price_per_day', 'event_image', 'added_on']
+    'catering_service' => ['catering_id', 'catering_name',  'menu_details', 'capacity', 'price', 'min_order', 'event_image', 'added_on'],
+    'decoration_service' => ['decoration_id', 'decoration_types', 'description', 'custom_decoration', 'price', 'event_image', 'added_on'],
+    'entertainment_service' => ['entertainment_id', 'service_type', 'performance_duration', 'price', 'event_image', 'added_on'],
+    'photography_service' => ['photography_id', 'service_name', 'photography_types', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'event_image', 'added_on'],
+    'venue_booking' => ['venue_id','service_type', 'venue_name', 'venue_type', 'capacity', 'address', 'city', 'pincode', 'price', 'event_image', 'added_on']
 ];
 
 // Check if selected service exists

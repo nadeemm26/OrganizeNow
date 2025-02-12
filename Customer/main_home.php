@@ -1,175 +1,99 @@
 <?php
-    include 'user_navbar.php';
+include 'user_navbar.php';
+include "connection.php";
 ?>
 <?php
-include "connection.php";
 
-// Search Functionality
-$search = "";
-if (isset($_GET['search'])) {
-    $search = trim($_GET['search']);
-}
-
-// Query for all services with search filter
-$queries = [
-    "SELECT 'Catering' AS category, catering_name AS name, cuisine_types AS type, price_veg AS price, event_image AS image FROM catering_service WHERE catering_name LIKE '%$search%' OR cuisine_types LIKE '%$search%'",
-    "SELECT 'Decoration' AS category, decoration_types AS name, description AS type, price_basic AS price, event_image AS image FROM decoration_service WHERE decoration_types LIKE '%$search%'",
-    "SELECT 'Entertainment' AS category, service_type AS name, performance_duration AS type, price_basic AS price, event_image AS image FROM entertainment_service WHERE service_type LIKE '%$search%'",
-    "SELECT 'Photography' AS category, service_name AS name, photography_types AS type, price_basic AS price, event_image AS image FROM photography_service WHERE service_name LIKE '%$search%'",
-    "SELECT 'Venue' AS category, venue_name AS name, venue_type AS type, price_per_day AS price, event_image AS image FROM venue_booking WHERE venue_name LIKE '%$search%'"
+$tables = [
+    "venue_booking" => "Venue",
+    "decoration_service" => "Decoration",
+    "entertainment_service" => "Entertainment",
+    "catering_service" => "Catering",
+    "photography_service" => "Photography"
 ];
-
-$services = [];
-foreach ($queries as $query) {
-    $result = $conn->query($query);
-    while ($row = $result->fetch_assoc()) {
-        $services[] = $row;
-    }
-}
-
-$conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        .container {
+            width: 90%;
+            margin: auto;
         }
-        .search-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .search-container input {
-            width: 50%;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .grid-container {
+
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            padding: 20px;
         }
-        .service-card {
+
+        .card {
             border: 1px solid #ddd;
+            border-radius: 10px;
             padding: 15px;
-            border-radius: 10px;
             text-align: center;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
         }
-        .service-card img {
+
+        .card img {
             width: 100%;
-            height: 150px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 5px;
         }
-        .service-card h3 {
-            margin: 10px 0;
-        }
-        .service-card p {
-            color: #555;
-        }
-        .book-btn {
-            display: inline-block;
+
+        .book-btn,
+        .view-btn {
+            display: block;
+            margin: 10px auto;
             padding: 8px 12px;
-            background-color: #28a745;
-            color: white;
+            text-align: center;
             text-decoration: none;
             border-radius: 5px;
-            margin-top: 10px;
+            color: white;
         }
-        .book-btn:hover {
-            background-color: #218838;
+
+        .book-btn {
+            background: green;
+        }
+
+        .view-btn {
+            background: blue;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="search-container">
-        <form method="GET">
-            <input type="text" name="search" placeholder="Search by service name or category..." value="<?= htmlspecialchars($search) ?>">
-            <button class="book-btn" type="submit">Search</button>
-        </form>
-    </div>
+    <div class="container">
+        <h2 class="text-center">Available Event Services</h2>
 
-    <div class="grid-container">
-        <?php if (!empty($services)): ?>
-            <?php foreach ($services as $service): ?>
-                <div class="service-card">
-                    <img src="<?= $service['image'] ?>" alt="Service Image">
-                    <h3><?= $service['name'] ?></h3>
-                    <p><strong>Category:</strong> <?= $service['category'] ?></p>
-                    <p><strong>Type:</strong> <?= $service['type'] ?></p>
-                    <p><strong>Price:</strong> ₹<?= $service['price'] ?></p>
-                    <a href="booking_form.php?service=catering_service&id=5&merchant=10
-" class="book-btn">Book Now</a>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p style="text-align:center;">No results found.</p>
-        <?php endif; ?>
+        <?php foreach ($tables as $table => $category): ?>
+            <h3><?php echo $category; ?> Services</h3>
+            <div class="grid">
+                <?php
+                $sql = "SELECT * FROM $table";
+                $result = $conn->query($sql);
+                while ($row = $result->fetch_assoc()):
+                    $id_column = array_keys($row)[0]; // First column is ID
+                ?>
+                    <div class="card">
+                        <!-- <img src="<?php echo $row["event_image"]; ?>" alt="<?php echo $category; ?> Image"> -->
+                        <img src="Merchant/<?php echo $row["event_image"]; ?>" alt="<?php echo $category; ?> Image">
+                        <h5><?php echo $row["name"] ?? $row["venue_name"] ?? ''; ?></h5>
+                        <h5><?php echo $row["name"] ?? $row["decoration_types"] ?? ''; ?></h5>
+                        <h5><?php echo $row["name"] ?? $row["catering_name"] ?? ''; ?></h5>
+                        <h5><?php echo $row["name"] ?? $row["service_type"] ?? ''; ?></h5>
+                        <h5><?php echo $row["name"] ?? $row["service_name"] ?? ''; ?></h5>
+
+                        <a class="book-btn" href="book.php?id=<?php echo $row[$id_column]; ?>&category=<?php echo $table; ?>">Book Now</a>
+                        <a class="view-btn" href="view_more.php?id=<?php echo $row[$id_column]; ?>&category=<?php echo $table; ?>">View More</a>
+
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        <?php endforeach; ?>
     </div>
 
 </body>
+
 </html>
-<!-- 
-<?php
-// session_start();
-include "connection.php";
-
-// Fetch all services from different tables
-$services = [];
-
-// Catering Services
-$sql = "SELECT catering_id AS id, catering_name AS name, menu_details AS details, price_veg AS price, event_image AS image, 'catering' AS category FROM catering_service";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $services[] = $row;
-    }
-}
-
-// Decoration Services
-$sql = "SELECT decoration_id AS id, decoration_types AS name, description AS details, price_basic AS price, event_image AS image, 'decoration' AS category FROM decoration_service";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $services[] = $row;
-    }
-}
-
-// Entertainment Services
-$sql = "SELECT entertainment_id AS id, service_type AS name, performance_duration AS details, price_basic AS price, event_image AS image, 'entertainment' AS category FROM entertainment_service";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $services[] = $row;
-    }
-}
-
-// Photography Services
-$sql = "SELECT photography_id AS id, service_name AS name, package_desc AS details, price_basic AS price, event_image AS image, 'photography' AS category FROM photography_service";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $services[] = $row;
-    }
-}
-
-// Venue Booking
-$sql = "SELECT venue_id AS id, venue_name AS name, venue_type AS details, price_per_day AS price, event_image AS image, 'venue' AS category FROM venue_booking";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $services[] = $row;
-    }
-}
-
-$conn->close();
-?>
-

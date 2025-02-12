@@ -158,7 +158,8 @@ include 'connection.php';
                 <img src="' . $row["event_image"] . '" class="card-img-top" alt="Venue Image">
                 <div class="card-body">
                     <h3 class="card-title">' . $row["venue_name"] . '</h3>
-                    <p><strong>Type: </strong>' . $row["venue_type"] . '</p>
+                    <p><strong>Service Type: </strong>' . $row["service_type"] . '</p>
+                    <p><strong>Venue Type: </strong>' . $row["venue_type"] . '</p>
                     <p><strong>Capacity: </strong>' . $row["capacity"] . ' People</p>
                     <p><strong>Address: </strong>' . $row["address"] . ' <strong>City: </strong>' . $row["city"] . '  <strong>Pincode: </strong>' . $row["pincode"] . '</p>
                     <p><strong>Price Per Day: </strong>₹' . $row["price_per_day"] . '</p>

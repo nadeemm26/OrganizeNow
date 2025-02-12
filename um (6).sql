@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2025 at 11:08 AM
+-- Generation Time: Feb 12, 2025 at 10:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -61,17 +61,26 @@ CREATE TABLE `booking` (
 
 CREATE TABLE `bookings` (
   `id` int(11) NOT NULL,
-  `service_type` varchar(50) DEFAULT NULL,
-  `service_id` int(11) DEFAULT NULL,
-  `merchant_id` int(11) DEFAULT NULL,
-  `user_name` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `mobile` varchar(15) DEFAULT NULL,
-  `event_date` date DEFAULT NULL,
-  `details` text DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `booking_date` date NOT NULL,
+  `guest_count` int(11) DEFAULT NULL,
+  `num_days` int(11) DEFAULT NULL,
+  `total_price` decimal(10,2) NOT NULL,
   `status` enum('Pending','Accepted','Rejected') DEFAULT 'Pending',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `merchant_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `user_id`, `service_id`, `category`, `booking_date`, `guest_count`, `num_days`, `total_price`, `status`, `created_at`, `merchant_id`) VALUES
+(7, 50, 1, 'catering_service', '2025-02-28', 500, 1, 100000.00, 'Rejected', '2025-02-12 20:03:51', 14),
+(8, 50, 1, 'catering_service', '2025-03-01', 1000, 1, 200000.00, 'Accepted', '2025-02-12 20:06:03', 14),
+(9, 50, 2, 'venue_booking', '2025-02-20', 500, 2, 30000.00, 'Accepted', '2025-02-12 20:07:07', 14);
 
 -- --------------------------------------------------------
 
@@ -115,11 +124,9 @@ CREATE TABLE `cart` (
 CREATE TABLE `catering_service` (
   `catering_id` int(11) NOT NULL,
   `catering_name` varchar(100) NOT NULL,
-  `cuisine_types` text NOT NULL,
   `menu_details` text NOT NULL,
   `capacity` int(11) NOT NULL,
-  `price_veg` decimal(10,2) NOT NULL,
-  `price_nonveg` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `min_order` int(11) NOT NULL,
   `event_image` varchar(255) NOT NULL,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -130,8 +137,8 @@ CREATE TABLE `catering_service` (
 -- Dumping data for table `catering_service`
 --
 
-INSERT INTO `catering_service` (`catering_id`, `catering_name`, `cuisine_types`, `menu_details`, `capacity`, `price_veg`, `price_nonveg`, `min_order`, `event_image`, `added_on`, `merchant_id`) VALUES
-(1, 'Nadeem Food Zone', 'Indian', 'Veg\r\nroti , dal,chaval,panir sabji\r\nnon - veg\r\nchiken ,roti,chaval', 1000, 200.00, 300.00, 500, 'uploads/1738860019_image-12.png.webp', '2025-02-06 16:40:19', 14);
+INSERT INTO `catering_service` (`catering_id`, `catering_name`, `menu_details`, `capacity`, `price`, `min_order`, `event_image`, `added_on`, `merchant_id`) VALUES
+(1, 'Nadeem Food Zone', 'Veg\r\nroti , dal,chaval,panir sabji\r\nnon - veg\r\nchiken ,roti,chaval', 1000, 200.00, 500, 'uploads/1738860019_image-12.png.webp', '2025-02-06 16:40:19', 14);
 
 -- --------------------------------------------------------
 
@@ -144,8 +151,7 @@ CREATE TABLE `decoration_service` (
   `decoration_types` text NOT NULL,
   `description` text NOT NULL,
   `custom_decoration` enum('Yes','No') NOT NULL,
-  `price_basic` decimal(10,2) NOT NULL,
-  `price_premium` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `event_image` varchar(255) NOT NULL,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `merchant_id` int(11) NOT NULL
@@ -155,9 +161,9 @@ CREATE TABLE `decoration_service` (
 -- Dumping data for table `decoration_service`
 --
 
-INSERT INTO `decoration_service` (`decoration_id`, `decoration_types`, `description`, `custom_decoration`, `price_basic`, `price_premium`, `event_image`, `added_on`, `merchant_id`) VALUES
-(1, 'Birthday', 'full birthday decoration on your place', 'No', 5000.00, 8000.00, 'uploads/1738857354_BrandAssets_Logos_02-NSymbol.jpg', '2025-02-06 15:55:54', 14),
-(3, 'Festival', 'ifj djfh slksd vjierf sjf', 'Yes', 50000.00, 645454.00, 'uploads/1738871875_image-11-1024x352.png.webp', '2025-02-06 19:57:55', 14);
+INSERT INTO `decoration_service` (`decoration_id`, `decoration_types`, `description`, `custom_decoration`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
+(1, 'Birthday', 'full birthday decoration on your place', 'No', 5000.00, 'uploads/1738857354_BrandAssets_Logos_02-NSymbol.jpg', '2025-02-06 15:55:54', 14),
+(3, 'Festival', 'ifj djfh slksd vjierf sjf', 'Yes', 50000.00, 'uploads/1738871875_image-11-1024x352.png.webp', '2025-02-06 19:57:55', 14);
 
 -- --------------------------------------------------------
 
@@ -169,8 +175,7 @@ CREATE TABLE `entertainment_service` (
   `entertainment_id` int(11) NOT NULL,
   `service_type` varchar(50) NOT NULL,
   `performance_duration` varchar(50) NOT NULL,
-  `price_basic` decimal(10,2) NOT NULL,
-  `price_premium` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `event_image` varchar(255) NOT NULL,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `merchant_id` int(11) NOT NULL
@@ -180,13 +185,36 @@ CREATE TABLE `entertainment_service` (
 -- Dumping data for table `entertainment_service`
 --
 
-INSERT INTO `entertainment_service` (`entertainment_id`, `service_type`, `performance_duration`, `price_basic`, `price_premium`, `event_image`, `added_on`, `merchant_id`) VALUES
-(1, 'Music', 'Full Day', 10500.00, 20000.00, 'uploads/1738856903_image-12.png.webp', '2025-02-06 15:48:23', 14),
-(2, 'Dance', 'Full Day', 3000.00, 5000.00, 'uploads/1738860502_image-10.png.webp', '2025-02-06 16:48:22', 14),
-(3, 'Magic Show', '1 hours', 3000.00, 5000.00, 'uploads/1738860573_image-10.png.webp', '2025-02-06 16:49:33', 14),
-(4, 'Comedy', '1 hours', 5000.00, 8000.00, 'uploads/1738860725_image-10.png.webp', '2025-02-06 16:52:05', 14),
-(6, 'Dance', '1 hours', 2000.00, 5000.00, 'uploads/1738863628_image-10.png.webp', '2025-02-06 17:40:28', 14),
-(7, 'Music', '1 hours', 5000.00, 6000.00, 'uploads/1738873646_image-11-1024x352.png.webp', '2025-02-06 20:27:26', 19);
+INSERT INTO `entertainment_service` (`entertainment_id`, `service_type`, `performance_duration`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
+(1, 'Music', 'Full Day', 10500.00, 'uploads/1738856903_image-12.png.webp', '2025-02-06 15:48:23', 14),
+(2, 'Dance', 'Full Day', 3000.00, 'uploads/1738860502_image-10.png.webp', '2025-02-06 16:48:22', 14),
+(3, 'Magic Show', '1 hours', 3000.00, 'uploads/1738860573_image-10.png.webp', '2025-02-06 16:49:33', 14),
+(4, 'Comedy', '1 hours', 5000.00, 'uploads/1738860725_image-10.png.webp', '2025-02-06 16:52:05', 14),
+(6, 'Dance', '1 hours', 2000.00, 'uploads/1738863628_image-10.png.webp', '2025-02-06 17:40:28', 14),
+(7, 'Music', '1 hours', 5000.00, 'uploads/1738873646_image-11-1024x352.png.webp', '2025-02-06 20:27:26', 19);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
+  `event_id` int(11) NOT NULL,
+  `event_name` varchar(200) NOT NULL,
+  `event_description` varchar(200) NOT NULL,
+  `event_price` int(11) NOT NULL,
+  `merchant_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`event_id`, `event_name`, `event_description`, `event_price`, `merchant_id`) VALUES
+(1, 'birthaday', 'ytghgg', 2000, 14),
+(2, 'birthaday', 'ytghgg', 2000, 14),
+(3, 'birthaday', 'ytghgg', 2000, 14);
 
 -- --------------------------------------------------------
 
@@ -206,14 +234,6 @@ CREATE TABLE `events` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `merchant_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `events`
---
-
-INSERT INTO `events` (`event_id`, `eventname`, `type`, `price`, `eventdescription`, `location`, `date`, `event_image`, `created_at`, `merchant_id`) VALUES
-(9, 'weeding', 'catering', 46568, 'ghjghjhjhg', 'gandhinagar', '2164-07-04', 'uploads/1738270500_DSC_0054.JPG', '2025-01-30 20:55:01', 14),
-(10, 'engagment', 'decoration', 5555, 'this is birthday party', 'gandhinagar vavol', '2005-06-05', 'uploads/1738270544_DSC_0021.JPG', '2025-01-30 20:55:44', 14);
 
 -- --------------------------------------------------------
 
@@ -277,11 +297,21 @@ CREATE TABLE `order` (
 CREATE TABLE `payment` (
   `payment_id` int(11) NOT NULL,
   `booking_id` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `method` varchar(50) NOT NULL,
-  `amount` decimal(50,0) NOT NULL,
-  `payment_done` timestamp NOT NULL DEFAULT current_timestamp()
+  `user_id` int(11) NOT NULL,
+  `merchant_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `payment_method` enum('Card','UPI','Net Banking') NOT NULL,
+  `status` enum('Pending','Completed','Failed') NOT NULL,
+  `transaction_id` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`payment_id`, `booking_id`, `user_id`, `merchant_id`, `amount`, `payment_method`, `status`, `transaction_id`, `created_at`) VALUES
+(1, 8, 50, 14, 200000.00, 'UPI', 'Completed', '', '2025-02-12 21:13:37');
 
 -- --------------------------------------------------------
 
@@ -298,8 +328,7 @@ CREATE TABLE `photography_service` (
   `coverage_duration` varchar(50) NOT NULL,
   `num_photographers` int(11) NOT NULL,
   `editing` enum('Yes','No') NOT NULL,
-  `price_basic` decimal(10,2) NOT NULL,
-  `price_premium` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `event_image` varchar(255) NOT NULL,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `merchant_id` int(11) NOT NULL
@@ -309,8 +338,8 @@ CREATE TABLE `photography_service` (
 -- Dumping data for table `photography_service`
 --
 
-INSERT INTO `photography_service` (`photography_id`, `service_name`, `photography_types`, `videography`, `package_desc`, `coverage_duration`, `num_photographers`, `editing`, `price_basic`, `price_premium`, `event_image`, `added_on`, `merchant_id`) VALUES
-(1, 'Nadeem Photograpy', 'Birthday', 'Yes', 'no need any extra pay', 'Full Day', 3, 'No', 10000.00, 15000.00, 'uploads/1738860209_image-12.png.webp', '2025-02-06 16:43:29', 14);
+INSERT INTO `photography_service` (`photography_id`, `service_name`, `photography_types`, `videography`, `package_desc`, `coverage_duration`, `num_photographers`, `editing`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
+(1, 'Nadeem Photograpy', 'Birthday', 'Yes', 'no need any extra pay', 'Full Day', 3, 'No', 10000.00, 'uploads/1738860209_image-12.png.webp', '2025-02-06 16:43:29', 14);
 
 -- --------------------------------------------------------
 
@@ -376,13 +405,14 @@ INSERT INTO `user` (`user_id`, `name`, `email`, `mobile`, `password`) VALUES
 
 CREATE TABLE `venue_booking` (
   `venue_id` int(11) NOT NULL,
+  `service_type` varchar(100) NOT NULL,
   `venue_name` varchar(100) NOT NULL,
   `venue_type` varchar(50) NOT NULL,
   `capacity` int(11) NOT NULL,
   `address` varchar(255) NOT NULL,
   `city` varchar(100) NOT NULL,
   `pincode` varchar(10) NOT NULL,
-  `price_per_day` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `event_image` varchar(255) NOT NULL,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `merchant_id` int(11) NOT NULL
@@ -392,11 +422,13 @@ CREATE TABLE `venue_booking` (
 -- Dumping data for table `venue_booking`
 --
 
-INSERT INTO `venue_booking` (`venue_id`, `venue_name`, `venue_type`, `capacity`, `address`, `city`, `pincode`, `price_per_day`, `event_image`, `added_on`, `merchant_id`) VALUES
-(2, 'Nadeem Sky', 'Lawn', 100, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 15000.00, 'uploads/1738853154_image-12.png.webp', '2025-02-06 14:45:54', 14),
-(3, 'Nadeem High', 'Resort', 5000, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 20000.00, 'uploads/1738853383_BrandAssets_Logos_02-NSymbol.jpg', '2025-02-06 14:49:44', 14),
-(4, 'taj', 'Hotel', 2000, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 40000.00, 'uploads/1738860275_image-12.png.webp', '2025-02-06 16:44:35', 14),
-(6, 'taj king', 'Resort', 1000, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 15000.00, 'uploads/1738863520_image-10.png.webp', '2025-02-06 17:38:40', 14);
+INSERT INTO `venue_booking` (`venue_id`, `service_type`, `venue_name`, `venue_type`, `capacity`, `address`, `city`, `pincode`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
+(2, 'venue booking', 'Nadeem Sky', 'Lawn', 100, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 15000.00, 'uploads/1738853154_image-12.png.webp', '2025-02-06 14:45:54', 14),
+(3, 'venue booking', 'Nadeem High', 'Resort', 5000, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 20000.00, 'uploads/1738853383_BrandAssets_Logos_02-NSymbol.jpg', '2025-02-06 14:49:44', 14),
+(4, 'venue booking', 'taj', 'Hotel', 2000, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 40000.00, 'uploads/1738860275_image-12.png.webp', '2025-02-06 16:44:35', 14),
+(6, 'venue booking', 'taj king', 'Resort', 1000, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 15000.00, 'uploads/1738863520_image-10.png.webp', '2025-02-06 17:38:40', 14),
+(7, 'venue booking', 'Nadeem High', 'Hotel', 5000, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 25000.00, 'uploads/1739369331_image-12.png.webp', '2025-02-12 14:08:51', 14),
+(8, 'venue booking', 'Nadeem Sky', 'Resort', 15000, 'Uvarsad , Pandya Vas', 'Gandhinagar', '382422', 50000.00, 'uploads/1739369466_image-13-1024x277.png.webp', '2025-02-12 14:11:06', 14);
 
 --
 -- Indexes for dumped tables
@@ -420,7 +452,9 @@ ALTER TABLE `booking`
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `merchant_id` (`merchant_id`);
 
 --
 -- Indexes for table `bookingss`
@@ -459,6 +493,12 @@ ALTER TABLE `entertainment_service`
   ADD KEY `merchant_id` (`merchant_id`);
 
 --
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`event_id`);
+
+--
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
@@ -492,7 +532,9 @@ ALTER TABLE `order`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`payment_id`),
-  ADD KEY `booking_id` (`booking_id`);
+  ADD KEY `payment_ibfk_1` (`booking_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `merchant_id` (`merchant_id`);
 
 --
 -- Indexes for table `photography_service`
@@ -550,7 +592,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `bookingss`
@@ -583,6 +625,12 @@ ALTER TABLE `entertainment_service`
   MODIFY `entertainment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
@@ -610,7 +658,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `photography_service`
@@ -640,7 +688,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `venue_booking`
 --
 ALTER TABLE `venue_booking`
-  MODIFY `venue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `venue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -652,6 +700,13 @@ ALTER TABLE `venue_booking`
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`),
   ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
 
 --
 -- Constraints for table `bookingss`
@@ -707,7 +762,9 @@ ALTER TABLE `order`
 -- Constraints for table `payment`
 --
 ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`booking_id`);
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`id`),
+  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `payment_ibfk_3` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
 
 --
 -- Constraints for table `photography_service`
@@ -721,6 +778,12 @@ ALTER TABLE `photography_service`
 ALTER TABLE `review`
   ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`event_id`);
+
+--
+-- Constraints for table `service`
+--
+ALTER TABLE `service`
+  ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
 
 --
 -- Constraints for table `venue_booking`
