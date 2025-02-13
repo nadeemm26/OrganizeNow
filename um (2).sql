@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2025 at 10:22 PM
+-- Generation Time: Feb 13, 2025 at 11:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -61,6 +61,33 @@ CREATE TABLE `booking` (
 
 CREATE TABLE `bookings` (
   `id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `service_type` varchar(100) NOT NULL,
+  `booking_date` date NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
+  `customer_email` varchar(100) NOT NULL,
+  `customer_mobile` varchar(15) NOT NULL,
+  `status` enum('Pending','Accepted','Rejected') DEFAULT 'Pending',
+  `payment_status` enum('Pending','Paid') DEFAULT 'Pending',
+  `user_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `service_id`, `service_type`, `booking_date`, `customer_name`, `customer_email`, `customer_mobile`, `status`, `payment_status`, `user_id`) VALUES
+(1, 1, 'Music', '2025-02-21', 'NADEEM MAKWANA', 'nadeem123@gmail.com', '08849742758', 'Accepted', 'Pending', 51),
+(2, 2, 'Dance', '2025-02-28', 'NADEEM MAKWANA', 'nadeem123@gmail.com', '08849742758', 'Rejected', 'Pending', 51);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookingsright`
+--
+
+CREATE TABLE `bookingsright` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   `category` varchar(50) NOT NULL,
@@ -74,13 +101,16 @@ CREATE TABLE `bookings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `bookings`
+-- Dumping data for table `bookingsright`
 --
 
-INSERT INTO `bookings` (`id`, `user_id`, `service_id`, `category`, `booking_date`, `guest_count`, `num_days`, `total_price`, `status`, `created_at`, `merchant_id`) VALUES
+INSERT INTO `bookingsright` (`id`, `user_id`, `service_id`, `category`, `booking_date`, `guest_count`, `num_days`, `total_price`, `status`, `created_at`, `merchant_id`) VALUES
 (7, 50, 1, 'catering_service', '2025-02-28', 500, 1, 100000.00, 'Rejected', '2025-02-12 20:03:51', 14),
 (8, 50, 1, 'catering_service', '2025-03-01', 1000, 1, 200000.00, 'Accepted', '2025-02-12 20:06:03', 14),
-(9, 50, 2, 'venue_booking', '2025-02-20', 500, 2, 30000.00, 'Accepted', '2025-02-12 20:07:07', 14);
+(9, 50, 2, 'venue_booking', '2025-02-20', 500, 2, 30000.00, 'Accepted', '2025-02-12 20:07:07', 14),
+(10, 50, 7, 'entertainment_service', '2025-02-20', 1, 1, 0.00, 'Rejected', '2025-02-13 18:32:55', 19),
+(11, 50, 6, 'entertainment_service', '2025-02-20', 1, 1, 2000.00, 'Accepted', '2025-02-13 18:34:24', 19),
+(12, 51, 2, 'venue_booking', '2025-02-16', 1, 2, 30000.00, 'Rejected', '2025-02-13 19:34:05', 19);
 
 -- --------------------------------------------------------
 
@@ -101,6 +131,32 @@ CREATE TABLE `bookingss` (
   `status` enum('Pending','Accepted','Rejected') DEFAULT 'Pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_table`
+--
+
+CREATE TABLE `booking_table` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `merchant_id` int(11) DEFAULT NULL,
+  `service_id` int(11) DEFAULT NULL,
+  `service_type` varchar(50) DEFAULT NULL,
+  `booking_date` date DEFAULT NULL,
+  `status` enum('Pending','Accepted','Rejected') DEFAULT 'Pending',
+  `payment_status` enum('Pending','Completed') DEFAULT 'Pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_table`
+--
+
+INSERT INTO `booking_table` (`id`, `user_id`, `merchant_id`, `service_id`, `service_type`, `booking_date`, `status`, `payment_status`, `created_at`) VALUES
+(1, 51, 14, 1, 'entertainment_service', '2025-02-14', 'Pending', 'Pending', '2025-02-13 20:48:22'),
+(2, 51, 19, 7, 'entertainment_service', '2025-02-14', 'Pending', 'Pending', '2025-02-13 21:04:20');
 
 -- --------------------------------------------------------
 
@@ -311,7 +367,9 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`payment_id`, `booking_id`, `user_id`, `merchant_id`, `amount`, `payment_method`, `status`, `transaction_id`, `created_at`) VALUES
-(1, 8, 50, 14, 200000.00, 'UPI', 'Completed', '', '2025-02-12 21:13:37');
+(1, 8, 50, 14, 200000.00, 'UPI', 'Completed', '', '2025-02-12 21:13:37'),
+(2, 9, 50, 14, 30000.00, 'Card', 'Completed', '', '2025-02-13 18:25:34'),
+(3, 11, 50, 19, 2000.00, 'Card', 'Completed', '', '2025-02-13 18:35:45');
 
 -- --------------------------------------------------------
 
@@ -452,15 +510,30 @@ ALTER TABLE `booking`
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bookingsright`
+--
+ALTER TABLE `bookingsright`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `merchant_id` (`merchant_id`);
+  ADD KEY `merchant_id` (`merchant_id`),
+  ADD KEY `fk_user` (`user_id`),
+  ADD KEY `fk_service` (`service_id`);
 
 --
 -- Indexes for table `bookingss`
 --
 ALTER TABLE `bookingss`
   ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `merchant_id` (`merchant_id`);
+
+--
+-- Indexes for table `booking_table`
+--
+ALTER TABLE `booking_table`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `merchant_id` (`merchant_id`);
 
@@ -592,13 +665,25 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `bookingsright`
+--
+ALTER TABLE `bookingsright`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `bookingss`
 --
 ALTER TABLE `bookingss`
   MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `booking_table`
+--
+ALTER TABLE `booking_table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -658,7 +743,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `photography_service`
@@ -702,11 +787,13 @@ ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `user` (`user_id`);
 
 --
--- Constraints for table `bookings`
+-- Constraints for table `bookingsright`
 --
-ALTER TABLE `bookings`
-  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
+ALTER TABLE `bookingsright`
+  ADD CONSTRAINT `bookingsright_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookingsright_ibfk_2` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`),
+  ADD CONSTRAINT `fk_service` FOREIGN KEY (`service_id`) REFERENCES `entertainment_service` (`entertainment_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `bookingss`
@@ -714,6 +801,13 @@ ALTER TABLE `bookings`
 ALTER TABLE `bookingss`
   ADD CONSTRAINT `bookingss_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `bookingss_ibfk_2` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
+
+--
+-- Constraints for table `booking_table`
+--
+ALTER TABLE `booking_table`
+  ADD CONSTRAINT `booking_table_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `booking_table_ibfk_2` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
 
 --
 -- Constraints for table `cart`
@@ -762,7 +856,7 @@ ALTER TABLE `order`
 -- Constraints for table `payment`
 --
 ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`id`),
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `bookingsright` (`id`),
   ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `payment_ibfk_3` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
 
