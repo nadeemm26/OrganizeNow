@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("iiids", $booking_id, $user_id, $booking['merchant_id'], $amount, $payment_method);
     
     if ($stmt->execute()) {
-        echo "<script>alert('Payment Successful!'); window.location.href='booking.php';</script>";
+        echo "<script>alert('Payment Successful!'); window.location.href='user_event.php';</script>";
     } else {
         echo "<script>alert('Payment Failed! Try Again.');</script>";
     }

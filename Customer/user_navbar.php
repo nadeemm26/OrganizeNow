@@ -67,7 +67,7 @@
         <div class="nav-links">
             <a href="main_home.php">Home</a>
             <a href="user_about.php">About Us</a>
-            <a href="user_service.php">Services</a>
+            <!-- <a href="user_service.php">Services</a> -->
             <a href="user_event.php">My Events</a>
             <a href="profile.php">Profile</a>
             <a href="logout.php">Log Out</a>

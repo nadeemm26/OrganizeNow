@@ -78,7 +78,7 @@ $tables = [
                 ?>
                     <div class="card">
                         <!-- <img src="<?php echo $row["event_image"]; ?>" alt="<?php echo $category; ?> Image"> -->
-                        <img src="Merchant/<?php echo $row["event_image"]; ?>" alt="<?php echo $category; ?> Image">
+                        <img src="../Merchant/<?php echo $row["event_image"]; ?>" alt="<?php echo $category; ?> Image">
                         <h5><?php echo $row["name"] ?? $row["venue_name"] ?? ''; ?></h5>
                         <h5><?php echo $row["name"] ?? $row["decoration_types"] ?? ''; ?></h5>
                         <h5><?php echo $row["name"] ?? $row["catering_name"] ?? ''; ?></h5>

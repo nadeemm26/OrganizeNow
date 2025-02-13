@@ -1,27 +1,37 @@
 <?php
-session_start();
-include "connection.php";
+include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $serviceType = $_POST['service_type'];
-    $serviceId = (int)$_POST['service_id'];
-    $merchantId = (int)$_POST['merchant_id'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $mobile = $_POST['mobile'];
-    $eventDate = $_POST['event_date'];
-    $details = $_POST['details'];
+    // Get form inputs
+    $service_id = $_POST['service_id'];
+    $service_type = $_POST['service_type'];
+    $booking_date = $_POST['booking_date'];
+    $customer_name = $_POST['customer_name'];
+    $customer_email = $_POST['customer_email'];
+    $customer_mobile = $_POST['customer_mobile'];
+
+    // Validate fields
+    if (empty($service_id) || empty($service_type) || empty($booking_date) || empty($customer_name) || empty($customer_email) || empty($customer_mobile)) {
+        echo "<script>alert('All fields are required!'); window.history.back();</script>";
+        exit();
+    }
 
     // Insert booking into database
-    $query = "INSERT INTO bookings (service_type, service_id, merchant_id, user_name, email, mobile, event_date, details, status) 
-              VALUES ('$serviceType', '$serviceId', '$merchantId', '$name', '$email', '$mobile', '$eventDate', '$details', 'Pending')";
+    $query = "INSERT INTO bookings (service_id, service_type, booking_date, customer_name, customer_email, customer_mobile, status) 
+              VALUES (?, ?, ?, ?, ?, ?, 'Pending')";
 
-    if ($conn->query($query)) {
-        echo "Booking Request Submitted Successfully!";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("isssss", $service_id, $service_type, $booking_date, $customer_name, $customer_email, $customer_mobile);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Booking request sent successfully!'); window.location.href='user_about.php';</script>";
     } else {
-        echo "Error: " . $conn->error;
+        echo "<script>alert('Booking failed! Please try again.'); window.history.back();</script>";
     }
-}
 
-$conn->close();
+    $stmt->close();
+    $conn->close();
+} else {
+    echo "<script>alert('Invalid request!'); window.location.href='index.php';</script>";
+}
 ?>
