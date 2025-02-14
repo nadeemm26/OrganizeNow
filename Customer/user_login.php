@@ -46,8 +46,8 @@ if (isset($_POST['login'])) {
         <input type="email" name="email" placeholder="Email" required><br>
         
         <input type="password" name="password" placeholder="Password" required><br>
-
         <button type="submit" name="login">Login</button>
+        <p><a href="forgot_password.php">Forgot Password?</a></p>
        
         <p>Don't have an account? <a href="user_signup.php">Register as User</a> or <a href="../Merchant/merchant_signup.php">Register as Merchant</a></p>
         <p>have an account? <a href="../Merchant/merchant_login.php">Login as Merchant</a></p>

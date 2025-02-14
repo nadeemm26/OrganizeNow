@@ -1,6 +1,21 @@
 <?php
-session_start();
+include 'sidebarmerchant.php';
 include 'connection.php';
+?>
+
+<div class="header">
+    <h1>Bookings</h1>
+    <hr>
+</div>
+<!-- event 3 button -->
+<div class="event-button">
+    <div class="add-service">
+        <button ><a href="accepted_bookings.php">Accepted Bookings</a></button>
+    </div>
+</div>
+<?php
+// session_start();
+
 
 // Ensure merchant is logged in
 if (!isset($_SESSION['merchant_id'])) {
@@ -30,7 +45,8 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accepted Bookings</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../Merchant/css_for_table.css">
 </head>
 <body>
 
@@ -68,6 +84,7 @@ $result = $stmt->get_result();
                 <?php } ?>
             </tbody>
         </table>
+        <a href="accepted_bookings.php" class="back-btn">Back</a>
     <?php } else { ?>
         <p class="text-center">No accepted bookings found.</p>
     <?php } ?>

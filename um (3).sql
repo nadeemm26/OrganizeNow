@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2025 at 11:31 PM
+-- Generation Time: Feb 14, 2025 at 10:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -77,8 +77,8 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `service_id`, `service_type`, `booking_date`, `customer_name`, `customer_email`, `customer_mobile`, `status`, `payment_status`, `user_id`) VALUES
-(1, 1, 'Music', '2025-02-21', 'NADEEM MAKWANA', 'nadeem123@gmail.com', '08849742758', 'Accepted', 'Pending', 51),
-(2, 2, 'Dance', '2025-02-28', 'NADEEM MAKWANA', 'nadeem123@gmail.com', '08849742758', 'Rejected', 'Pending', 51);
+(3, 2, 'Dance', '2025-02-28', 'Om Kadia', 'makwananadeem0@gmail.com', '8849742758', 'Accepted', 'Pending', 52),
+(6, 1, 'Music', '2025-03-09', 'NADEEM MAKWANA', 'makwananadeem0@gmail.com', '08849742758', 'Rejected', 'Pending', NULL);
 
 -- --------------------------------------------------------
 
@@ -438,22 +438,24 @@ CREATE TABLE `user` (
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `mobile` varchar(15) NOT NULL,
-  `password` varchar(200) NOT NULL
+  `password` varchar(200) NOT NULL,
+  `reset_token` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `name`, `email`, `mobile`, `password`) VALUES
-(38, 'Nasir Makwanaa', 'nasir@gmail.com', '8849742758', '$2y$10$iWxa1CgwKyqLwWHL0wOM4.ElaCiswmf.aWmJvsteibdKrGuUanVwO'),
-(39, 'Om Kadia', 'om@gmail.com', '8849742760', '$2y$10$oi8h0cA/XMklkPrDD5apSuDxj0N8vdryCnI9kyZhLTna/8Toqcm1.'),
-(41, 'nadeem', 'nad@gmail.com', '8859678420', '$2y$10$9Tbot19G.SCV2PQn8LYIp.aYgtgCftXwRtauMfouLxMtBQsaDC5QO'),
-(42, 'Meghal', 'meghal@gmail.com', '4596178413', '$2y$10$LZTyK4VF.DDqIOk.tMbbvOYn7rmULPzxHhz3KLtWx8bnAIoJ9E4IO'),
-(44, 'Mihir', 'Mihir555@gmail.com', '4569852695', 'mihir'),
-(47, 'pathan', 'pathan@gmail.com', '4569874125', '$2y$10$8SZ1JdEIESti6Lt93W2xbekG29ordevql/.bpcMPoxcWYLrybz4sS'),
-(50, 'Akram', 'akram@gmail.com', '8965412689', '$2y$10$HMaEb1/TRyBAWpxdmJ2ezukyY0g7vbguVoUo1.zaWA/jPyg9wPcne'),
-(51, 'Makwana Nadeem', 'nadeem123@gmail.com', '8849742758', '$2y$10$cZHCfqtADXz7qJTQ9DjBRuT3pZt0AiFLEr5Hy4Gl3XI6I./HS3eTq');
+INSERT INTO `user` (`user_id`, `name`, `email`, `mobile`, `password`, `reset_token`) VALUES
+(38, 'Nasir Makwanaa', 'nasir@gmail.com', '8849742758', '$2y$10$iWxa1CgwKyqLwWHL0wOM4.ElaCiswmf.aWmJvsteibdKrGuUanVwO', NULL),
+(39, 'Om Kadia', 'om@gmail.com', '8849742760', '$2y$10$oi8h0cA/XMklkPrDD5apSuDxj0N8vdryCnI9kyZhLTna/8Toqcm1.', NULL),
+(41, 'nadeem', 'nad@gmail.com', '8859678420', '$2y$10$9Tbot19G.SCV2PQn8LYIp.aYgtgCftXwRtauMfouLxMtBQsaDC5QO', NULL),
+(42, 'Meghal', 'meghal@gmail.com', '4596178413', '$2y$10$LZTyK4VF.DDqIOk.tMbbvOYn7rmULPzxHhz3KLtWx8bnAIoJ9E4IO', 'aa4daa5933347924fae381720c192b05d83a99c4ab79efbfa5536327c945c5b5df03c8f78dcd029bf5382f356755e8072334'),
+(44, 'Mihir', 'Mihir555@gmail.com', '4569852695', 'mihir', NULL),
+(47, 'pathan', 'pathan@gmail.com', '4569874125', '$2y$10$8SZ1JdEIESti6Lt93W2xbekG29ordevql/.bpcMPoxcWYLrybz4sS', NULL),
+(50, 'Akram', 'akram@gmail.com', '8965412689', '$2y$10$HMaEb1/TRyBAWpxdmJ2ezukyY0g7vbguVoUo1.zaWA/jPyg9wPcne', NULL),
+(51, 'Makwana Nadeem', 'nadeem123@gmail.com', '8849742758', '$2y$10$cZHCfqtADXz7qJTQ9DjBRuT3pZt0AiFLEr5Hy4Gl3XI6I./HS3eTq', NULL),
+(52, 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', '$2y$10$O9dGz6ryK9iP8h8D0iIDz.u1dIvLOqNX/WCHGd0zZGrlUZs7lTHw6', NULL);
 
 -- --------------------------------------------------------
 
@@ -665,7 +667,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bookingsright`
@@ -767,7 +769,7 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `venue_booking`

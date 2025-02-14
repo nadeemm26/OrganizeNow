@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customer_name = $_POST['customer_name'];
     $customer_email = $_POST['customer_email'];
     $customer_mobile = $_POST['customer_mobile'];
+    $user_id = $_SESSION['user_id'];
 
     // Validate fields
     if (empty($service_id) || empty($service_type) || empty($booking_date) || empty($customer_name) || empty($customer_email) || empty($customer_mobile)) {
@@ -17,14 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insert booking into database
-    $query = "INSERT INTO bookings (service_id, service_type, booking_date, customer_name, customer_email, customer_mobile, status) 
-              VALUES (?, ?, ?, ?, ?, ?, 'Pending')";
+    $query = "INSERT INTO bookings (service_id, service_type, booking_date, customer_name, customer_email, customer_mobile, status , user_id) 
+              VALUES (?, ?, ?, ?, ?, ?, 'Pending' ,?)";
 
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("isssss", $service_id, $service_type, $booking_date, $customer_name, $customer_email, $customer_mobile);
+    $stmt->bind_param("isssssi", $service_id, $service_type, $booking_date, $customer_name, $customer_email, $customer_mobile, $user_id);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Booking request sent successfully!'); window.location.href='user_about.php';</script>";
+        echo "<script>alert('Booking request sent successfully!'); window.location.href='user_event.php';</script>";
     } else {
         echo "<script>alert('Booking failed! Please try again.'); window.history.back();</script>";
     }
@@ -32,6 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 } else {
-    echo "<script>alert('Invalid request!'); window.location.href='index.php';</script>";
+    echo "<script>alert('Invalid request!'); window.location.href='user_about.php';</script>";
 }
 ?>
