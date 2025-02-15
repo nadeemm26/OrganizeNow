@@ -1,10 +1,5 @@
 <?php
-
 include 'myevent.php';
-
-?>
-<?php
-// session_start();
 include "connection.php";
 
 // Ensure merchant is logged in
@@ -19,11 +14,11 @@ $serviceType = isset($_GET['service']) ? $_GET['service'] : 'catering_service';
 
 // Define table names and their respective fields
 $services = [
-    'catering_service' => ['catering_id', 'catering_name',  'menu_details', 'capacity', 'price', 'min_order', 'event_image', 'added_on'],
-    'decoration_service' => ['decoration_id', 'decoration_types', 'description', 'custom_decoration', 'price', 'event_image', 'added_on'],
-    'entertainment_service' => ['entertainment_id', 'service_type', 'performance_duration', 'price', 'event_image', 'added_on'],
-    'photography_service' => ['photography_id', 'service_name', 'photography_types', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'event_image', 'added_on'],
-    'venue_booking' => ['venue_id','service_type', 'venue_name', 'venue_type', 'capacity', 'address', 'city', 'pincode', 'price', 'event_image', 'added_on']
+    'catering_service' => ['id', 'catering_name', 'menu_details', 'capacity', 'price', 'min_order', 'event_image', 'added_on'],
+    'decoration_service' => ['id', 'decoration_types', 'description', 'custom_decoration', 'price', 'event_image', 'added_on'],
+    'entertainment_service' => ['id', 'service_type', 'performance_duration', 'price', 'event_image', 'added_on'],
+    'photography_service' => ['id', 'service_name', 'photography_types', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'event_image', 'added_on'],
+    'venue_booking' => ['id', 'service_type', 'venue_name', 'venue_type', 'capacity', 'address', 'city', 'pincode', 'price', 'event_image', 'added_on']
 ];
 
 // Check if selected service exists
@@ -45,8 +40,8 @@ $totalPages = ceil($totalRecords / $limit);
 $fields = implode(", ", $services[$serviceType]);
 $query = "SELECT $fields FROM $serviceType WHERE merchant_id = $merchant_id LIMIT $start, $limit";
 $result = $conn->query($query);
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +51,13 @@ $result = $conn->query($query);
         th, td { border: 1px solid black; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
     </style>
+    <script>
+        function confirmDelete(serviceType, id) {
+            if (confirm("Are you sure you want to delete this service?")) {
+                window.location.href = "delete_service.php?service=" + serviceType + "&id=" + id;
+            }
+        }
+    </script>
 </head>
 <body>
     <h2>My Services</h2>
@@ -75,6 +77,7 @@ $result = $conn->query($query);
             <?php foreach ($services[$serviceType] as $field) { ?>
                 <th><?php echo ucfirst(str_replace('_', ' ', $field)); ?></th>
             <?php } ?>
+            <th>Action</th> <!-- New column for delete button -->
         </tr>
         <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
@@ -83,6 +86,9 @@ $result = $conn->query($query);
                         <?php echo ($field == 'event_image') ? '<img src="' . $row[$field] . '" width="100">' : $row[$field]; ?>
                     </td>
                 <?php } ?>
+                <td>
+                    <button onclick="confirmDelete('<?php echo $serviceType; ?>', <?php echo $row['id']; ?>)">Delete</button>
+                </td>
             </tr>
         <?php } ?>
     </table>
@@ -98,4 +104,5 @@ $result = $conn->query($query);
     </div>
 </body>
 </html>
+
 <?php $conn->close(); ?>

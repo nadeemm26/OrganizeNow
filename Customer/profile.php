@@ -1,70 +1,73 @@
 <?php
+include 'connection.php';
 include 'user_navbar.php';
-?>
-<?php
-// Assuming you have a session or user ID to fetch profile info
 // session_start();
-$user_id = $_SESSION['user_id']; // Get user ID from session
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
-// Database connection
-include('connection.php');
-$query = "SELECT * FROM user WHERE user_id = ?";
-$stmt = $conn->prepare($query);
+
+
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT name, email, mobile FROM user WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$stmt->bind_result($name, $email, $mobile);
+$stmt->fetch();
+$stmt->close();
+$conn->close();
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* User Profile Page */
-        .profile {
-            width: 100%;
-            max-width: 900px;
-            margin: 25px auto;
-            padding: 30px;
-            background-color: #efefef;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 14px;
+        body {
+            background-color: #f4f4f4;
         }
-
-        .profile h1 {
+        .profile-card {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            color: #4CAF50;
         }
-
-        .profile p {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .profile .profile-label {
-            font-weight: bold;
-            color: #555;
-        }
-
-        .profile .profile-data {
+        .profile-card h3 {
             color: #333;
         }
-
-        /* Responsive Layout for Mobile */
-        @media (max-width: 768px) {
-            .profile {
-                padding: 15px;
-            }
-
-            .profile h1 {
-                font-size: 24px;
-            }
+        .profile-card p {
+            color: #555;
+            font-size: 16px;
+        }
+        .btn-edit {
+            background: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .btn-edit:hover {
+            background: #0056b3;
         }
     </style>
 </head>
-<!-- User Profile Page -->
-<div class="profile">
-    <h1>Your Profile</h1>
-    <p><span class="profile-label">Name:</span> <span class="profile-data"><?php echo $user['name']; ?></span></p>
-    <p><span class="profile-label">Email:</span> <span class="profile-data"><?php echo $user['email']; ?></span></p>
-    <p><span class="profile-label">Mobile:</span> <span class="profile-data"><?php echo $user['mobile']; ?></span></p>
-</div>
+<body>
+
+    <div class="profile-card">
+        <h3>User Profile</h3>
+        <p><strong>Name:</strong> <?php echo htmlspecialchars($name); ?></p>
+        <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
+        <p><strong>Mobile:</strong> <?php echo htmlspecialchars($mobile); ?></p>
+        <a href="edit_profile.php" class="btn-edit">Edit Profile</a>
+    </div>
+
+</body>
+</html>

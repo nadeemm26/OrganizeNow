@@ -74,7 +74,7 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
     <div class="container">
         <div class="card">
             <!-- <img src="<?php echo $row["event_image"]; ?>" alt="Service Image"> -->
-            <img src="Merchant/<?php echo $row["event_image"]; ?>" alt="Service Image">
+            <img src="../Merchant/<?php echo $row["event_image"]; ?>" alt="Service Image">
             <h2><?php echo $row["name"] ?? $row["venue_name"] ?? 'Service'; ?></h2>
 
             <?php if ($table == "venue_booking"): ?>
@@ -97,10 +97,11 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
                 
 
             <?php elseif ($table == "catering_service"): ?>
-                <p><strong>Cuisine Type:</strong> <?php echo $row["cuisine_types"]; ?></p>
+                <h2><p> <?php echo $row["catering_name"]; ?></p></h2>
+                <p><strong>Menu details:</strong> <?php echo $row["menu_details"]; ?></p>
                 <p><strong>Capacity:</strong> <?php echo $row["capacity"]; ?></p>
                 <p><strong>Minimum Order:</strong> <?php echo $row["min_order"]; ?></p>
-                <p><strong>Veg Price Per Plate:</strong> ₹<?php echo $row["price"]; ?></p>
+                <p><strong>Price Per Plate:</strong> ₹<?php echo $row["price"]; ?></p>
                
 
             <?php elseif ($table == "photography_service"): ?>

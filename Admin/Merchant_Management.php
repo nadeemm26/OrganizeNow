@@ -8,12 +8,11 @@
 <table>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Details</th>
-            <th>Email</th>
-            <th>Mobile</th>
+            <th>Merchant Id</th>
+            <th>Merchant Name</th>
+            <th>Business Details</th>
+            <th>Merchant Email</th>
+            <th>Merchant Mobile</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -25,15 +24,14 @@
 
         ?>
             <tr>
-                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['merchant_id']; ?></td>
                 <td><?php echo $row['name']; ?></td>
-                <td><?php echo $row['type']; ?></td>
                 <td><?php echo $row['details']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['mobile']; ?></td>
                 <td class="action-buttons">
-                    <button><a href="merchant_management_edit.php?id=<?php echo $row['id']; ?>">Edit</a></button>
-                    <button class="delete"><a href="merchant_management_delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this merchant?')">Delete</a></button>
+                    <button><a href="merchant_management_edit.php?id=<?php echo $row['merchant_id']; ?>">Edit</a></button>
+                    <button class="delete"><a href="merchant_management_delete.php?id=<?php echo $row['merchant_id']; ?>" onclick="return confirm('Are you sure you want to delete this merchant?')">Delete</a></button>
                 </td>
             </tr>
 

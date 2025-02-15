@@ -32,7 +32,7 @@
                 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
                 // Insert user data
-                $insertQuery = "INSERT INTO `user` (id, name, email, mobile, password) VALUES (NULL, '$name', '$email', '$mobile', '$hashedPassword')";
+                $insertQuery = "INSERT INTO `user` (user_id, name, email, mobile, password) VALUES (NULL, '$name', '$email', '$mobile', '$hashedPassword')";
 
                 if (mysqli_query($conn, $insertQuery)) {
                     $successMsg = "✅New user created successfully!";

@@ -162,7 +162,7 @@ include 'connection.php';
 
                         <!-- Open Modal Button -->
                         <button class="btn open-modal"
-                            data-service-id="<?php echo $row['entertainment_id']; ?>"
+                            data-service-id="<?php echo $row['id']; ?>"
                             data-service-type="<?php echo $row['service_type']; ?>"
                             data-price="<?php echo $row['price']; ?>">
                             Book Now

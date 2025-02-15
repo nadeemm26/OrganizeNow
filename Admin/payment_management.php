@@ -8,17 +8,21 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Details</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
+                    <th>Payment Id</th>
+                    <th>Booking Id</th>
+                    <th>Customer Name</th>
+                    <th>Customer Email</th>
+                    <th>Customer Mobile</th>
+                    <th>Merchant Name</th>
+                    <th>Service/Event</th>
+                    <th>Payment Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $user = intval($_GET['id']);
 
 
-    $sql = "DELETE FROM merchant WHERE id = ?";
+    $sql = "DELETE FROM merchant WHERE merchant_id = ?";
 
 
     $stmt = $conn->prepare($sql);

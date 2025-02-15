@@ -27,7 +27,7 @@ $merchant_id = $_SESSION['merchant_id']; // Ensure merchant is logged in
 $query = "SELECT b.id, b.customer_name, b.customer_email, b.customer_mobile, b.booking_date, 
                  b.service_type, b.status, e.service_type AS service_name
           FROM bookings b
-          JOIN entertainment_service e ON b.service_id = e.entertainment_id
+          JOIN entertainment_service e ON b.service_id = e.id
           WHERE e.merchant_id = ? AND b.status = 'Pending'";
 
 $stmt = $conn->prepare($query);

@@ -14,7 +14,7 @@ $user_email = $_SESSION['user_email'];
 $query = "SELECT b.id, b.service_id, b.booking_date, b.status, b.payment_status, 
                  e.service_type, e.price 
           FROM bookings b
-          JOIN entertainment_service e ON b.service_id = e.entertainment_id
+          JOIN entertainment_service e ON b.service_id = e.id
           WHERE b.customer_email = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $user_email);

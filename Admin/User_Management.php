@@ -9,7 +9,7 @@ include "admin_sidebar.php";
 <table>
     <thead>
         <tr>
-            <th>ID</th>
+            <th>User Id</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
@@ -25,13 +25,13 @@ include "admin_sidebar.php";
         ?>
 
             <tr>
-                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['user_id']; ?></td>
                 <td><?php echo $row['name']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['mobile']; ?></td>
                 <td class="action-buttons">
-                    <button><a href="user_management_edit.php?id=<?php echo $row['id']; ?>">Edit</a></button>
-                    <button class="delete"><a href="user_management_delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></button>
+                    <button><a href="user_management_edit.php?id=<?php echo $row['user_id']; ?>">Edit</a></button>
+                    <button class="delete"><a href="user_management_delete.php?id=<?php echo $row['user_id']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a></button>
                 </td>
             </tr>
 

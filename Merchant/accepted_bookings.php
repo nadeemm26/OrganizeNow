@@ -33,7 +33,7 @@ $query = "SELECT b.id, b.customer_name, b.customer_email, b.customer_mobile,
                  b.booking_date, b.status, e.service_type, e.performance_duration, 
                  e.price, e.event_image 
           FROM bookings b
-          JOIN entertainment_service e ON b.service_id = e.entertainment_id
+          JOIN entertainment_service e ON b.service_id = e.id
           WHERE e.merchant_id = ? AND b.status = 'Accepted'";
 
 $stmt = $conn->prepare($query);

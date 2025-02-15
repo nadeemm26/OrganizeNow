@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Chart Setup
         const ctx = document.getElementById('orderChart').getContext('2d');

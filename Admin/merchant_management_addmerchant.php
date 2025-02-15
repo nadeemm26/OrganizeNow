@@ -7,14 +7,13 @@ $successMsg = $errorMsg = "";
 
 if (isset($_POST['submit'])) {
     $name = trim($_POST['name']);
-    $type = $_POST['type'];
     $details = trim($_POST['details']);
     $email = trim($_POST['email']);
     $mobile = trim($_POST['mobile']);
     $password = trim($_POST['password']);
 
     // Basic validation
-    if (empty($name) || empty($type) || empty($details) || empty($email) || empty($mobile) || empty($password)) {
+    if (empty($name) || empty($details) || empty($email) || empty($mobile) || empty($password)) {
         $errorMsg = "❌All fields are required!";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errorMsg = "❌Invalid email format!";
@@ -34,8 +33,8 @@ if (isset($_POST['submit'])) {
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
             // Insert merchant data
-            $insertQuery = "INSERT INTO `merchant` (id, name, type, details, email, mobile, password) 
-                            VALUES (NULL, '$name', '$type', '$details', '$email', '$mobile', '$hashedPassword')";
+            $insertQuery = "INSERT INTO `merchant` (merchant_id, name, details, email, mobile, password) 
+                            VALUES (NULL, '$name', '$details', '$email', '$mobile', '$hashedPassword')";
 
             if (mysqli_query($conn, $insertQuery)) {
                 $successMsg = "✅New merchant created successfully!";
@@ -57,16 +56,6 @@ if (isset($_POST['submit'])) {
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" name="name" required>
-    </div>
-    <div class="form-group">
-        <label for="type">Type:</label>
-        <select name="type" required>
-            <option value="Catering">Catering</option>
-            <option value="Decoration">Decoration</option>
-            <option value="Photo">Photo</option>
-            <option value="Venue">Venue</option>
-            <option value="Other">Other</option>
-        </select>
     </div>
     <div class="form-group">
         <label for="details">Details:</label>

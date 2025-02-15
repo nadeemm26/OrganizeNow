@@ -32,7 +32,7 @@ $merchant_id = $_SESSION['merchant_id'];
 
 $query = "SELECT b.id, b.customer_name, b.customer_email, b.service_type, b.booking_date, b.status 
           FROM bookings b 
-          JOIN entertainment_service e ON b.service_id = e.entertainment_id
+          JOIN entertainment_service e ON b.service_id = e.id
           WHERE e.merchant_id = ? AND b.status = 'Rejected'";
 
 $stmt = $conn->prepare($query);

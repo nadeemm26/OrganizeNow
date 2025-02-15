@@ -6,7 +6,7 @@ include "admin_sidebar.php";
 // Fetch user details
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM `user` WHERE id='$id'";
+    $query = "SELECT * FROM `user` WHERE user_id='$id'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 }
@@ -17,7 +17,7 @@ if (isset($_POST['update'])) {
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
 
-    $updateQuery = "UPDATE `user` SET name='$name', email='$email', mobile='$mobile' WHERE id='$id'";
+    $updateQuery = "UPDATE `user` SET name='$name', email='$email', mobile='$mobile' WHERE user_id='$id'";
 
     if (mysqli_query($conn, $updateQuery)) {
         echo "<script>alert('✅ User updated successfully'); window.location.href='user_management.php';</script>";

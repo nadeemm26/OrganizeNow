@@ -23,7 +23,7 @@ $tables = [
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
@@ -59,12 +59,17 @@ $tables = [
         .view-btn {
             background: blue;
         }
+        h2{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    
         <h2 class="text-center">Available Event Services</h2>
 
         <?php foreach ($tables as $table => $category): ?>
@@ -92,7 +97,6 @@ $tables = [
                 <?php endwhile; ?>
             </div>
         <?php endforeach; ?>
-    </div>
 
 </body>
 

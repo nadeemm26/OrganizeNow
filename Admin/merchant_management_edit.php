@@ -6,7 +6,7 @@ include "admin_sidebar.php";
 // Fetch merchant details
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM `merchant` WHERE id='$id'";
+    $query = "SELECT * FROM `merchant` WHERE merchant_id='$id'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
 }
@@ -14,12 +14,12 @@ if (isset($_GET['id'])) {
 // Update merchant details
 if (isset($_POST['update'])) {
     $name = $_POST['name'];
-    $type = $_POST['type'];
+    // $type = $_POST['type'];
     $details = $_POST['details'];
     $email = $_POST['email'];
     $mobile = $_POST['mobile'];
 
-    $updateQuery = "UPDATE `merchant` SET name='$name', type='$type', details='$details', email='$email', mobile='$mobile' WHERE id='$id'";
+    $updateQuery = "UPDATE `merchant` SET name='$name', details='$details', email='$email', mobile='$mobile' WHERE merchant_id='$id'";
 
     if (mysqli_query($conn, $updateQuery)) {
         echo "<script>alert('✅Merchant updated successfully!'); window.location.href='merchant_management.php';</script>";
@@ -34,16 +34,6 @@ if (isset($_POST['update'])) {
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" name="name" value="<?php echo $row['name']; ?>" required>
-    </div>
-    <div class="form-group">
-        <label for="type">Type:</label>
-        <select name="type" required>
-            <option value="catering" <?php if ($row['type'] == 'catering') echo 'selected'; ?>>Catering</option>
-            <option value="decoration" <?php if ($row['type'] == 'decoration') echo 'selected'; ?>>Decoration</option>
-            <option value="photo" <?php if ($row['type'] == 'photo') echo 'selected'; ?>>Photo</option>
-            <option value="venue" <?php if ($row['type'] == 'venue') echo 'selected'; ?>>Venue</option>
-            <option value="other" <?php if ($row['type'] == 'other') echo 'selected'; ?>>Other</option>
-        </select>
     </div>
     <div class="form-group">
         <label for="details">Details:</label>
