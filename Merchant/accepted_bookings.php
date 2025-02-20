@@ -1,8 +1,6 @@
 <?php
 include 'sidebarmerchant.php';
-include 'connection.php';
-?>
-
+include 'connection.php';?>
 <div class="header">
     <h1>Bookings</h1>
     <hr>
@@ -20,7 +18,6 @@ include 'connection.php';
     </div>
 </div>
 <?php
-
 if (!isset($_SESSION['merchant_id'])) {
     header("Location: login.php");
     exit();
@@ -41,13 +38,10 @@ $result = $stmt->get_result();
 <head>
     <style>
         .container {
-            /* width: 80%;
-            margin: auto;
-            background: #f9f9f9;
-            padding: 20px; */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }h2{
+        }
+        h2 {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,6 +60,18 @@ $result = $stmt->get_result();
             background: #28a745;
             color: white;
         }
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-delete:hover {
+            background: #c82333;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +89,8 @@ $result = $stmt->get_result();
             <th>Guests</th>
             <th>Days</th>
             <th>Total Price</th>
+            <th>Payment status</th>
+            <th>Action</th>
         </tr>
         <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
@@ -95,6 +103,13 @@ $result = $stmt->get_result();
                 <td><?php echo $row['guest_count']; ?></td>
                 <td><?php echo $row['num_days']; ?></td>
                 <td>₹<?php echo number_format($row['total_price'], 2); ?></td>
+                <td><?php echo $row['payment_status'];?></td>
+                <td>
+                    <form action="delete_booking.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this booking?');">
+                        <input type="hidden" name="booking_id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" class="btn-delete">Delete</button>
+                    </form>
+                </td>
             </tr>
         <?php } ?>
     </table>

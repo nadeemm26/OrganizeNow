@@ -7,15 +7,59 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-if (!isset($_GET['payment_id'])) {
+if (!isset($_GET['payment_id']) || !isset($_GET['order_id']) || !isset($_GET['booking_id'])) {
     echo "<div class='error-message'>Invalid Request!</div>";
     exit();
 }
 
 $payment_id = $_GET['payment_id'];
+$order_id = $_GET['order_id'];
+$booking_id = $_GET['booking_id'];
 $user_id = $_SESSION['user_id'];
 
-// Fetch Payment Details with Merchant ID
+// 🔹 Check if Payment Already Exists
+$check_payment = "SELECT * FROM payments WHERE payment_id = ?";
+$stmt = $conn->prepare($check_payment);
+$stmt->bind_param("s", $payment_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    // 🔹 Get Booking Details
+    $query = "SELECT merchant_id, total_price FROM booking2 WHERE id = ? AND user_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ii", $booking_id, $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        echo "<div class='error-message'>Booking Not Found!</div>";
+        exit();
+    }
+
+    $booking = $result->fetch_assoc();
+    $amount_paid = $booking['total_price'];
+    $merchant_id = $booking['merchant_id'];
+    $payment_method = "Razorpay"; // 🔹 Default payment method
+    $status = "success"; // 🔹 Mark as successful
+
+    // 🔹 Insert Payment Data into Database
+    $insert_payment = "INSERT INTO payments (booking_id, merchant_id, user_id, payment_id, order_id, amount_paid, payment_method, payment_status) 
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($insert_payment);
+    $stmt->bind_param("iiissdss", $booking_id, $merchant_id, $user_id, $payment_id, $order_id, $amount_paid, $payment_method, $status);
+    $stmt->execute();
+
+    // 🔹 Update Booking Status to "Paid"
+    $update_booking = "UPDATE booking2 SET status = 'Paid' WHERE id = ?";
+    $stmt = $conn->prepare($update_booking);
+    $stmt->bind_param("i", $booking_id);
+    $stmt->execute();
+
+    // 🔹 Notify Merchant (Optional: Send Email or Add Notification in Merchant Dashboard)
+}
+
+// 🔹 Fetch Payment Details for Display
 $query = "SELECT p.*, b.service_name, b.booking_date, b.total_price, b.status, b.merchant_id 
           FROM payments p 
           JOIN booking2 b ON p.booking_id = b.id 

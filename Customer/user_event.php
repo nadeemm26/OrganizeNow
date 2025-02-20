@@ -198,7 +198,7 @@ $result = $stmt->get_result();
             <a href="user_event.php?status=Pending">Pending</a>
             <a href="user_event.php?status=Accepted">Accepted</a>
             <a href="user_event.php?status=Rejected">Rejected</a>
-            <a href="user_event.php?payment_status=Paid">Paid</a>
+            <!-- <a href="user_event.php?status=Paid">Paid</a> -->
         </div>
 
         <!-- Display Bookings -->

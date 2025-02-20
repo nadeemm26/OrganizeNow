@@ -8,10 +8,12 @@ if (!isset($_GET['booking_id'])) {
 
 $booking_id = $_GET['booking_id'];
 
-// Fetch Booking & Payment Details
-$query = "SELECT b.*, p.payment_id, p.amount_paid, p.payment_gateway, p.payment_status 
+// Fetch Booking, Payment & Merchant Details
+$query = "SELECT b.*, p.payment_id, p.amount_paid, p.payment_gateway, p.payment_status, 
+                 m.name AS merchant_name, m.email AS merchant_email, m.mobile AS merchant_mobile 
           FROM booking2 b 
           LEFT JOIN payments p ON b.id = p.booking_id 
+          LEFT JOIN merchant m ON b.merchant_id = m.merchant_id
           WHERE b.id = ?";
 
 $stmt = $conn->prepare($query);
@@ -68,6 +70,13 @@ $html = '
     <tr><td><strong>Mobile:</strong></td><td>' . htmlspecialchars($booking['customer_mobile']) . '</td></tr>
 </table>
 
+<h2>Merchant Details</h2>
+<table class="table">
+    <tr><td><strong>Name:</strong></td><td>' . htmlspecialchars($booking['merchant_name']) . '</td></tr>
+    <tr><td><strong>Email:</strong></td><td>' . htmlspecialchars($booking['merchant_email']) . '</td></tr>
+    <tr><td><strong>Mobile:</strong></td><td>' . htmlspecialchars($booking['merchant_mobile']) . '</td></tr>
+</table>
+
 <h2>Booking Details</h2>
 <table class="table">
     <tr class="header"><th>Event</th><th>Date</th><th>Guests</th><th>Days</th><th>Total Price</th></tr>
@@ -85,7 +94,7 @@ $html = '
     <tr class="header"><th>Payment ID</th><th>Amount Paid</th><th>Payment Method</th><th>Status</th></tr>
     <tr>
         <td>' . htmlspecialchars($booking['payment_id']) . '</td>
-        <td>' . number_format($booking['amount_paid'], 2) . '</td>
+        <td>₹' . number_format($booking['amount_paid'], 2) . '</td>
         <td>' . ucfirst($booking['payment_gateway']) . '</td>
         <td>' . ucfirst($booking['payment_status']) . '</td>
     </tr>

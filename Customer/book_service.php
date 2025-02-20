@@ -27,11 +27,11 @@ if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['merchant_id'])) {
         $service = $result->fetch_assoc();
         $service_image = $service['event_image'];
     } else {
-        echo "<script>alert('Invalid service.'); window.location='services.php';</script>";
+        echo "<script>alert('Invalid service.'); window.location='main_home.php';</script>";
         exit();
     }
 } else {
-    echo "<script>alert('Invalid request.'); window.location='services.php';</script>";
+    echo "<script>alert('Invalid request.'); window.location='main_home.php';</script>";
     exit();
 }
 
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $total_price, $status, $payment_status, $created_at, $user_id, $merchant_id ,$service_image);
     
     if ($stmt->execute()) {
-        echo "<script>alert('Booking Successful!'); window.location='user_dashboard.php';</script>";
+        echo "<script>alert('Booking Successful!'); window.location='user_event.php';</script>";
     } else {
         echo "<script>alert('Booking Failed. Try Again!');</script>";
     }

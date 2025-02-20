@@ -22,7 +22,7 @@ if (!isset($_GET['booking_id'])) {
 
 $booking_id = $_GET['booking_id'];
 
-// 🔹 Get Booking Details from Database
+// 🔹 Get Booking Details with Merchant ID
 $query = "SELECT * FROM booking2 WHERE id = ? AND user_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("ii", $booking_id, $_SESSION['user_id']);
@@ -36,18 +36,23 @@ if ($result->num_rows === 0) {
 
 $booking = $result->fetch_assoc();
 $amount = $booking['total_price'] * 100; // 🔹 Convert to paise (₹1000 = 100000)
+$merchant_id = $booking['merchant_id']; // 🔹 Fetch Merchant ID from Database
 
 // 🔹 Razorpay Order Create
 $orderData = [
-    'receipt'         => strval($booking_id),  // 🔹 Ensure receipt is string
-    'amount'          => $amount,  // 🔹 Amount in paise
+    'receipt'         => strval($booking_id), 
+    'amount'          => $amount,  
     'currency'        => 'INR',
-    'payment_capture' => 1 // 🔹 Auto capture payment
+    'payment_capture' => 1, 
+    'notes'           => [
+        'merchant_id' => $merchant_id  // 🔹 Store Merchant ID in Razorpay notes
+    ]
 ];
 
 $order = $api->order->create($orderData);
-$order_id = $order['id']; // 🔹 Razorpay Order ID
+$order_id = $order['id']; 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
