@@ -19,6 +19,7 @@ if (isset($_POST['login'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_email'] = $email;
+            $_SESSION['user_mobile'] = $mobile;
             header('Location: main_home.php');
             exit;
         } else {

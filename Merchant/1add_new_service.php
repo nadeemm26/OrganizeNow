@@ -20,9 +20,9 @@ include 'myevent.php';
         <!-- <form method="post" action="venue_service_db.php" enctype="multipart/form-data"> -->
         <form method="POST" action="submit_service.php" enctype="multipart/form-data">
 
-            <input type="text" name="venue_name" placeholder="Venue Name">
             <input type="hidden" name="service_type" value="venue booking"> 
-            <select name="venue_type">
+            <input type="text" name="service_name" placeholder="Venue Name">
+            <select name="service_category">
                 <option>Venue Type</option>
                 <option value="Banquet Hall">Banquet Hall</option>
                 <option value="Lawn">Lawn</option>
@@ -45,26 +45,18 @@ include 'myevent.php';
         <form method="POST" action="submit_service.php" enctype="multipart/form-data">
 
             <label>Catering Name:</label>
-            <input type="text" name="catering_name" required>
-
-            <label>Cuisine Type:</label>
-            <select name="cuisine_types[]" required>
-                <option value="Indian">Indian</option>
-                <option value="Chinese">Chinese</option>
-                <option value="Continental">Continental</option>
-                <option value="Italian">Italian</option>
-            </select>
-
+            <input type="text" name="service_name" required>
+            <input type="hidden" name="service_type" value="Catering Service">
+            
             <label>Menu Details:</label>
             <textarea name="menu_details" placeholder="Add your menu details here..." required></textarea>
 
             <label>Capacity (Max People Served):</label>
-            <input type="number" name="capacity" required>
+            <input type="number" name="service_capacity" required>
 
             <label>Price Per Plate (Veg):</label>
             <input type="number" name="price" required>
 
-            
 
             <label>Minimum Order Quantity:</label>
             <input type="number" name="min_order" required>
@@ -82,9 +74,9 @@ include 'myevent.php';
 
             <label>Service Name:</label>
             <input type="text" name="service_name" required>
-
+            <input type="hidden" name="service_type" value="Photography Service">
             <label>Photography Type:</label>
-            <select name="photography_types[]" multiple required>
+            <select name="service_category" multiple required>
                 <option value="Wedding">Wedding</option>
                 <option value="Birthday">Birthday</option>
                 <option value="Corporate">Corporate</option>
@@ -119,8 +111,6 @@ include 'myevent.php';
             <label>Package Price (₹):</label>
             <input type="number" name="price" required>
 
-            
-
             <label>Upload Event Image:</label>
             <input type="file" name="event_image" required>
 
@@ -132,15 +122,18 @@ include 'myevent.php';
     <div id="decorationForm" class="service-form-container">
         <form method="POST" action="submit_service.php" enctype="multipart/form-data">
 
+            <label>Service Name:</label>
+            <input type="text" name="service_name" required>
+            
+            <input type="hidden" name="service_types" value="Decoration Service">
 
             <label>Decoration Type:</label>
-            <select name="decoration_types[]" required>
+            <select name="service_category" required>
                 <option value="Wedding">Wedding</option>
                 <option value="Birthday">Birthday</option>
                 <option value="Corporate">Corporate</option>
                 <option value="Festival">Festival</option>
             </select>
-
             <label>Decoration Description:</label>
             <textarea name="description" required></textarea>
 
@@ -166,14 +159,18 @@ include 'myevent.php';
     <div id="entertainmentForm" class="service-form-container">
         <form method="POST" action="submit_service.php" enctype="multipart/form-data">
 
+             <label>Service Name:</label>
+            <input type="text" name="service_name" required>
+
+            <input type="hidden" name="service_type" value="Entertainment Service">
+
             <label>Service Type:</label>
-            <select name="service_type" required>
+            <select name="service_category" required>
                 <option value="Music">Music</option>
                 <option value="Dance">Dance</option>
                 <option value="Comedy">Comedy</option>
                 <option value="Magic Show">Magic Show</option>
             </select>
-
             <label>Performance Duration:</label>
             <input type="text" name="performance_duration" placeholder="e.g., 1 hour, 2 hours" required>
 

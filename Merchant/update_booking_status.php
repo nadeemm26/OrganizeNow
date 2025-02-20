@@ -1,23 +1,31 @@
 <?php
 include 'connection.php';
 
-if (isset($_GET['id']) && isset($_GET['status'])) {
-    $booking_id = $_GET['id'];
-    $status = $_GET['status'];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['booking_id']) && isset($_POST['action'])) {
+    $booking_id = $_POST['booking_id'];
+    $action = $_POST['action'];
+    
+    if ($action == "accept") {
+        $status = "Accepted";
+    } elseif ($action == "reject") {
+        $status = "Rejected";
+    } else {
+        header("Location: merchant_bookings.php");
+        exit();
+    }
 
-    $query = "UPDATE bookings SET status = ? WHERE id = ?";
+    // Update booking status
+    $query = "UPDATE booking2 SET status = ? WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("si", $status, $booking_id);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Booking status updated successfully!'); window.location.href='merchant_dashboard.php';</script>";
+        echo "<script>alert('Booking status updated!'); window.location='pending_bookings.php';</script>";
     } else {
-        echo "<script>alert('Failed to update status!'); window.history.back();</script>";
+        echo "<script>alert('Error updating status. Try again.'); window.location='pending_bookings.php';</script>";
     }
-
-    $stmt->close();
-    $conn->close();
 } else {
-    echo "<script>alert('Invalid request!'); window.history.back();</script>";
+    header("Location: pending_bookings.php");
+    exit();
 }
 ?>

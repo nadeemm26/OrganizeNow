@@ -19,17 +19,17 @@ include 'connection.php';
         <button><a href="rejected_bookings.php">Rejected Bookings</a></button>
     </div>
 </div>
-
 <?php
 
-$merchant_id = $_SESSION['merchant_id']; // Ensure merchant is logged in
+if (!isset($_SESSION['merchant_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
-$query = "SELECT b.id, b.customer_name, b.customer_email, b.customer_mobile, b.booking_date, 
-                 b.service_type, b.status, e.service_type AS service_name
-          FROM bookings b
-          JOIN entertainment_service e ON b.service_id = e.id
-          WHERE e.merchant_id = ? AND b.status = 'Pending'";
+$merchant_id = $_SESSION['merchant_id'];
 
+// Fetch pending bookings for this merchant
+$query = "SELECT * FROM booking2 WHERE merchant_id = ? AND status = 'Pending'";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $merchant_id);
 $stmt->execute();
@@ -39,45 +39,89 @@ $result = $stmt->get_result();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../Merchant/css_for_table.css">
+<!-- <link rel="stylesheet" href="../Merchant/css_for_table.css"> -->
+    <style>
+        .container {
+            /* width: 80%;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 20px; */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            border-radius: 5px;
+        }
+        .accept {
+            background: #28a745;
+        }
+        .reject {
+            background: #dc3545;
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-4">
-    <h2 class="text-center">Pending Bookings</h2>
-    <table class="table table-bordered">
-        <thead>
+
+<div class="container">
+    <h2>Pending Booking Requests</h2>
+    <table>
+        <tr>
+            <th>Customer Name</th>
+            <th>Customer Email</th>
+            <th>Customer Mobile</th>
+            <th>Service</th>
+            <th>Service Name</th>
+            <th>Booking Date</th>
+            <th>Guests</th>
+            <th>Days</th>
+            <th>Total Price</th>
+            <th>Action</th>
+        </tr>
+        <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
-                <th>Customer Name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Booking Date</th>
-                <th>Service</th>
-                <th>Status</th>
-                <th>Action</th>
+                <td><?php echo $row['customer_name']; ?></td>
+                <td><?php echo $row['customer_email']; ?></td>
+                <td><?php echo $row['customer_mobile']; ?></td>
+                <td><?php echo $row['service_type']; ?></td>
+                <td><?php echo $row['service_name']; ?></td>
+                <td><?php echo $row['booking_date']; ?></td>
+                <td><?php echo $row['guest_count']; ?></td>
+                <td><?php echo $row['num_days']; ?></td>
+                <td>₹<?php echo number_format($row['total_price'], 2); ?></td>
+                <td>
+                    <form method="POST" action="update_booking_status.php">
+                        <input type="hidden" name="booking_id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" name="action" value="accept" class="btn accept">Accept</button>
+                        <button type="submit" name="action" value="reject" class="btn reject">Reject</button>
+                    </form>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()) { ?>
-                <tr>
-                    <td><?php echo $row['customer_name']; ?></td>
-                    <td><?php echo $row['customer_email']; ?></td>
-                    <td><?php echo $row['customer_mobile']; ?></td>
-                    <td><?php echo $row['booking_date']; ?></td>
-                    <td><?php echo $row['service_name']; ?></td>
-                    <td><strong><?php echo $row['status']; ?></strong></td>
-                    <td>
-                        <a href="update_booking_status.php?id=<?php echo $row['id']; ?>&status=Accepted" class="btn btn-success btn-sm">Accept</a>
-                        <a href="update_booking_status.php?id=<?php echo $row['id']; ?>&status=Rejected" class="btn btn-danger btn-sm">Reject</a>
-                    </td>
-                </tr>
-            <?php } ?>
-        </tbody>
+        <?php } ?>
     </table>
 </div>
+
 </body>
 </html>
-
-<?php
-$stmt->close();
-$conn->close();
-?>

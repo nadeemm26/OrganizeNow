@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $total_price = floatval($_POST['total_price']);
     $merchant_id = $_SESSION['merchant_id'];
 
-    $insert_sql = "INSERT INTO bookings (user_id, service_id, category, booking_date, guest_count, num_days, total_price,merchant_id) 
+    $insert_sql = "INSERT INTO bookingsright (user_id, service_id, category, booking_date, guest_count, num_days, total_price,merchant_id) 
                    VALUES (?, ?, ?, ?, ?, ?, ?,?)";
     $stmt = $conn->prepare($insert_sql);
     $stmt->bind_param("iissiidi", $user_id, $service_id, $category, $booking_date, $guest_count, $num_days, $total_price ,$merchant_id);

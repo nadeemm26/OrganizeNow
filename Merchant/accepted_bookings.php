@@ -22,23 +22,16 @@ include 'connection.php';
 <?php
 
 if (!isset($_SESSION['merchant_id'])) {
-    echo "<script>alert('Please log in first!'); window.location.href='merchant_login.php';</script>";
+    header("Location: login.php");
     exit();
 }
 
-// $merchant_email = $_SESSION['merchant_email'];
-$merchant_id = $_SESSION['merchant_id']; // Ensure merchant is logged in
+$merchant_id = $_SESSION['merchant_id'];
 
-$query = "SELECT b.id, b.customer_name, b.customer_email, b.customer_mobile, 
-                 b.booking_date, b.status, e.service_type, e.performance_duration, 
-                 e.price, e.event_image 
-          FROM bookings b
-          JOIN entertainment_service e ON b.service_id = e.id
-          WHERE e.merchant_id = ? AND b.status = 'Accepted'";
-
+// Fetch accepted bookings for this merchant
+$query = "SELECT * FROM booking2 WHERE merchant_id = ? AND status = 'Accepted'";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $merchant_id);
-
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
@@ -46,46 +39,66 @@ $result = $stmt->get_result();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Merchant Dashboard - Accepted Bookings</title>
-    <link rel="stylesheet" href="../Merchant/css_for_table.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> -->
+    <style>
+        .container {
+            /* width: 80%;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 20px; */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }h2{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #28a745;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-4">
-    <h2 class="text-center">Accepted Bookings</h2>
-    <table class="table table-bordered">
-        <thead>
+
+<div class="container">
+    <h2>Confirmed Bookings</h2>
+    <table>
+        <tr>
+            <th>Customer Name</th>
+            <th>Customer Email</th>
+            <th>Customer Mobile</th>
+            <th>Service Type</th>
+            <th>Service Name</th>
+            <th>Booking Date</th>
+            <th>Guests</th>
+            <th>Days</th>
+            <th>Total Price</th>
+        </tr>
+        <?php while ($row = $result->fetch_assoc()) { ?>
             <tr>
-                <th>Customer Name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Service</th>
-                <th>Booking Date</th>
-                <th>Price</th>
-                <th>Details</th>
+                <td><?php echo $row['customer_name']; ?></td>
+                <td><?php echo $row['customer_email']; ?></td>
+                <td><?php echo $row['customer_mobile']; ?></td>
+                <td><?php echo $row['service_type']; ?></td>
+                <td><?php echo $row['service_name']; ?></td>
+                <td><?php echo $row['booking_date']; ?></td>
+                <td><?php echo $row['guest_count']; ?></td>
+                <td><?php echo $row['num_days']; ?></td>
+                <td>₹<?php echo number_format($row['total_price'], 2); ?></td>
             </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()) { ?>
-                <tr>
-                    <td><?php echo $row['customer_name']; ?></td>
-                    <td><?php echo $row['customer_email']; ?></td>
-                    <td><?php echo $row['customer_mobile']; ?></td>
-                    <td><?php echo $row['service_type']; ?></td>
-                    <td><?php echo $row['booking_date']; ?></td>
-                    <td>₹<?php echo number_format($row['price'], 2); ?></td>
-                    <td>
-                        <a href="merchant_view_booking.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">View Details</a>
-                    </td>
-                </tr>
-            <?php } ?>
-        </tbody>
+        <?php } ?>
     </table>
 </div>
+
 </body>
 </html>
-
-<?php
-$stmt->close();
-$conn->close();
-?>

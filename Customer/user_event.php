@@ -1,224 +1,237 @@
 <?php
-session_start();
 include 'user_navbar.php';
 include 'connection.php';
 
-if (!isset($_SESSION['user_email'])) {
-    echo "<script>alert('Please log in first!'); window.location.href='user_login.php';</script>";
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
     exit();
 }
 
-$user_email = $_SESSION['user_email'];
+$user_id = $_SESSION['user_id'];
 
-// $query = "SELECT id, service_type, booking_date, status FROM bookings WHERE customer_email = ?";
-$query = "SELECT b.id, b.service_id, b.booking_date, b.status, b.payment_status, 
-                 e.service_type, e.price 
-          FROM bookings b
-          JOIN entertainment_service e ON b.service_id = e.id
-          WHERE b.customer_email = ?";
+// Check if status filter is applied
+$status_filter = isset($_GET['status']) ? $_GET['status'] : '';
+
+$query = "SELECT * FROM booking2 WHERE user_id = ?";
+if ($status_filter) {
+    $query .= " AND status = ?";
+}
+
 $stmt = $conn->prepare($query);
-$stmt->bind_param("s", $user_email);
+if ($status_filter) {
+    $stmt->bind_param("is", $user_id, $status_filter);
+} else {
+    $stmt->bind_param("i", $user_id);
+}
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bookings</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> -->
     <style>
+        /* General Styling */
         body {
-            background: #f4f6f9;
             font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
         }
 
-        /* .container {
-            margin: 102px 100px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    
-        } */
         .container {
-            width: fit-content;
-            margin: 3% 250px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 2% 12%;
             padding: 20px;
-            /* box-shadow: 2px 4px 1px 2px rgba(0, 0, 0, 0.1); */
         }
 
+        /* Heading */
         h2 {
             text-align: center;
-            font-weight: 600;
             color: #333;
+            font-size: 28px;
             margin-bottom: 20px;
         }
 
-        table {
-            border-radius: 10px;
-            overflow: hidden;
+        /* Filter Buttons */
+        .filter-container {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        .table thead {
+        .filter-container a {
+            padding: 12px 18px;
+            margin: 5px;
             background: #007bff;
             color: white;
-            text-align: center;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: 0.3s ease-in-out;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
         }
 
-        .table th,
-        .table td {
-            text-align: center;
-            vertical-align: middle;
-            padding: 12px;
+        .filter-container a:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Booking Card */
+        .booking-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .booking-card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Booking Image */
+        .booking-card img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        /* Booking Info */
+        .booking-info {
+            flex: 1;
+        }
+
+        .booking-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            padding-right: 10px;
+        }
+
+        .booking-info strong {
+            color: #555;
+        }
+
+        /* Booking Actions (Buttons) */
+        .booking-actions {
+            text-align: right;
         }
 
         .btn {
-            border-radius: 20px;
-            padding: 8px 15px;
-            font-size: 14px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .btn-success {
-            background: #28a745;
+            padding: 10px 15px;
             border: none;
-        }
-
-        .btn-success:hover {
-            background: #218838;
-        }
-
-        .btn-info {
-            background: #17a2b8;
-            border: none;
-        }
-
-        .btn-info:hover {
-            background: #138496;
-        }
-
-        .text-warning {
-            color: #ff9800;
-            font-weight: bold;
-        }
-
-        .text-success {
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        .text-danger {
-            color: #dc3545;
-            font-weight: bold;
-        }
-
-        .badge {
-            font-size: 14px;
-            padding: 6px 12px;
-            border-radius: 12px;
-        }
-
-        .badge-warning {
-            background: #ffc107;
-            color: #333;
-        }
-
-        .badge-success {
-            background: #28a745;
-        }
-
-        .badge-danger {
-            background: #dc3545;
-        }
-        a{
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
             text-decoration: none;
-            color: #f4f6f9;
+            display: inline-block;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .btn-pay {
+            background: #28a745;
+            color: white;
+            box-shadow: 3px 3px 8px rgba(0, 128, 0, 0.3);
+        }
+
+        .btn-pay:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+
+        .btn-bill {
+            background: #ffc107;
+            color: black;
+            box-shadow: 3px 3px 8px rgba(255, 165, 0, 0.3);
+        }
+
+        .btn-bill:hover {
+            background: #e0a800;
+            transform: scale(1.05);
+        }
+
+        .btn-disabled {
+            background: gray;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .booking-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .booking-card img {
+                margin: 0 auto 10px;
+                width: 120px;
+                height: 120px;
+            }
+
+            .booking-actions {
+                text-align: center;
+                margin-top: 10px;
+            }
         }
     </style>
+
 </head>
 
 <body>
-    <div class="container mt-4">
-        <h2 class="text-center">My Bookings</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Service</th>
-                    <th>Booking Date</th>
-                    <th>Payment Status</th>
-                    <th>Booking Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['service_type']; ?></td>
-                        <td><?php echo $row['booking_date']; ?></td>
-                        <td class="text-pending"><?php echo $row['payment_status']; ?></td>
-                        <td>
-                            <strong>
-                                <?php
-                                if ($row['status'] == 'Pending') {
-                                    echo '<span class="text-warning">Pending</span>';
-                                } elseif ($row['status'] == 'Accepted') {
-                                    echo '<span class="text-success">Accepted</span>';
-                                } else {
-                                    echo '<span class="text-danger">Rejected</span>';
-                                }
-                                ?>
-                            </strong>
-                        </td>
-                        <td>
-                            <?php if ($row['status'] == 'Accepted') { ?>
-                                <a href="payment.php?booking_id=<?php echo $row['id']; ?>&amount=<?php echo $row['price']; ?>" class="btn btn-success">Pay Now</a>
-                                <a href="view_booking.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">View Details</a>
-                            <?php } else {
-                                echo "-"; // No action for pending/rejected bookings
-                            } ?>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+
+    <div class="container">
+        <h2 style="text-align: center;">My Bookings</h2>
+
+        <!-- Filter Buttons -->
+        <div class="filter-container">
+            <a href="user_event.php">All</a>
+            <a href="user_event.php?status=Pending">Pending</a>
+            <a href="user_event.php?status=Accepted">Accepted</a>
+            <a href="user_event.php?status=Rejected">Rejected</a>
+            <a href="user_event.php?payment_status=Paid">Paid</a>
+        </div>
+
+        <!-- Display Bookings -->
+        <?php while ($row = $result->fetch_assoc()) { ?>
+            <div class="booking-card">
+                <img src="../merchant/<?php echo htmlspecialchars(trim($row['event_image'])); ?>" alt="Service Image">
+
+                <!-- <img src="../Merchant/ <?php echo $row['event_image']; ?>" alt="Service Image" class="booking-image"> -->
+                <div class="booking-title"><?php echo $row['service_name']; ?></div>
+                <div class="booking-info">
+                    <strong>Date:</strong> <?php echo $row['booking_date']; ?> <br>
+                    <strong>Guests:</strong> <?php echo $row['guest_count']; ?> <br>
+                    <strong>Days:</strong> <?php echo $row['num_days']; ?> <br>
+                    <strong>Total Price:</strong> ₹<?php echo number_format($row['total_price'], 2); ?> <br>
+                    <strong>Status:</strong> <?php echo ucfirst($row['status']); ?> <br>
+                    <strong>Payment:</strong> <?php echo ucfirst($row['payment_status']); ?>
+                </div>
+
+                <div class="booking-actions">
+                    <?php if ($row['status'] == 'Accepted' && $row['payment_status'] == 'Pending') { ?>
+                        <a href="pay_now.php?booking_id=<?php echo $row['id']; ?>" class="btn btn-pay">Pay Now</a>
+                        <a href="bill_summary.php?booking_id=<?php echo $row['id']; ?>" class="btn btn-bill">View Bill Summary</a>
+                    <?php } elseif ($row['payment_status'] == 'Paid') { ?>
+                        <a href="bill_summary.php?booking_id=<?php echo $row['id']; ?>" class="btn btn-bill">View Bill Summary</a>
+                    <?php } else { ?>
+                        <span class="btn btn-disabled">Waiting for Approval</span>
+                    <?php } ?>
+                </div>
+            </div>
+        <?php } ?>
+
     </div>
+
 </body>
 
 </html>
-
-<?php
-$stmt->close();
-$conn->close();
-?>
-
-
-
-
-
-
-
-<!-- 
-    <h2>My Payments</h2>
-    <tr>
-        <th>Service Name</th>
-        <th>Booking Date</th>
-        <th>Amount</th>
-        <th>Payment Method</th>
-        <th>Status</th>
-        <th>Payment Date</th>
-    </tr>
-    <tr>
-        <td><?php echo $row['category']; ?></td>
-        <td><?php echo $row['booking_date']; ?></td>
-        <td>₹<?php echo $row['amount']; ?></td>
-        <td><?php echo $row['payment_method']; ?></td>
-        <td><?php echo ucfirst($row['status']); ?></td>
-        <td><?php echo $row['created_at']; ?></td>
-    </tr>
- -->

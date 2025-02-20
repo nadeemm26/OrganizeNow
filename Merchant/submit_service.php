@@ -21,71 +21,75 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // **Venue Booking Form Submission**
     if (isset($_POST['add_venue'])) {
-        $venue_name = $_POST['venue_name'];
         $service_type = $_POST['service_type'];
-        $venue_type = $_POST['venue_type'];
+        $venue_name = $_POST['service_name'];
+        $venue_type = $_POST['service_category'];
         $capacity = $_POST['capacity'];
         $address = $_POST['address'];
         $city = $_POST['city'];
         $pincode = $_POST['pincode'];
         $price = $_POST['price'];
 
-        $sql = "INSERT INTO venue_booking (venue_name,service_type, venue_type, capacity, address, city, pincode, price_per_day, event_image, merchant_id) 
+        $sql = "INSERT INTO venue_booking (service_name,service_type,service_category, capacity, address, city, pincode, price, event_image, merchant_id) 
                 VALUES ('$venue_name','$service_type', '$venue_type', '$capacity', '$address', '$city', '$pincode', '$price', '$event_image', '$merchant_id')";
     }
 
     // **Catering Service Submission**
     elseif (isset($_POST['add_catering'])) {
-        $catering_name = $_POST['catering_name'];
-        $cuisine_type = implode(',',$_POST['cuisine_types']) ;// Convert array to string
+        $catering_name = $_POST['service_name'];
+        $cuisine_type = $_POST['service_type'];
         $menu_details = $_POST['menu_details'];
-        $capacity = $_POST['capacity'];
-        $price_veg = $_POST['price_veg'];
-        $price_nonveg = $_POST['price_nonveg'];
+        $capacity = $_POST['service_capacity'];
+        $price_veg = $_POST['price'];
         $min_order = $_POST['min_order'];
 
-        $sql = "INSERT INTO catering_service (catering_name, cuisine_type, menu_details, capacity, price_veg, price_nonveg, min_order, event_image, merchant_id) 
-                VALUES ('$catering_name', '$cuisine_type', '$menu_details', '$capacity', '$price_veg', '$price_nonveg', '$min_order', '$event_image', '$merchant_id')";
+        $sql = "INSERT INTO catering_service (service_name, service_type, menu_details, service_capacity, price,min_order, event_image, merchant_id) 
+                VALUES ('$catering_name', '$cuisine_type', '$menu_details', '$capacity', '$price_veg','$min_order', '$event_image', '$merchant_id')";
     }
 
     // **Photography Service Submission**
     elseif (isset($_POST['add_photography'])) {
         $service_name = $_POST['service_name'];
-        $photography_types = implode(',', $_POST['photography_types']); // Convert array to string
+        $service_type = $_POST['service_type'];
+        $photography_types = $_POST['service_category'];
         $videography = $_POST['videography'];
         $package_desc = $_POST['package_desc'];
         $coverage_duration = $_POST['coverage_duration'];
         $num_photographers = $_POST['num_photographers'];
         $editing = $_POST['editing'];
-        $price_basic = $_POST['price_basic'];
-        $price_premium = $_POST['price_premium'];
+        $price_basic = $_POST['price'];
+        
 
-        $sql = "INSERT INTO photography_service (service_name, photography_types, videography, package_desc, coverage_duration, num_photographers, editing, price_basic, price_premium, event_image, merchant_id) 
-                VALUES ('$service_name', '$photography_types', '$videography', '$package_desc', '$coverage_duration', '$num_photographers', '$editing', '$price_basic', '$price_premium', '$event_image', '$merchant_id')";
+        $sql = "INSERT INTO photography_service (service_name,service_type, service_category, videography, package_desc, coverage_duration, num_photographers, editing, price, event_image, merchant_id) 
+                VALUES ('$service_name','$service_type', '$photography_types', '$videography', '$package_desc', '$coverage_duration', '$num_photographers', '$editing', '$price_basic', '$event_image', '$merchant_id')";
     }
 
     // **Decoration Service Submission**
     elseif (isset($_POST['add_decoration'])) {
-        $decoration_types = isset($_POST['decoration_types']) ? implode(',', $_POST['decoration_types']) : ''; // Fix array to string conversion
+        $service_name = $_POST['service_name'];
+        $service_type = $_POST['service_types'];
+        $decoration_types = $_POST['service_category'];
         $description = $_POST['description'];
         $custom_decoration = $_POST['custom_decoration'];
-        $price_basic = $_POST['price_basic'];
-        $price_premium = $_POST['price_premium'];
+        $price_basic = $_POST['price'];
+        
     
-        $sql = "INSERT INTO decoration_service (decoration_types, description, custom_decoration, price_basic, price_premium, event_image, merchant_id) 
-                VALUES ('$decoration_types', '$description', '$custom_decoration', '$price_basic', '$price_premium', '$event_image', '$merchant_id')";              
+        $sql = "INSERT INTO decoration_service (service_name,service_types, service_category, description, custom_decoration, price, event_image, merchant_id) 
+                VALUES ('$service_name','$service_type','$decoration_types','$description','$custom_decoration','$price_basic','$event_image','$merchant_id')";              
     }
     
 
     // **Entertainment Service Submission**
     elseif (isset($_POST['add_entertainment'])) {
+        $service_name = $_POST['service_name'];
         $service_type = $_POST['service_type'];
+        $service_category = $_POST['service_category'];
         $performance_duration = $_POST['performance_duration'];
-        $price_basic = $_POST['price_basic'];
-        $price_premium = $_POST['price_premium'];
+        $price_basic = $_POST['price'];
+        
 
-        $sql = "INSERT INTO entertainment_service (service_type, performance_duration, price_basic, price_premium, event_image, merchant_id) 
-                VALUES ('$service_type', '$performance_duration', '$price_basic', '$price_premium', '$event_image', '$merchant_id')";
+        $sql = "INSERT INTO entertainment_service (service_name,service_type,service_category, performance_duration, price, event_image, merchant_id) 
+                VALUES ('$service_name','$service_type','$service_category', '$performance_duration', '$price_basic','$event_image', '$merchant_id')";
     }
 
     // Execute the query

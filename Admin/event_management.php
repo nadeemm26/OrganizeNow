@@ -19,11 +19,11 @@ $tables = [
 $selectedTable = isset($_GET['table']) ? $_GET['table'] : 'catering_service';
 
 $tableFields = [
-    'catering_service' => ['id', 'catering_name',  'menu_details', 'capacity', 'price', 'min_order', 'merchant_id'],
-    'decoration_service' => ['id', 'decoration_types', 'description', 'custom_decoration', 'price', 'merchant_id'],
-    'entertainment_service' => ['id', 'service_type', 'performance_duration', 'price', 'merchant_id'],
-    'photography_service' => ['id','service_name', 'photography_types','videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'merchant_id'],
-    'venue_booking' => ['id', 'venue_name', 'service_type', 'venue_type', 'capacity', 'address', 'city', 'pincode', 'price', 'merchant_id']
+    'catering_service' => ['service_id','service_name','service_type','menu_details', 'service_capacity', 'price', 'min_order', 'merchant_id'],
+    'decoration_service' => ['service_id','service_name','service_types','service_category', 'description', 'custom_decoration', 'price', 'merchant_id'],
+    'entertainment_service' => ['service_id','service_name','service_type','service_category','performance_duration', 'price', 'merchant_id'],
+    'photography_service' => ['service_id','service_name','service_type','service_category','videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'merchant_id'],
+    'venue_booking' => ['service_id','service_name','service_type','service_category','capacity', 'address', 'city', 'pincode', 'price', 'merchant_id']
 ];
 
 // Handle event deletion
@@ -31,7 +31,7 @@ if (isset($_GET['delete_id'])) {
     $deleteId = $_GET['delete_id'];
     $deleteTable = $_GET['delete_table'];
 
-    $deleteQuery = "DELETE FROM $deleteTable WHERE id = ?";
+    $deleteQuery = "DELETE FROM $deleteTable WHERE service_id = ?";
     $stmt = $conn->prepare($deleteQuery);
     $stmt->bind_param("i", $deleteId);
     
@@ -144,7 +144,7 @@ $result = $conn->query($query);
                 <?php } ?>
                 <td><?php echo $merchant['name']; ?></td>
                 <td>
-                    <a href="javascript:void(0);" class="btn" onclick="confirmDelete(<?php echo $row['id']; ?>, '<?php echo $selectedTable; ?>')">Delete Event</a>
+                    <a href="javascript:void(0);" class="btn" onclick="confirmDelete(<?php echo $row['service_id']; ?>, '<?php echo $selectedTable; ?>')">Delete Event</a>
                 </td>
             </tr>
         <?php } ?>

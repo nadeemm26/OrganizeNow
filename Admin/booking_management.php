@@ -15,11 +15,11 @@ if (isset($_GET['action']) && isset($_GET['booking_id'])) {
     $bookingId = $_GET['booking_id'];
 
     if ($_GET['action'] == "accept") {
-        $updateQuery = "UPDATE bookings SET status = 'Accepted' WHERE id = ?";
+        $updateQuery = "UPDATE booking2 SET status = 'Accepted' WHERE id = ?";
     } elseif ($_GET['action'] == "reject") {
-        $updateQuery = "UPDATE bookings SET status = 'Rejected' WHERE id = ?";
+        $updateQuery = "UPDATE booking2 SET status = 'Rejected' WHERE id = ?";
     } elseif ($_GET['action'] == "delete") {
-        $updateQuery = "DELETE FROM bookings WHERE id = ?";
+        $updateQuery = "DELETE FROM booking2 WHERE id = ?";
     }
 
     $stmt = $conn->prepare($updateQuery);
@@ -34,7 +34,7 @@ if (isset($_GET['action']) && isset($_GET['booking_id'])) {
 }
 
 // Fetch bookings with status filter
-$query = "SELECT * FROM bookings WHERE 1";
+$query = "SELECT * FROM booking2 WHERE 1";
 if ($selectedStatus) {
     $query .= " AND status = '$selectedStatus'";
 }
@@ -130,13 +130,14 @@ $result = $conn->query($query);
     <thead>
         <tr>
             <th>Booking ID</th>
-            <th>Event Name</th>
+            <th>Service Type</th>
+            <th>Service Name</th>
             <th>Customer Name</th>
             <th>Customer Email</th>
             <th>Customer Mobile</th>
             <th>Booking Date</th>
             <th>Amount</th>
-            <th>Status</th>
+            <th>Booking Status</th>
             <th>Payment Status</th>
             <th>Action</th>
         </tr>
@@ -146,11 +147,12 @@ $result = $conn->query($query);
             <tr>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['service_type']; ?></td>
+                <td><?php echo $row['service_name']; ?></td>
                 <td><?php echo $row['customer_name']; ?></td>
                 <td><?php echo $row['customer_email']; ?></td>
                 <td><?php echo $row['customer_mobile']; ?></td>
                 <td><?php echo $row['booking_date']; ?></td>
-                <td><?php echo $row['amount']; ?></td>
+                <td><?php echo $row['total_price']; ?></td>
                 <td><?php echo $row['status']; ?></td>
                 <td><?php echo $row['payment_status']; ?></td>
                 <td>

@@ -26,7 +26,7 @@ if (!in_array($serviceType, $allowedServices)) {
 }
 
 // Delete the record, ensuring it belongs to the logged-in merchant
-$query = "DELETE FROM $serviceType WHERE id = ? AND merchant_id = ?";
+$query = "DELETE FROM $serviceType WHERE service_id = ? AND merchant_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("ii", $serviceId, $merchant_id);
 $stmt->execute();

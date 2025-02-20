@@ -14,11 +14,11 @@ $serviceType = isset($_GET['service']) ? $_GET['service'] : 'catering_service';
 
 // Define table names and their respective fields
 $services = [
-    'catering_service' => ['id', 'catering_name', 'menu_details', 'capacity', 'price', 'min_order', 'event_image', 'added_on'],
-    'decoration_service' => ['id', 'decoration_types', 'description', 'custom_decoration', 'price', 'event_image', 'added_on'],
-    'entertainment_service' => ['id', 'service_type', 'performance_duration', 'price', 'event_image', 'added_on'],
-    'photography_service' => ['id', 'service_name', 'photography_types', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'event_image', 'added_on'],
-    'venue_booking' => ['id', 'service_type', 'venue_name', 'venue_type', 'capacity', 'address', 'city', 'pincode', 'price', 'event_image', 'added_on']
+    'catering_service' => ['service_id','service_name','service_type','menu_details','service_capacity', 'price', 'min_order', 'event_image', 'added_on'],
+    'decoration_service' => ['service_id','service_name', 'service_types','service_category', 'description', 'custom_decoration', 'price', 'event_image', 'added_on'],
+    'entertainment_service' => ['service_id','service_name', 'service_type','service_category', 'performance_duration', 'price', 'event_image', 'added_on'],
+    'photography_service' => ['service_id','service_name', 'service_type','service_category', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'event_image', 'added_on'],
+    'venue_booking' => ['service_id','service_name','service_type','service_category','capacity', 'address', 'city', 'pincode', 'price', 'event_image', 'added_on']
 ];
 
 // Check if selected service exists
@@ -87,7 +87,7 @@ $result = $conn->query($query);
                     </td>
                 <?php } ?>
                 <td>
-                    <button onclick="confirmDelete('<?php echo $serviceType; ?>', <?php echo $row['id']; ?>)">Delete</button>
+                    <button onclick="confirmDelete('<?php echo $serviceType; ?>', <?php echo $row['service_id']; ?>)">Delete</button>
                 </td>
             </tr>
         <?php } ?>
