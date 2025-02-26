@@ -41,17 +41,17 @@ if ($result->num_rows === 0) {
     $amount_paid = $booking['total_price'];
     $merchant_id = $booking['merchant_id'];
     $payment_method = "Razorpay"; // 🔹 Default payment method
-    $status = "success"; // 🔹 Mark as successful
+    $status = "Paid"; // 🔹 Mark as successful
 
     // 🔹 Insert Payment Data into Database
-    $insert_payment = "INSERT INTO payments (booking_id, merchant_id, user_id, payment_id, order_id, amount_paid, payment_method, payment_status) 
+    $insert_payment = "INSERT INTO payments (booking_id, merchant_id, user_id, payment_id, order_id, amount_paid, payment_gateway, payment_status) 
                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($insert_payment);
     $stmt->bind_param("iiissdss", $booking_id, $merchant_id, $user_id, $payment_id, $order_id, $amount_paid, $payment_method, $status);
     $stmt->execute();
 
     // 🔹 Update Booking Status to "Paid"
-    $update_booking = "UPDATE booking2 SET status = 'Paid' WHERE id = ?";
+    $update_booking = "UPDATE booking2 SET payment_status = 'Paid' WHERE id = ?";
     $stmt = $conn->prepare($update_booking);
     $stmt->bind_param("i", $booking_id);
     $stmt->execute();
@@ -60,7 +60,7 @@ if ($result->num_rows === 0) {
 }
 
 // 🔹 Fetch Payment Details for Display
-$query = "SELECT p.*, b.service_name, b.booking_date, b.total_price, b.status, b.merchant_id 
+$query = "SELECT p.*, b.service_name, b.booking_date, b.total_price, b.payment_status, b.merchant_id 
           FROM payments p 
           JOIN booking2 b ON p.booking_id = b.id 
           WHERE p.payment_id = ? AND b.user_id = ?";
@@ -149,11 +149,11 @@ $payment = $result->fetch_assoc();
         <p><strong>Event:</strong> <?php echo htmlspecialchars($payment['service_name']); ?></p>
         <p><strong>Booking Date:</strong> <?php echo htmlspecialchars($payment['booking_date']); ?></p>
         <p><strong>Total Paid:</strong> ₹<?php echo number_format($payment['amount_paid'], 2); ?></p>
-        <p><strong>Payment Method:</strong> <?php echo htmlspecialchars($payment['payment_method']); ?></p>
+        <p><strong>Payment Method:</strong> <?php echo htmlspecialchars($payment['payment_gateway']); ?></p>
         <p><strong>Merchant ID:</strong> <?php echo htmlspecialchars($payment['merchant_id']); ?></p>
-        <p><strong>Status:</strong> <?php echo ucfirst(htmlspecialchars($payment['status'])); ?></p>
+        <p><strong>Status:</strong> <?php echo ucfirst(htmlspecialchars($payment['payment_status'])); ?></p>
     </div>
-    <a href="user_dashboard.php" class="btn">Back to Dashboard</a>
+    <a href="user_event.php" class="btn">Back to Dashboard</a>
 </div>
 
 </body>
