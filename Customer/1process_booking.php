@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               VALUES ('$serviceType', '$serviceId', '$merchantId', '$name', '$email', '$mobile', '$eventDate', '$details', 'Pending')";
 
     if ($conn->query($query)) {
-        echo "Booking Request Submitted Successfully!";
+        echo " ✅ Booking Request Submitted Successfully!";
     } else {
         echo "Error: " . $conn->error;
     }

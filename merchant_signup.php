@@ -36,7 +36,7 @@ if (isset($_POST['signup'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merchant SignUp</title>
-    <link rel="stylesheet" href="../Admin/all_form.css">
+    <link rel="stylesheet" href="../OrganizeNow/Admin/all_form.css">
 </head>
 
 <body>
@@ -65,7 +65,7 @@ if (isset($_POST['signup'])) {
         <input type="password" id="password" name="password" placeholder="Password:"><br>
 
         <button type="submit" name="signup">SignUp</button>
-        <p>Are you a user? <a href="../Customer/user_signup.php">Register as User</a></p>
+        <p>Are you a user? <a href="user_signup.php">Register as User</a></p>
         <p>Already have an account? <a href="merchant_login.php">Login as Merchant</a></p>
     </form>
     <script>

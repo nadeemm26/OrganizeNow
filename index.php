@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_email'] = $email;
             $_SESSION['user_mobile'] = $mobile;
-            header('Location: main_home.php');
+            header('Location: ../OrganizeNow/Customer/main_home.php');
             exit;
         } else {
             echo "<script>alert('❌Invalid password!');</script>";
@@ -38,7 +38,7 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Login</title>
-    <link rel="stylesheet" href="../Admin/all_form.css">
+    <link rel="stylesheet" href="../OrganizeNow/Admin/all_form.css">
 </head>
 <body>
     <form method="post">
@@ -50,8 +50,8 @@ if (isset($_POST['login'])) {
         <button type="submit" name="login">Login</button>
         <p><a href="forgot_password.php">Forgot Password?</a></p>
        
-        <p>Don't have an account? <a href="user_signup.php">Register as User</a> or <a href="../Merchant/merchant_signup.php">Register as Merchant</a></p>
-        <p>have an account? <a href="../Merchant/merchant_login.php">Login as Merchant</a></p>
+        <p>Don't have an account? <a href="user_signup.php">Register as User</a> or <a href="merchant_signup.php">Register as Merchant</a></p>
+        <p>have an account? <a href="merchant_login.php">Login as Merchant</a></p>
     </form>
 </body>
 </html>
