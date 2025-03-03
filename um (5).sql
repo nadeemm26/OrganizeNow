@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2025 at 08:42 PM
+-- Generation Time: Mar 03, 2025 at 07:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -72,7 +72,8 @@ CREATE TABLE `booking2` (
 
 INSERT INTO `booking2` (`id`, `service_id`, `service_name`, `service_type`, `booking_date`, `customer_name`, `customer_email`, `customer_mobile`, `guest_count`, `num_days`, `total_price`, `status`, `payment_status`, `created_at`, `user_id`, `merchant_id`, `event_image`) VALUES
 (9, 1, 'Altimate', 'decoration_service', '2025-03-04', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '6598784512', 20, 5, 25000.00, 'Accepted', 'Paid', '2025-02-19 19:50:22', 52, 14, 'uploads/1738857354_BrandAssets_Logos_02-NSymbol.jpg'),
-(11, 2, 'def', 'entertainment_service', '2025-03-01', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '5698742560', 300, 1, 3000.00, '', 'Pending', '2025-02-19 22:17:21', 52, 14, 'uploads/1738860502_image-10.png.webp');
+(11, 2, 'def', 'entertainment_service', '2025-03-01', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '5698742560', 300, 1, 3000.00, '', 'Pending', '2025-02-19 22:17:21', 52, 14, 'uploads/1738860502_image-10.png.webp'),
+(12, 1, 'Nadeem Photograpy', 'photography_service', '2025-03-01', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 500, 1, 10000.00, 'Accepted', 'Paid', '2025-02-27 08:18:13', 52, 14, 'uploads/1738860209_image-12.png.webp');
 
 -- --------------------------------------------------------
 
@@ -109,7 +110,7 @@ INSERT INTO `catering_service` (`service_id`, `service_name`, `service_type`, `m
 CREATE TABLE `decoration_service` (
   `service_id` int(11) NOT NULL,
   `service_name` varchar(100) NOT NULL,
-  `service_types` text NOT NULL,
+  `service_type` text NOT NULL,
   `service_category` text NOT NULL,
   `description` text NOT NULL,
   `custom_decoration` enum('Yes','No') NOT NULL,
@@ -123,7 +124,7 @@ CREATE TABLE `decoration_service` (
 -- Dumping data for table `decoration_service`
 --
 
-INSERT INTO `decoration_service` (`service_id`, `service_name`, `service_types`, `service_category`, `description`, `custom_decoration`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
+INSERT INTO `decoration_service` (`service_id`, `service_name`, `service_type`, `service_category`, `description`, `custom_decoration`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
 (1, 'Altimate', 'Decoration Service', 'Birthday', 'full birthday decoration on your place', 'No', 5000.00, 'uploads/1738857354_BrandAssets_Logos_02-NSymbol.jpg', '2025-02-06 15:55:54', 14),
 (5, 'kjkjk', 'Decoration Service', 'Wedding', 'hjkhjk', 'No', 15000.00, 'uploads/1740003679_image-12.png.webp', '2025-02-19 22:21:19', 14);
 
@@ -210,7 +211,8 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`id`, `user_id`, `booking_id`, `merchant_id`, `payment_id`, `order_id`, `amount_paid`, `payment_status`, `created_at`, `payment_gateway`) VALUES
 (1, 52, 9, 14, 'pay_PxmWeZ6i0D7qIp', 'order_PxmVYJu1BGipsO', 25000.00, 'Paid', '2025-02-20 01:24:26', 'Razorpay'),
-(2, 52, 11, 14, 'pay_Q00xoR8FdPT2x5', 'order_Q00w4eLpm9w7aP', 3000.00, 'Paid', '2025-02-25 16:55:13', 'Razorpay');
+(2, 52, 11, 14, 'pay_Q00xoR8FdPT2x5', 'order_Q00w4eLpm9w7aP', 3000.00, 'Paid', '2025-02-25 16:55:13', 'Razorpay'),
+(3, 52, 12, 14, 'pay_Q0jzwAhtC96rLv', 'order_Q0jyi4d8EF083T', 10000.00, 'Paid', '2025-02-27 12:50:56', 'Razorpay');
 
 -- --------------------------------------------------------
 
@@ -395,7 +397,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking2`
 --
 ALTER TABLE `booking2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `catering_service`
@@ -425,7 +427,7 @@ ALTER TABLE `merchant`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `photography_service`
