@@ -19,11 +19,11 @@ $tables = [
 $selectedTable = isset($_GET['table']) ? $_GET['table'] : 'catering_service';
 
 $tableFields = [
-    'catering_service' => ['service_id','service_name','service_type','menu_details', 'service_capacity', 'price', 'min_order', 'merchant_id'],
-    'decoration_service' => ['service_id','service_name','service_types','service_category', 'description', 'custom_decoration', 'price', 'merchant_id'],
-    'entertainment_service' => ['service_id','service_name','service_type','service_category','performance_duration', 'price', 'merchant_id'],
-    'photography_service' => ['service_id','service_name','service_type','service_category','videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'merchant_id'],
-    'venue_booking' => ['service_id','service_name','service_type','service_category','capacity', 'address', 'city', 'pincode', 'price', 'merchant_id']
+    'catering_service' => ['service_id', 'service_name', 'service_type', 'menu_details', 'service_capacity', 'price', 'min_order', 'merchant_id'],
+    'decoration_service' => ['service_id', 'service_name', 'service_types', 'service_category', 'description', 'custom_decoration', 'price', 'merchant_id'],
+    'entertainment_service' => ['service_id', 'service_name', 'service_type', 'service_category', 'performance_duration', 'price', 'merchant_id'],
+    'photography_service' => ['service_id', 'service_name', 'service_type', 'service_category', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'merchant_id'],
+    'venue_booking' => ['service_id', 'service_name', 'service_type', 'service_category', 'capacity', 'address', 'city', 'pincode', 'price', 'merchant_id']
 ];
 
 // Handle event deletion
@@ -34,7 +34,7 @@ if (isset($_GET['delete_id'])) {
     $deleteQuery = "DELETE FROM $deleteTable WHERE service_id = ?";
     $stmt = $conn->prepare($deleteQuery);
     $stmt->bind_param("i", $deleteId);
-    
+
     if ($stmt->execute()) {
         echo "<script>alert('Event deleted successfully!'); window.location.href='event_management.php?table=$deleteTable';</script>";
     } else {
@@ -53,63 +53,118 @@ $result = $conn->query($query);
 <head>
     <title>Event Management</title>
     <style>
+        h1 {
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        button {
+            background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 4px #1B5E20;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(to bottom, #66BB6A, #388E3C);
+            transform: translateY(-2px);
+            box-shadow: 0px 6px #1B5E20;
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0px 2px #1B5E20;
+        }
+
         form {
             text-align: center;
             margin-bottom: 20px;
         }
 
         select {
-            padding: 8px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            /* box-shadow: inset 3px 3px 6px #b8b8b8, inset -3px -3px 6px #ffffff; */
             font-size: 16px;
-            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            
+        }
+        select:focus {
+            outline: none;
+            box-shadow: inset 2px 2px 5px #a8a8a8, inset -2px -2px 5px #ffffff;
         }
 
         table {
             width: 100%;
+            margin: 20px auto;
             border-collapse: collapse;
-            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        table,
-        th,
-        td {
-            border: 1px solid #ddd;
+        thead {
+            background: #388E3C;
+            color: rgb(0, 0, 0);
         }
 
         th,
         td {
-            padding: 12px;
+            padding: 15px;
             text-align: center;
+            border-bottom: 1px solid #ddd;
         }
 
-        th {
-            background-color: #f8f8f8;
-            cursor: pointer;
+        tr:nth-child(even) {
+            background: #f2f2f2;
         }
 
-        th:hover {
-            background-color: #e0e0e0;
+        tr:hover {
+            background: #c8e6c9;
+            transition: 0.3s ease-in-out;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 6px 12px;
-            font-size: 14px;
-            border: none;
-            border-radius: 5px;
-            background: #e74c3c;
-            color: white;
+        .action-buttons a {
             text-decoration: none;
-            transition: 0.3s;
+            color: white;
         }
 
-        .btn:hover {
-            background: #c0392b;
+        .action-buttons .delete {
+            background: linear-gradient(to bottom, #D32F2F, #B71C1C);
+            box-shadow: 0px 4px #880E4F;
+        }
+
+        .action-buttons .delete:hover {
+            background: linear-gradient(to bottom, #E57373, #C62828);
+            transform: translateY(-2px);
+            box-shadow: 0px 6px #880E4F;
         }
     </style>
+
 </head>
 
-<body>
+
 
 <form method="GET">
     <label for="tableSelect">Select Category:</label>
@@ -143,8 +198,8 @@ $result = $conn->query($query);
                     <td><?php echo $row[$field]; ?></td>
                 <?php } ?>
                 <td><?php echo $merchant['name']; ?></td>
-                <td>
-                    <a href="javascript:void(0);" class="btn" onclick="confirmDelete(<?php echo $row['service_id']; ?>, '<?php echo $selectedTable; ?>')">Delete Event</a>
+                <td class="action-buttons">
+                    <button class="delete"><a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row['service_id']; ?>, '<?php echo $selectedTable; ?>')">Delete Event</a></button>
                 </td>
             </tr>
         <?php } ?>
@@ -184,6 +239,7 @@ $result = $conn->query($query);
 </script>
 
 </body>
+
 </html>
 
 <?php $conn->close(); ?>

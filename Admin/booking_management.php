@@ -9,40 +9,28 @@ include "admin_sidebar.php";
 <?php
 // Status filter
 $selectedStatus = isset($_GET['status']) ? $_GET['status'] : '';
-
-// Handle admin actions
-if (isset($_GET['action']) && isset($_GET['booking_id'])) {
-    $bookingId = $_GET['booking_id'];
-
-    if ($_GET['action'] == "accept") {
-        $updateQuery = "UPDATE booking2 SET status = 'Accepted' WHERE id = ?";
-    } elseif ($_GET['action'] == "reject") {
-        $updateQuery = "UPDATE booking2 SET status = 'Rejected' WHERE id = ?";
-    } elseif ($_GET['action'] == "delete") {
-        $updateQuery = "DELETE FROM booking2 WHERE id = ?";
-    }
-
-    $stmt = $conn->prepare($updateQuery);
-    $stmt->bind_param("i", $bookingId);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Booking updated successfully!'); window.location.href='booking_management.php';</script>";
-    } else {
-        echo "<script>alert('Error updating booking.');</script>";
-    }
-    $stmt->close();
-}
-
+$paymentstatus = isset($_GET['payment_status']) ? $_GET['payment_status'] : '';
 // Fetch bookings with status filter
 $query = "SELECT * FROM booking2 WHERE 1";
 if ($selectedStatus) {
     $query .= " AND status = '$selectedStatus'";
+}
+if($paymentstatus){
+    $query .= " AND payment_status = '$paymentstatus'";
 }
 $result = $conn->query($query);
 ?>
 
 <head>
     <style>
+        h1 {
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
         form {
             display: flex;
             align-items: center;
@@ -78,7 +66,7 @@ $result = $conn->query($query);
 
         button {
             padding: 10px 20px;
-            margin-top: 20px;
+            /* margin-top: 10px; */
             border: none;
             border-radius: 8px;
             background: linear-gradient(145deg, #27ae60, #2ecc71);
@@ -113,15 +101,69 @@ $result = $conn->query($query);
         .btn:hover {
             background: #c0392b;
         }
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #388E3C;
+            color: rgb(0, 0, 0);
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tr:hover {
+            background: #c8e6c9;
+            transition: 0.3s ease-in-out;
+        }
+
+        .action-buttons a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .action-buttons .delete {
+            background: linear-gradient(to bottom, #D32F2F, #B71C1C);
+            box-shadow: 0px 4px #880E4F;
+        }
+
+        .action-buttons .delete:hover {
+            background: linear-gradient(to bottom, #E57373, #C62828);
+            transform: translateY(-2px);
+            box-shadow: 0px 6px #880E4F;
+        }
     </style>
 </head>
 <form method="GET">
-    <label for="status">Status:</label>
+    <label for="status">Booking Status:</label>
     <select name="status" id="status">
         <option value="">All Status</option>
         <option value="Pending" <?php echo ($selectedStatus == 'Pending') ? 'selected' : ''; ?>>Pending</option>
         <option value="Accepted" <?php echo ($selectedStatus == 'Accepted') ? 'selected' : ''; ?>>Accepted</option>
         <option value="Rejected" <?php echo ($selectedStatus == 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+    </select>
+    <button type="submit">Filter</button>
+    <label for="payment_status">Payment Status:</label>
+    <select name="payment_status" id="payment_status">
+        <option value="">All Status</option>
+        <option value="Pending" <?php echo ($paymentstatus == 'Pending') ? 'selected' : ''; ?>>Pending</option>
+        <option value="Paid" <?php echo ($paymentstatus == 'Paid') ? 'selected' : ''; ?>>Paid</option>
+        
     </select>
     <button type="submit">Filter</button>
 </form>
@@ -155,8 +197,8 @@ $result = $conn->query($query);
                 <td><?php echo $row['total_price']; ?></td>
                 <td><?php echo $row['status']; ?></td>
                 <td><?php echo $row['payment_status']; ?></td>
-                <td>
-                    <a class="btn" href="?action=delete&booking_id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this booking?');">Delete</a>
+                <td class="action-buttons">
+                    <button class="delete"><a href="?action=delete&booking_id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this booking?');">Delete</a></button>
                 </td>
             </tr>
         <?php } ?>

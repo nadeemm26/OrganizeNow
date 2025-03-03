@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2025 at 07:25 AM
+-- Generation Time: Mar 03, 2025 at 09:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -72,7 +72,6 @@ CREATE TABLE `booking2` (
 
 INSERT INTO `booking2` (`id`, `service_id`, `service_name`, `service_type`, `booking_date`, `customer_name`, `customer_email`, `customer_mobile`, `guest_count`, `num_days`, `total_price`, `status`, `payment_status`, `created_at`, `user_id`, `merchant_id`, `event_image`) VALUES
 (9, 1, 'Altimate', 'decoration_service', '2025-03-04', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '6598784512', 20, 5, 25000.00, 'Accepted', 'Paid', '2025-02-19 19:50:22', 52, 14, 'uploads/1738857354_BrandAssets_Logos_02-NSymbol.jpg'),
-(11, 2, 'def', 'entertainment_service', '2025-03-01', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '5698742560', 300, 1, 3000.00, '', 'Pending', '2025-02-19 22:17:21', 52, 14, 'uploads/1738860502_image-10.png.webp'),
 (12, 1, 'Nadeem Photograpy', 'photography_service', '2025-03-01', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 500, 1, 10000.00, 'Accepted', 'Paid', '2025-02-27 08:18:13', 52, 14, 'uploads/1738860209_image-12.png.webp');
 
 -- --------------------------------------------------------
@@ -211,7 +210,6 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`id`, `user_id`, `booking_id`, `merchant_id`, `payment_id`, `order_id`, `amount_paid`, `payment_status`, `created_at`, `payment_gateway`) VALUES
 (1, 52, 9, 14, 'pay_PxmWeZ6i0D7qIp', 'order_PxmVYJu1BGipsO', 25000.00, 'Paid', '2025-02-20 01:24:26', 'Razorpay'),
-(2, 52, 11, 14, 'pay_Q00xoR8FdPT2x5', 'order_Q00w4eLpm9w7aP', 3000.00, 'Paid', '2025-02-25 16:55:13', 'Razorpay'),
 (3, 52, 12, 14, 'pay_Q0jzwAhtC96rLv', 'order_Q0jyi4d8EF083T', 10000.00, 'Paid', '2025-02-27 12:50:56', 'Razorpay');
 
 -- --------------------------------------------------------
@@ -329,21 +327,21 @@ ALTER TABLE `booking2`
 --
 ALTER TABLE `catering_service`
   ADD PRIMARY KEY (`service_id`),
-  ADD KEY `merchant_id` (`merchant_id`);
+  ADD KEY `catering_service_ibfk_1` (`merchant_id`);
 
 --
 -- Indexes for table `decoration_service`
 --
 ALTER TABLE `decoration_service`
   ADD PRIMARY KEY (`service_id`),
-  ADD KEY `merchant_id` (`merchant_id`);
+  ADD KEY `decoration_service_ibfk_1` (`merchant_id`);
 
 --
 -- Indexes for table `entertainment_service`
 --
 ALTER TABLE `entertainment_service`
   ADD PRIMARY KEY (`service_id`),
-  ADD KEY `merchant_id` (`merchant_id`);
+  ADD KEY `entertainment_service_ibfk_1` (`merchant_id`);
 
 --
 -- Indexes for table `merchant`
@@ -367,7 +365,7 @@ ALTER TABLE `payments`
 --
 ALTER TABLE `photography_service`
   ADD PRIMARY KEY (`service_id`),
-  ADD KEY `merchant_id` (`merchant_id`);
+  ADD KEY `photography_service_ibfk_1` (`merchant_id`);
 
 --
 -- Indexes for table `user`
@@ -381,7 +379,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `venue_booking`
   ADD PRIMARY KEY (`service_id`),
-  ADD KEY `merchant_id` (`merchant_id`);
+  ADD KEY `venue_booking_ibfk_1` (`merchant_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -462,19 +460,19 @@ ALTER TABLE `booking2`
 -- Constraints for table `catering_service`
 --
 ALTER TABLE `catering_service`
-  ADD CONSTRAINT `catering_service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
+  ADD CONSTRAINT `catering_service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `decoration_service`
 --
 ALTER TABLE `decoration_service`
-  ADD CONSTRAINT `decoration_service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
+  ADD CONSTRAINT `decoration_service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `entertainment_service`
 --
 ALTER TABLE `entertainment_service`
-  ADD CONSTRAINT `entertainment_service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
+  ADD CONSTRAINT `entertainment_service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `payments`
@@ -488,13 +486,13 @@ ALTER TABLE `payments`
 -- Constraints for table `photography_service`
 --
 ALTER TABLE `photography_service`
-  ADD CONSTRAINT `photography_service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
+  ADD CONSTRAINT `photography_service_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `venue_booking`
 --
 ALTER TABLE `venue_booking`
-  ADD CONSTRAINT `venue_booking_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`);
+  ADD CONSTRAINT `venue_booking_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchant` (`merchant_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

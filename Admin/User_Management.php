@@ -1,8 +1,8 @@
+<link rel="stylesheet" href="table.css">
 <?php
 include "connection.php";
 include "admin_sidebar.php";
 ?>
-
 <h1>User Management</h1>
 <p>Manage all registered User here.</p>
 <a href="user_management_adduser.php"><button>Add New User</button></a>

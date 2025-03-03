@@ -1,0 +1,79 @@
+
+h1 {
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+}
+
+button {
+    background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px #1B5E20;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #66BB6A, #388E3C);
+    transform: translateY(-2px);
+    box-shadow: 0px 6px #1B5E20;
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0px 2px #1B5E20;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background: #388E3C;
+    color: rgb(0, 0, 0);
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+tr:hover {
+    background: #c8e6c9;
+    transition: 0.3s ease-in-out;
+}
+
+.action-buttons a {
+    text-decoration: none;
+    color: white;
+}
+
+.action-buttons .delete {
+    background: linear-gradient(to bottom, #D32F2F, #B71C1C);
+    box-shadow: 0px 4px #880E4F;
+}
+
+.action-buttons .delete:hover {
+    background: linear-gradient(to bottom, #E57373, #C62828);
+    transform: translateY(-2px);
+    box-shadow: 0px 6px #880E4F;
+}

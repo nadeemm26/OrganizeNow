@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="table.css">
 <?php
     include "connection.php";
     include "admin_sidebar.php";

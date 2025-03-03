@@ -4,6 +4,7 @@ body {
     padding: 0;
     display: flex;
 }
+
 /* --------------- sidebar css ------------ */
 .sidebar {
     width: 250px;
@@ -13,26 +14,32 @@ body {
     padding-top: 20px;
     position: fixed;
 }
+
 .sidebar h2 {
     text-align: center;
     margin-bottom: 30px;
 }
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;
 }
+
 .sidebar ul li {
     padding: 15px 20px;
     cursor: pointer;
 }
+
 .sidebar ul li:hover {
     background-color: #34495e;
 }
+
 .sidebar ul li a {
     color: white;
     text-decoration: none;
     display: block;
 }
+
 /* ---------------Top bar ---------------- */
 .search-bar {
     display: flex;
@@ -61,19 +68,23 @@ body {
 .user-info span {
     font-size: 16px;
 }
+
 /* ---------- Main content -------------- */
 .content {
     margin-left: 250px;
     padding: 20px;
     width: calc(100% - 250px);
 }
+
 .content h1 {
     font-size: 24px;
     margin-bottom: 10px;
 }
+
 .content p {
     margin-bottom: 20px;
 }
+
 .content button {
     background-color: #007bff;
     color: white;
@@ -82,51 +93,24 @@ body {
     cursor: pointer;
     margin-bottom: 20px;
 }
+
 .content button:hover {
     background-color: #0056b3;
 }
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-table, th, td {
-    border: 1px solid #ddd;
-}
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-th {
-    background-color: #f2f2f2;
-}
-.action-buttons button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-right: 5px;
-}
-.action-buttons button.delete {
-    background-color: #dc3545;
-}
-.action-buttons button:hover {
-    opacity: 0.8;
-}
- /* -------- media quary ---------------- */
+/* -------- media quary ---------------- */
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;
         height: auto;
         position: relative;
     }
+
     .sidebar ul li {
         text-align: center;
     }
+
     .content {
         margin-left: 0;
         width: 100%;
     }
 }
-
-
