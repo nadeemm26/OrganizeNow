@@ -30,6 +30,7 @@ $logout_url = 'logout.php';
             <li><a href="event_management.php">Event Management</a></li>
             <li><a href="booking_management.php">Booking Management</a></li>
             <li><a href="payment_management.php">Payment Management</a></li>
+            <li><a href="report.php">Report</a></li>
             <li><a href="<?php echo $logout_url; ?>">Logout</a></li>
         </ul>
     </div>

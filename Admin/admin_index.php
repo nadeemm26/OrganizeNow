@@ -29,11 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($password === $admin['password']) { // Direct comparison without hashing
                 // Set session variables
                 $_SESSION['admin_logged_in'] = true;
+                $_SESSION['admin_id'] = $admin['admin_id'];  // ✅ Add this line
                 $_SESSION['admin_username'] = $admin['username'];
-
+            
                 header('Location: dashboard.php'); // Redirect to the admin dashboard
                 exit;
-            } else {
+            }
+             else {
                 $error = '❌ Invalid Password. Please try again.';
             }
         } else {
