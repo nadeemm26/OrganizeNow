@@ -22,7 +22,7 @@ include 'connection.php';
 <?php
 
 if (!isset($_SESSION['merchant_id'])) {
-    header("Location: login.php");
+    header("Location: ../merchant_login.php");
     exit();
 }
 
@@ -39,7 +39,6 @@ $result = $stmt->get_result();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- <link rel="stylesheet" href="../Merchant/css_for_table.css"> -->
     <style>
         .container {
             /* width: 80%;
@@ -92,11 +91,12 @@ $result = $stmt->get_result();
             <th>Customer Name</th>
             <th>Customer Email</th>
             <th>Customer Mobile</th>
-            <th>Service</th>
+            <th>Service Type</th>
             <th>Service Name</th>
             <th>Booking Date</th>
             <th>Guests</th>
             <th>Days</th>
+            <th>Location</th>
             <th>Total Price</th>
             <th>Action</th>
         </tr>
@@ -110,6 +110,7 @@ $result = $stmt->get_result();
                 <td><?php echo $row['booking_date']; ?></td>
                 <td><?php echo $row['guest_count']; ?></td>
                 <td><?php echo $row['num_days']; ?></td>
+                <td><?php echo $row['location']; ?></td>
                 <td>₹<?php echo number_format($row['total_price'], 2); ?></td>
                 <td>
                     <form method="POST" action="update_booking_status.php">

@@ -20,10 +20,10 @@ $selectedTable = isset($_GET['table']) ? $_GET['table'] : 'catering_service';
 
 $tableFields = [
     'catering_service' => ['service_id', 'service_name', 'service_type', 'menu_details', 'service_capacity', 'price', 'min_order', 'merchant_id'],
-    'decoration_service' => ['service_id', 'service_name', 'service_types', 'service_category', 'description', 'custom_decoration', 'price', 'merchant_id'],
+    'decoration_service' => ['service_id', 'service_name', 'service_type', 'service_category', 'description', 'custom_decoration', 'price', 'merchant_id'],
     'entertainment_service' => ['service_id', 'service_name', 'service_type', 'service_category', 'performance_duration', 'price', 'merchant_id'],
     'photography_service' => ['service_id', 'service_name', 'service_type', 'service_category', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'merchant_id'],
-    'venue_booking' => ['service_id', 'service_name', 'service_type', 'service_category', 'capacity', 'address', 'city', 'pincode', 'price', 'merchant_id']
+    'venue_booking' => ['service_id', 'service_name', 'service_type', 'service_category', 'capacity', 'location','price', 'merchant_id']
 ];
 
 // Handle event deletion

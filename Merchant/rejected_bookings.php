@@ -23,7 +23,7 @@ include 'connection.php';
 
 
 if (!isset($_SESSION['merchant_id'])) {
-    header("Location: login.php");
+    header("Location: ../merchant_login.php");
     exit();
 }
 
@@ -77,9 +77,11 @@ $result = $stmt->get_result();
         <tr>
             <th>Customer Name</th>
             <th>Service Name</th>
+            <th>Service Type</th>
             <th>Booking Date</th>
             <th>Guests</th>
             <th>Days</th>
+            <th>Location</th>
             <th>Total Price</th>
             
         </tr>
@@ -87,9 +89,11 @@ $result = $stmt->get_result();
             <tr>
                 <td><?php echo $row['customer_name']; ?></td>
                 <td><?php echo $row['service_name']; ?></td>
+                <td><?php echo $row['service_type']; ?></td>
                 <td><?php echo $row['booking_date']; ?></td>
                 <td><?php echo $row['guest_count']; ?></td>
                 <td><?php echo $row['num_days']; ?></td>
+                <td><?php echo $row['location']; ?></td>
                 <td>₹<?php echo number_format($row['total_price'], 2); ?></td>
                 
             </tr>

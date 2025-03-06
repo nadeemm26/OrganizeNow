@@ -239,10 +239,10 @@ include "../connection.php";
             <div class="swiper-slide">
                 <img src="../4.jpg" alt="Corporate Event">
             </div>
-            <!--<div class="swiper-slide">
-                    <img src="" alt="Corporate Event">
-                </div>
-                <div class="swiper-slide">
+            <div class="swiper-slide">
+                <img src="../5.jpg" alt="Corporate Event">
+            </div>
+            <!-- <div class="swiper-slide">
                     <img src="" alt="Concert Event">
                 </div>
                 <div class="swiper-slide">
@@ -271,23 +271,9 @@ include "../connection.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Services Grid</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-<style>
+    <style>
         /* Google Font */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-        /* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background-color: #f5f5f5;
-    text-align: center;
-    padding: 30px;
-} */
 
         .title1 {
             font-size: 36px;

@@ -4,11 +4,11 @@ include "sidebarmerchant.php";
 
 ?>
 <?php
-// Assuming you have a session or user ID to fetch profile info
-// session_start();
-$merchant_id = $_SESSION['merchant_id']; // Get user ID from session
 
-// Database connection
+// session_start();
+$merchant_id = $_SESSION['merchant_id']; 
+
+                                                 
 include('connection.php');
 $query = "SELECT * FROM merchant WHERE merchant_id = ?";
 $stmt = $conn->prepare($query);

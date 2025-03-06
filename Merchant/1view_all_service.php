@@ -15,10 +15,10 @@ $serviceType = isset($_GET['service']) ? $_GET['service'] : 'catering_service';
 // Define table names and their respective fields
 $services = [
     'catering_service' => ['service_id','service_name','service_type','menu_details','service_capacity', 'price', 'min_order', 'event_image', 'added_on'],
-    'decoration_service' => ['service_id','service_name', 'service_types','service_category', 'description', 'custom_decoration', 'price', 'event_image', 'added_on'],
+    'decoration_service' => ['service_id','service_name', 'service_type','service_category', 'description', 'custom_decoration', 'price', 'event_image', 'added_on'],
     'entertainment_service' => ['service_id','service_name', 'service_type','service_category', 'performance_duration', 'price', 'event_image', 'added_on'],
     'photography_service' => ['service_id','service_name', 'service_type','service_category', 'videography', 'package_desc', 'coverage_duration', 'num_photographers', 'editing', 'price', 'event_image', 'added_on'],
-    'venue_booking' => ['service_id','service_name','service_type','service_category','capacity', 'address', 'city', 'pincode', 'price', 'event_image', 'added_on']
+    'venue_booking' => ['service_id','service_name','service_type','service_category','capacity', 'location', 'price', 'event_image', 'added_on']
 ];
 
 // Check if selected service exists

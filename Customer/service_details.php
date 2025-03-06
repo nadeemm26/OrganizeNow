@@ -51,20 +51,23 @@ $table_fields = $fields[$service_type] ?? [];
 <html lang="en">
 <head>
     <style>
-        .container {
+        /* .container {
             /* width: 80%;
             margin: auto;
             padding: 20px;
-            background: #f9f9f9; */
+            background: #f9f9f9; ///////
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+            height: fit-content;////
+        } */
         .details {
             display: flex;
             gap: 20px;
         }
         .image-container img {
             width: 100%;
+            height: 60%;
+            ;
             border-radius: 10px;
         }
         .info {
@@ -121,6 +124,7 @@ $table_fields = $fields[$service_type] ?? [];
             <a href="book_service.php?id=<?php echo $service_id; ?>&type=<?php echo $service_type; ?>&merchant_id=<?php echo $merchant_id; ?>" class="btn">
                 Book This Service
             </a>
+            <a href="main_home.php" class="btn"> Back</a>
         </div>
     </div>
 </div>

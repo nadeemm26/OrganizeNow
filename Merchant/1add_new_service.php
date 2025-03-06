@@ -30,9 +30,8 @@ include 'myevent.php';
                 <option value="Resort">Resort</option>
             </select>
             <input type="number" name="capacity" placeholder="Capacity:">
-            <input type="text" name="address" placeholder="Address">
-            <input type="text" name="city" placeholder="City">
-            <input type="text" name="pincode" placeholder="Pincode">
+            <input type="text" name="location" placeholder="Address">
+            
             <input type="number" name="price" placeholder="Price (Per Day)">
             <label>Upload Event Image:</label>
             <input type="file" name="event_image" required>
@@ -125,7 +124,7 @@ include 'myevent.php';
             <label>Service Name:</label>
             <input type="text" name="service_name" required>
             
-            <input type="hidden" name="service_types" value="Decoration Service">
+            <input type="hidden" name="service_type" value="Decoration Service">
 
             <label>Decoration Type:</label>
             <select name="service_category" required>

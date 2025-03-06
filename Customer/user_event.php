@@ -209,6 +209,8 @@ $result = $stmt->get_result();
                 <!-- <img src="../Merchant/ <?php echo $row['event_image']; ?>" alt="Service Image" class="booking-image"> -->
                 <div class="booking-title"><?php echo $row['service_name']; ?></div>
                 <div class="booking-info">
+                    <strong>Type:</strong> <?php echo $row['service_type']; ?> <br>
+                    <strong>Location:</strong> <?php echo $row['location']; ?> <br>
                     <strong>Date:</strong> <?php echo $row['booking_date']; ?> <br>
                     <strong>Guests:</strong> <?php echo $row['guest_count']; ?> <br>
                     <strong>Days:</strong> <?php echo $row['num_days']; ?> <br>

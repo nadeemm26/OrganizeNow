@@ -1,7 +1,7 @@
 <!-- <?php
 session_start();
 if (!isset($_SESSION['merchant_id'])) {
-    header('Location: merchant_login.php');
+    header('Location: ../merchant_login.php');
     exit;
 }
 ?> -->
@@ -24,6 +24,7 @@ if (!isset($_SESSION['merchant_id'])) {
             <a href="myevent.php">My Events</a>
             <a href="booking.php">Booking of User</a>
             <a href="payment.php">Payment</a>
+            <a href="merchant_report.php">Report</a>
             <a href="profile.php">Profile</a>
             <a href="logout.php">Logout</a>
         </div>

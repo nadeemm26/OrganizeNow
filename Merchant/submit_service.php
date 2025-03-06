@@ -25,13 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $venue_name = $_POST['service_name'];
         $venue_type = $_POST['service_category'];
         $capacity = $_POST['capacity'];
-        $address = $_POST['address'];
-        $city = $_POST['city'];
-        $pincode = $_POST['pincode'];
+        $address = $_POST['location'];
         $price = $_POST['price'];
 
-        $sql = "INSERT INTO venue_booking (service_name,service_type,service_category, capacity, address, city, pincode, price, event_image, merchant_id) 
-                VALUES ('$venue_name','$service_type', '$venue_type', '$capacity', '$address', '$city', '$pincode', '$price', '$event_image', '$merchant_id')";
+        $sql = "INSERT INTO venue_booking (service_name,service_type,service_category, capacity, location, price, event_image, merchant_id) 
+                VALUES ('$venue_name','$service_type', '$venue_type', '$capacity', '$address', '$price', '$event_image', '$merchant_id')";
     }
 
     // **Catering Service Submission**
@@ -67,14 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // **Decoration Service Submission**
     elseif (isset($_POST['add_decoration'])) {
         $service_name = $_POST['service_name'];
-        $service_type = $_POST['service_types'];
+        $service_type = $_POST['service_type'];
         $decoration_types = $_POST['service_category'];
         $description = $_POST['description'];
         $custom_decoration = $_POST['custom_decoration'];
         $price_basic = $_POST['price'];
         
     
-        $sql = "INSERT INTO decoration_service (service_name,service_types, service_category, description, custom_decoration, price, event_image, merchant_id) 
+        $sql = "INSERT INTO decoration_service (service_name,service_type, service_category, description, custom_decoration, price, event_image, merchant_id) 
                 VALUES ('$service_name','$service_type','$decoration_types','$description','$custom_decoration','$price_basic','$event_image','$merchant_id')";              
     }
     
