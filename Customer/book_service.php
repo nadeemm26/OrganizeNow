@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 $user_email = $_SESSION['user_email'];
-$user_mobile = $_SESSION['user_mobile']; // Fetch user mobile from session
+$user_mobile = $_SESSION['user_mobile']; 
 
 if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['merchant_id'])) {
     $service_id = $_GET['id'];
@@ -36,7 +36,7 @@ if (isset($_GET['id']) && isset($_GET['type']) && isset($_GET['merchant_id'])) {
 }
 $venue_location = "";
 if ($service_type == "venue_booking") {
-    $venue_location = $service['location']; // Database se venue location le rahe hain
+    $venue_location = $service['location']; // Database mathi venue location lav chu
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $booking_date = $_POST['booking_date'];

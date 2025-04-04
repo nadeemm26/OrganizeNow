@@ -21,10 +21,10 @@ if (isset($_POST['login'])) {
             header('Location: ../OrganizeNow/Merchant/merchant_home.php');
             exit;
         } else {
-            echo "<script>alert('❌Invalid password!');</script>";
+            echo "<script>alert('❌ Invalid password!');</script>";
         }
     } else {
-        echo "<script>alert('❌No merchant found with this email!');</script>";
+        echo "<script>alert('❌ No merchant found with this email!');</script>";
     }
 }
 

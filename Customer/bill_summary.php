@@ -79,13 +79,14 @@ $html = '
 
 <h2>Booking Details</h2>
 <table class="table">
-    <tr class="header"><th>Event</th><th>Date</th><th>Guests</th><th>Days</th><th>Total Price</th></tr>
+    <tr class="header"><th>Event</th><th>Date</th><th>Guests</th><th>Days</th><th>Address</th><th>Total Price</th></tr>
     <tr>
         <td>' . htmlspecialchars($booking['service_name']) . '</td>
         <td>' . $booking['booking_date'] . '</td>
         <td>' . $booking['guest_count'] . '</td>
         <td>' . $booking['num_days'] . '</td>
-        <td>₹' . number_format($booking['total_price'], 2) . '</td>
+        <td>' . $booking['location'] . '</td>
+        <td>' . number_format($booking['total_price'], 2) . '</td>
     </tr>
 </table>
 
@@ -94,7 +95,7 @@ $html = '
     <tr class="header"><th>Payment ID</th><th>Amount Paid</th><th>Payment Method</th><th>Status</th></tr>
     <tr>
         <td>' . htmlspecialchars($booking['payment_id']) . '</td>
-        <td>₹' . number_format($booking['amount_paid'], 2) . '</td>
+        <td>' . number_format($booking['amount_paid'], 2) . '</td>
         <td>' . ucfirst($booking['payment_gateway']) . '</td>
         <td>' . ucfirst($booking['payment_status']) . '</td>
     </tr>

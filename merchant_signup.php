@@ -21,8 +21,10 @@ if (isset($_POST['signup'])) {
         echo "<script>alert('❌Email already exists!');</script>";
     } else {
         $conn->query("INSERT INTO merchant (name, details, email, mobile, password) VALUES ('$name', '$details', '$email', '$mobile', '$password')");
-        echo "<script>alert('✅Signup successful! Please login.');</script>";
-        header('Location: merchant_login.php');
+        echo "<script>alert('✅Signup successful! Please login.');
+        window.location.href = 'merchant_login.php';
+        </script>";
+        // header('Location: merchant_login.php');
         exit;
     }
 }
@@ -43,18 +45,6 @@ if (isset($_POST['signup'])) {
     <form onsubmit="return validateSignup()" method="post">
         <h2>Merchant Registration</h2>
         <input type="text" id="businessname" name="businessname" placeholder="Business Name:"><br>
-
-        <!-- <label>Business Type:</label>
-        <input type="radio" name="type" id="catring" value="catring">
-        <label for="catring">Catering</label>
-        <input type="radio" name="type" id="decoration" value="decoration">
-        <label for="decoration">Decoration</label>
-        <input type="radio" name="type" id="photo" value="photo">
-        <label for="photo">Photo</label>
-        <input type="radio" name="type" id="venue" value="venue">
-        <label for="venue">Venue</label>
-        <input type="radio" name="type" id="other" value="other">
-        <label for="other">Other</label><br> -->
 
         <input type="text" id="businessdetails" name="businessdetails" placeholder="Business Details:"><br>
 

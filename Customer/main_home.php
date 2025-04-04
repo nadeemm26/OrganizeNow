@@ -217,6 +217,15 @@ include "../connection.php";
         .swiper-pagination-bullet-active {
             background: #007bff;
         }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 50px;
+            background-color: #f5f7fa;
+            font-size: 18px;
+            font-weight: 600;
+            color: #666;
+        }
     </style>
     <!-- Swiper.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -328,27 +337,27 @@ include "../connection.php";
     <h2 class="title1">Our Services & Events</h2>
     <div class="grid-container1">
         <div class="card1">
-            <img src="../1.jpg" alt="Catering">
+            <img src="../3.jpg" alt="Catering">
             <h3>Catering Service</h3>
         </div>
 
         <div class="card1">
-            <img src="../2.jpg" alt="Venue">
+            <img src="../1.jpg" alt="Venue">
             <h3>Venue Service</h3>
         </div>
 
         <div class="card1">
-            <img src="../3.jpg" alt="Decoration">
+            <img src="../d1.jpg" alt="Decoration">
             <h3>Decoration Service</h3>
         </div>
 
         <div class="card1">
-            <img src="../4.jpg" alt="Photography">
+            <img src="../p1.jpg" alt="Photography">
             <h3>Photography Service</h3>
         </div>
 
         <div class="card1">
-            <img src="../1.jpg" alt="Entertainment">
+            <img src="../E1.jpg" alt="Entertainment">
             <h3>Entertainment Service</h3>
         </div>
 
@@ -358,22 +367,22 @@ include "../connection.php";
         </div>
 
         <div class="card1">
-            <img src="../3.jpg" alt="Birthday">
+            <img src="../Birth1.jpg" alt="Birthday">
             <h3>Birthday Party</h3>
         </div>
 
         <div class="card1">
-            <img src="../4.jpg" alt="Anniversary">
+            <img src="../Anni1.jpg" alt="Anniversary">
             <h3>Anniversary Event</h3>
         </div>
 
         <div class="card1">
-            <img src="../1.jpg" alt="Engagement">
+            <img src="../En1.jpg" alt="Engagement">
             <h3>Engagement Event</h3>
         </div>
 
         <div class="card1">
-            <img src="../2.jpg" alt="Other">
+            <img src="../Oth6.jpg" alt="Other">
             <h3>Other Events</h3>
         </div>
     </div>
@@ -397,8 +406,6 @@ foreach ($services as $service_table => $service_name) {
     echo "<h3>$service_name</h3>";
     echo "<div class='row'>";
 
-
-    // Update this section in your existing services listing file
     $query = "SELECT * FROM $service_table";
     $result = $conn->query($query);
 
@@ -432,7 +439,9 @@ foreach ($services as $service_table => $service_name) {
     echo "</div>"; // Add a separator between service categories
 }
 ?>
-
+<div class="footer">
+        © 2025 OrganizeNow . All rights reserved.
+</div>
 
 </div>
 <script>

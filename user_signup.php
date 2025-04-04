@@ -19,9 +19,15 @@ if (isset($_POST['signup'])) {
         echo "<script>alert('❌Email already exists!');</script>";
     } else {
         $conn->query("INSERT INTO user (name, email, mobile, password) VALUES ('$name', '$email', '$mobile', '$password')");
-        echo "<script>alert('✅Signup successful! Please login.');</script>";
-        header('Location: index.php');
+        // echo "<script>alert('✅Signup successful! Please login.');</script>";
+        // header('Location: index.php');
+        // exit;
+        echo "<script>
+            alert('✅Signup successful! Please login.');
+            window.location.href = 'index.php';
+            </script>";
         exit;
+
     }
 }
 
@@ -76,4 +82,3 @@ if (isset($_POST['signup'])) {
     </script>
 </body>
 </html>
-<!-- djfjdhh -->

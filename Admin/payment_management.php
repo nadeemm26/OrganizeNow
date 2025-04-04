@@ -85,14 +85,14 @@ $result = mysqli_query($conn, $query);
                 data: { id: id, type: type },
                 success: function(response){
                     $("#details-content").html(response);
-                    $("#details-section").show(); // Show the details section
+                    $("#details-section").show(); 
                 }
             });
         });
 
         // Close button functionality
         $("#close-details").click(function(){
-            $("#details-section").hide(); // Hide the details section
+            $("#details-section").hide(); 
         });
     });
 </script>

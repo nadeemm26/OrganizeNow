@@ -81,7 +81,7 @@ include "admin_sidebar.php";
         <option value="">-- Select Table --</option>
         <option value="user">User</option>
         <option value="merchant">Merchant</option>
-        <option value="bookings">Booking</option>
+        <option value="booking2">Booking</option>
         <option value="payments">Payment</option>
     </select>
 

@@ -1,17 +1,10 @@
-<!-- <?php
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: user_login.php');
-            exit;
-        }
-
-        // Logout functionality
-        if (isset($_GET['logout'])) {
-            session_destroy();
-            header('Location: user_login.php');
-            exit;
-        }
-        ?> -->
+<?php
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+    header('Location: ../index.php');
+    exit;
+    } 
+?> 
 <!DOCTYPE html>
 <html lang="en">
 

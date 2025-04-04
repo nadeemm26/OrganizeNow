@@ -178,6 +178,7 @@ $result = $conn->query($query);
             <th>Customer Email</th>
             <th>Customer Mobile</th>
             <th>Booking Date</th>
+            <th>Address</th>
             <th>Amount</th>
             <th>Booking Status</th>
             <th>Payment Status</th>
@@ -194,6 +195,7 @@ $result = $conn->query($query);
                 <td><?php echo $row['customer_email']; ?></td>
                 <td><?php echo $row['customer_mobile']; ?></td>
                 <td><?php echo $row['booking_date']; ?></td>
+                <td><?php echo $row['location']; ?></td>
                 <td><?php echo $row['total_price']; ?></td>
                 <td><?php echo $row['status']; ?></td>
                 <td><?php echo $row['payment_status']; ?></td>

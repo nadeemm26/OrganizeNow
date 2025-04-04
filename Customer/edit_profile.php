@@ -1,12 +1,12 @@
 <?php
+session_start();
 include 'connection.php';
-include 'user_navbar.php';
-// session_start();
+// include 'user_navbar.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php"); // Agar user login nahi hai to redirect kar do
-    exit();
-}
+// if (!isset($_SESSION['user_id'])) {
+//     header("Location: login.php"); // Agar user login nahi hai to redirect kar do
+//     exit();
+// }
 
 $user_id = $_SESSION['user_id'];
 
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
-
+<?php include 'user_navbar.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

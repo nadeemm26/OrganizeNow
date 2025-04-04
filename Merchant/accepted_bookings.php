@@ -111,6 +111,7 @@ $result = $stmt->get_result();
         .filter-form button {
             padding: 5px 10px;
             margin-right: 10px;
+            width: 150px;
         }
 
         .search-container {
@@ -165,6 +166,10 @@ $result = $stmt->get_result();
     <div class="container">
         <h2>Confirmed Bookings</h2>
 
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search by Customer Name or Service Type">
+        </div>
         <!-- Payment Filter -->
         <form method="GET" class="filter-form">
             <label for="payment_status">Filter by Payment Status:</label>
@@ -175,11 +180,7 @@ $result = $stmt->get_result();
             </select>
             <button type="submit">Filter</button>
         </form>
-        <!-- Search Bar -->
-        <div class="search-container">
-            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search by Customer Name or Service Type">
-        </div>
-
+        
         <table id="bookingTable">
             <tr>
                 <th>Customer Name</th>
