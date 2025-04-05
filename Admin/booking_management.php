@@ -2,6 +2,25 @@
 include "connection.php";
 include "admin_sidebar.php";
 ?>
+<?php
+// Check if delete action is requested
+if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['booking_id'])) {
+    $booking_id = $_GET['booking_id'];
+
+    // Prepare and execute delete query
+    $deleteQuery = "DELETE FROM booking2 WHERE id = ?";
+    $stmt = $conn->prepare($deleteQuery);
+    $stmt->bind_param("i", $booking_id);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Booking deleted successfully'); window.location.href='booking_management.php';</script>";
+    } else {
+        echo "<script>alert('Error deleting booking');</script>";
+    }
+
+    $stmt->close();
+}
+?>
 
 <h1>Booking Management</h1>
 <p>View and manage all event bookings here.</p>

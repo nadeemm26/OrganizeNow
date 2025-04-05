@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2025 at 05:14 AM
+-- Generation Time: Apr 05, 2025 at 07:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -73,7 +73,9 @@ CREATE TABLE `booking2` (
 --
 
 INSERT INTO `booking2` (`id`, `service_id`, `service_name`, `service_type`, `booking_date`, `customer_name`, `customer_email`, `customer_mobile`, `guest_count`, `num_days`, `total_price`, `status`, `payment_status`, `created_at`, `user_id`, `merchant_id`, `event_image`, `location`) VALUES
-(17, 11, 'The Leela', 'venue_booking', '2025-03-12', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 200, 2, 24600.00, 'Accepted', 'Paid', '2025-03-05 23:34:23', 52, 14, 'uploads/1741227384_Ven6.jpg', 'Gandhinagar');
+(17, 11, 'The Leela', 'venue_booking', '2025-03-12', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 200, 2, 24600.00, 'Accepted', 'Paid', '2025-03-05 23:34:23', 52, 14, 'uploads/1741227384_Ven6.jpg', 'Gandhinagar'),
+(18, 7, 'Unique Decoration King', 'decoration_service', '2025-04-10', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 200, 1, 15000.00, 'Accepted', 'Paid', '2025-04-01 02:12:18', 52, 14, 'uploads/1741228338_B1.jpg', 'Gandhinagar'),
+(21, 3, 'Cafevale King', 'catering_service', '2025-04-25', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 200, 1, 36000.00, 'Accepted', 'Paid', '2025-04-05 01:40:56', 52, 14, 'uploads/1741227703_Cate7.jpg', 'Gandhinagar');
 
 -- --------------------------------------------------------
 
@@ -205,7 +207,8 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `user_id`, `booking_id`, `merchant_id`, `payment_id`, `order_id`, `amount_paid`, `payment_status`, `created_at`, `payment_gateway`) VALUES
-(6, 52, 17, 14, 'pay_Q3MtJOpJ8Z7xw8', 'order_Q3Mt3sggc6Lf5p', 24600.00, 'Paid', '2025-03-06 04:11:46', 'Razorpay');
+(6, 52, 17, 14, 'pay_Q3MtJOpJ8Z7xw8', 'order_Q3Mt3sggc6Lf5p', 24600.00, 'Paid', '2025-03-06 04:11:46', 'Razorpay'),
+(7, 52, 18, 14, 'pay_QDgLx4ath2a9yj', 'order_QDgLgxdWYAqt6N', 15000.00, 'Paid', '2025-04-01 05:44:17', 'Razorpay');
 
 -- --------------------------------------------------------
 
@@ -264,7 +267,7 @@ INSERT INTO `user` (`user_id`, `name`, `email`, `mobile`, `password`, `created_a
 (47, 'pathan', 'pathan@gmail.com', '4569874125', '$2y$10$8SZ1JdEIESti6Lt93W2xbekG29ordevql/.bpcMPoxcWYLrybz4sS', '2025-02-26', NULL, NULL),
 (50, 'Akram', 'akram@gmail.com', '8965412689', '$2y$10$HMaEb1/TRyBAWpxdmJ2ezukyY0g7vbguVoUo1.zaWA/jPyg9wPcne', '2025-02-26', NULL, NULL),
 (51, 'Makwana Nadeem king', 'nadeem123@gmail.com', '8849742758', '$2y$10$cZHCfqtADXz7qJTQ9DjBRuT3pZt0AiFLEr5Hy4Gl3XI6I./HS3eTq', '2025-02-26', NULL, NULL),
-(52, 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', '$2y$10$onriip3MGEdEjYITESI4X.JnF7TLbjqqUFACbVD251eYMuhaqQgd6', '2025-02-26', NULL, NULL),
+(52, 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', '$2y$10$yZId48/mGIPbxnLP/xnmFeyUT1q13FHIRCmDbDqVEpVRPmBIFElqm', '2025-02-26', NULL, NULL),
 (53, 'Prakash', 'prakash@gmail.com', '4785961236', '$2y$10$lW44e9KfuQZaddJ7JZiJsuiWpqT1xyO4yQT.OefYGx/GnVQHf2PhS', '2025-02-26', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -384,7 +387,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking2`
 --
 ALTER TABLE `booking2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `catering_service`
@@ -402,19 +405,19 @@ ALTER TABLE `decoration_service`
 -- AUTO_INCREMENT for table `entertainment_service`
 --
 ALTER TABLE `entertainment_service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `merchant`
 --
 ALTER TABLE `merchant`
-  MODIFY `merchant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `merchant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `photography_service`
@@ -426,13 +429,13 @@ ALTER TABLE `photography_service`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `venue_booking`
 --
 ALTER TABLE `venue_booking`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
