@@ -13,19 +13,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// ✅ Function to send OTP via Email
+//  Function to send OTP via Email
 function sendOTP($email, $otp) {
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'makwananadeem3@gmail.com'; // Gmail ID
-        $mail->Password   = 'asfz zife ytvk fdgl'; // App Password
+        $mail->Username   = 'yourmail@gmail.com'; // Gmail ID
+        $mail->Password   = 'your app password'; // App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
-        $mail->setFrom('makwananadeem3@gmail.com', 'Organize Now');
+        $mail->setFrom('example@gmail.com', 'Organize Now');
         $mail->addAddress($email);
         $mail->Subject = 'Your OTP Code';
 
@@ -40,7 +40,7 @@ function sendOTP($email, $otp) {
     }
 }
 
-// ✅ Step 1: Send OTP
+// Step 1: Send OTP
 if (isset($_POST['send_otp'])) {
     $email = trim($_POST['email']);
     $_SESSION['email'] = $email;
@@ -58,12 +58,12 @@ if (isset($_POST['send_otp'])) {
         header("Location: forgot_password.php");
         exit();
     } else {
-        echo "<script>alert('❌ Failed to send OTP!');</script>";
+        echo "<script>alert(' Failed to send OTP!');</script>";
     }
     $stmt->close();
 }
 
-// ✅ Step 2: Verify OTP
+// Step 2: Verify OTP
 if (isset($_POST['verify_otp'])) {
     $email = $_SESSION['email'];
     $otp = trim($_POST['otp']);
@@ -81,11 +81,11 @@ if (isset($_POST['verify_otp'])) {
         header("Location: forgot_password.php");
         exit();
     } else {
-        echo "<script>alert('❌ Invalid or Expired OTP!');</script>";
+        echo "<script>alert(' Invalid or Expired OTP!');</script>";
     }
 }
 
-// ✅ Step 3: Reset Password
+//  Step 3: Reset Password
 if (isset($_POST['reset_password']) && isset($_SESSION['otp_verified'])) {
     $email = $_SESSION['email'];
     $new_password = password_hash(trim($_POST['new_password']), PASSWORD_BCRYPT);
@@ -95,15 +95,15 @@ if (isset($_POST['reset_password']) && isset($_SESSION['otp_verified'])) {
     
     if ($stmt->execute()) {
         session_destroy();
-        echo "<script>alert('✅ Password Reset Successfully!'); window.location.href = '../index.php';</script>";
+        echo "<script>alert(' Password Reset Successfully!'); window.location.href = '../index.php';</script>";
         exit();
     } else {
-        echo "<script>alert('❌ Failed to reset password!');</script>";
+        echo "<script>alert(' Failed to reset password!');</script>";
     }
     $stmt->close();
 }
 
-// ✅ Step Control
+//  Step Control
 $step = isset($_SESSION['step']) ? $_SESSION['step'] : 1;
 ?>
 
