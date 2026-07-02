@@ -88,6 +88,7 @@ OrganizeNow is a web-based Event Management System that connects customers with 
 ### Libraries
 - DataTables
 - TCPDF
+- PHPMailer
 - Razorpay Payment Gateway
 
 ---
