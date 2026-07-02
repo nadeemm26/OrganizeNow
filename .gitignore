@@ -1,0 +1,63 @@
+# ================================
+# Environment & Secrets
+# ================================
+.env
+.env.local
+.env.*.local
+config/database.php
+connection.php
+
+# ================================
+# Database dumps
+# ================================
+*.sql
+*.sql.gz
+*.sqlite
+*.db
+
+# ================================
+# Composer / Vendor libraries
+# (install via `composer require` instead of committing manually)
+# ================================
+vendor/
+composer.phar
+
+# ================================
+# Uploads / user-generated content
+# ================================
+uploads/
+Customer/uploads/
+Merchant/uploads/
+
+# ================================
+# Logs & cache
+# ================================
+*.log
+logs/
+cache/
+
+# ================================
+# OS / Editor junk
+# ================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ================================
+# Zipped/downloaded libraries
+# (use composer instead of committing zip files)
+# ================================
+*.zip
+
+# ================================
+# Personal / test images (remove if not part of actual site content)
+# ================================
+Anni1.jpg
+Birth1.jpg
+p1.jpg
+d1.jpg
+E1.jpg
+En1.jpg
+Oth6.jpg
