@@ -17,7 +17,6 @@ connection.php
 
 # ================================
 # Composer / Vendor libraries
-# (install via `composer require` instead of committing manually)
 # ================================
 vendor/
 composer.phar
@@ -47,17 +46,5 @@ Thumbs.db
 
 # ================================
 # Zipped/downloaded libraries
-# (use composer instead of committing zip files)
 # ================================
 *.zip
-
-# ================================
-# Personal / test images (remove if not part of actual site content)
-# ================================
-Anni1.jpg
-Birth1.jpg
-p1.jpg
-d1.jpg
-E1.jpg
-En1.jpg
-Oth6.jpg
