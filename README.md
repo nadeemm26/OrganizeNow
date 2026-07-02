@@ -178,7 +178,7 @@ Skills:
 
 GitHub: https://github.com/nadeemm26
 
-LinkedIn: https://linkedin.com/nadeem-makwana
+LinkedIn: https://linkedin.com/in/nadeem-makwana
 
 ---
 
