@@ -10,8 +10,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$key_id = "rzp_test_V1lMsadicHcdXy"; // 🔹 Replace with your Razorpay Key ID
-$key_secret = "MBTWmcyoqijBHZLnZTyFalWr"; // 🔹 Replace with your Razorpay Secret
+// $key_id = "Your key"; // 🔹 Replace with your Razorpay Key ID
+// $key_secret = "Your key"; // 🔹 Replace with your Razorpay Secret
 
 $api = new Api($key_id, $key_secret);
 
