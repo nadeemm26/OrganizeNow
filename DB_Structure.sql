@@ -35,14 +35,6 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`admin_id`, `username`, `password`, `profile_image`) VALUES
-(1, 'Nadeem Makwana', 'nadeem26', '1741121249_IMG_20230301_140730-01.jpeg');
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `booking2`
 --
@@ -69,16 +61,6 @@ CREATE TABLE `booking2` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `booking2`
---
-
-INSERT INTO `booking2` (`id`, `service_id`, `service_name`, `service_type`, `booking_date`, `customer_name`, `customer_email`, `customer_mobile`, `guest_count`, `num_days`, `total_price`, `status`, `payment_status`, `created_at`, `user_id`, `merchant_id`, `event_image`, `location`) VALUES
-(17, 11, 'The Leela', 'venue_booking', '2025-03-12', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 200, 2, 24600.00, 'Accepted', 'Paid', '2025-03-05 23:34:23', 52, 14, 'uploads/1741227384_Ven6.jpg', 'Gandhinagar'),
-(18, 7, 'Unique Decoration King', 'decoration_service', '2025-04-10', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 200, 1, 15000.00, 'Accepted', 'Paid', '2025-04-01 02:12:18', 52, 14, 'uploads/1741228338_B1.jpg', 'Gandhinagar'),
-(21, 3, 'Cafevale King', 'catering_service', '2025-04-25', 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', 200, 1, 36000.00, 'Accepted', 'Paid', '2025-04-05 01:40:56', 52, 14, 'uploads/1741227703_Cate7.jpg', 'Gandhinagar');
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `catering_service`
 --
@@ -97,14 +79,6 @@ CREATE TABLE `catering_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `catering_service`
---
-
-INSERT INTO `catering_service` (`service_id`, `service_name`, `service_type`, `menu_details`, `service_capacity`, `price`, `min_order`, `event_image`, `added_on`, `merchant_id`) VALUES
-(3, 'Cafevale King', 'Catering Service', 'Panjabi Full Items - Panir sabji , Butter Roti , Jira Rais , Dal, Sweetes ', 5000, 180.00, 50, 'uploads/1741227703_Cate7.jpg', '2025-03-06 02:21:43', 14);
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `decoration_service`
 --
@@ -123,15 +97,6 @@ CREATE TABLE `decoration_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `decoration_service`
---
-
-INSERT INTO `decoration_service` (`service_id`, `service_name`, `service_type`, `service_category`, `description`, `custom_decoration`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
-(7, 'Unique Decoration King', 'Decoration Service', 'Birthday', 'Fully Decorate Your Location Birthday Party For You', 'No', 15000.00, 'uploads/1741228338_B1.jpg', '2025-03-06 02:32:18', 14);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `entertainment_service`
 --
 
@@ -146,15 +111,6 @@ CREATE TABLE `entertainment_service` (
   `added_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `merchant_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `entertainment_service`
---
-
-INSERT INTO `entertainment_service` (`service_id`, `service_name`, `service_type`, `service_category`, `performance_duration`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
-(9, 'Hasi Majak Ke King', 'Entertainment Service', 'Comedy', 'Full Day', 20500.00, 'uploads/1741228403_Ent3.jpg', '2025-03-06 02:33:23', 14);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `merchant`
@@ -173,18 +129,6 @@ CREATE TABLE `merchant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `merchant`
---
-
-INSERT INTO `merchant` (`merchant_id`, `name`, `details`, `email`, `mobile`, `password`, `created_at`, `otp`, `otp_expiry`) VALUES
-(7, 'nadeem enterprize new', 'no give', 'tigerking2323@gmail.com', '2147483647', 'tiger', '2025-02-26 18:35:57', NULL, NULL),
-(13, 'booking game', 'i have many books', 'books@gmail.com', '1597538526', 'Book', '2025-02-26 18:35:57', NULL, NULL),
-(14, 'Karnavati king', 'no give data', 'shreejiroadlines0082@gmail.com', '5687158268', '$2y$10$JigU8jDIit2p1jip1JCTHeUgKjimfqc0OrbPrFlRGjM9fQA0i0jiG', '2025-02-26 18:35:57', NULL, NULL),
-(19, 'new', 'kuch bhi ho ', 'makwananadeem0@gmail.com', '5684752695', '$2y$10$jEpvt8XRV8GilI0n1Y7q7u38J25LOdrdkk805H63RB0MOhr3/a7BK', '2025-02-26 18:35:57', NULL, NULL),
-(20, 'prakash papad enterprize', 'i make papad and selling through your website', 'prakash@gmail.com', '4565547592', '$2y$10$IymPXFS7pWWja4rH499jLOIvwgk.eVKDrdmkgsGR/P0/AHPa3vD0W', '2025-02-26 18:35:57', NULL, NULL);
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `payments`
 --
@@ -203,15 +147,6 @@ CREATE TABLE `payments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `user_id`, `booking_id`, `merchant_id`, `payment_id`, `order_id`, `amount_paid`, `payment_status`, `created_at`, `payment_gateway`) VALUES
-(6, 52, 17, 14, 'pay_Q3MtJOpJ8Z7xw8', 'order_Q3Mt3sggc6Lf5p', 24600.00, 'Paid', '2025-03-06 04:11:46', 'Razorpay'),
-(7, 52, 18, 14, 'pay_QDgLx4ath2a9yj', 'order_QDgLgxdWYAqt6N', 15000.00, 'Paid', '2025-04-01 05:44:17', 'Razorpay');
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `photography_service`
 --
@@ -233,15 +168,6 @@ CREATE TABLE `photography_service` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `photography_service`
---
-
-INSERT INTO `photography_service` (`service_id`, `service_name`, `service_type`, `service_category`, `videography`, `package_desc`, `coverage_duration`, `num_photographers`, `editing`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
-(3, 'Lucky PhotoShoot', 'Photography Service', 'Wedding', 'Yes', 'All Over Your Wedding Photoshot + Video Shoot', 'Full Day', 5, 'Yes', 30000.00, 'uploads/1741227856_Vid1.jpg', '2025-03-06 02:24:16', 14);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -257,21 +183,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `name`, `email`, `mobile`, `password`, `created_at`, `otp`, `otp_expiry`) VALUES
-(39, 'Om Kadia', 'om@gmail.com', '8849742760', '$2y$10$oi8h0cA/XMklkPrDD5apSuDxj0N8vdryCnI9kyZhLTna/8Toqcm1.', '2025-02-26', NULL, NULL),
-(42, 'Meghall', 'meghal@gmail.com', '4596178413', '$2y$10$LZTyK4VF.DDqIOk.tMbbvOYn7rmULPzxHhz3KLtWx8bnAIoJ9E4IO', '2025-02-26', NULL, NULL),
-(44, 'Mihir', 'Mihir555@gmail.com', '4569852695', 'mihir', '2025-02-26', NULL, NULL),
-(47, 'pathan', 'pathan@gmail.com', '4569874125', '$2y$10$8SZ1JdEIESti6Lt93W2xbekG29ordevql/.bpcMPoxcWYLrybz4sS', '2025-02-26', NULL, NULL),
-(50, 'Akram', 'akram@gmail.com', '8965412689', '$2y$10$HMaEb1/TRyBAWpxdmJ2ezukyY0g7vbguVoUo1.zaWA/jPyg9wPcne', '2025-02-26', NULL, NULL),
-(51, 'Makwana Nadeem king', 'nadeem123@gmail.com', '8849742758', '$2y$10$cZHCfqtADXz7qJTQ9DjBRuT3pZt0AiFLEr5Hy4Gl3XI6I./HS3eTq', '2025-02-26', NULL, NULL),
-(52, 'Makwana Nadeem', 'makwananadeem0@gmail.com', '8849742758', '$2y$10$yZId48/mGIPbxnLP/xnmFeyUT1q13FHIRCmDbDqVEpVRPmBIFElqm', '2025-02-26', NULL, NULL),
-(53, 'Prakash', 'prakash@gmail.com', '4785961236', '$2y$10$lW44e9KfuQZaddJ7JZiJsuiWpqT1xyO4yQT.OefYGx/GnVQHf2PhS', '2025-02-26', NULL, NULL);
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `venue_booking`
 --
@@ -290,16 +201,8 @@ CREATE TABLE `venue_booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `venue_booking`
---
-
-INSERT INTO `venue_booking` (`service_id`, `service_type`, `service_name`, `service_category`, `capacity`, `location`, `price`, `event_image`, `added_on`, `merchant_id`) VALUES
-(11, 'venue booking', 'The Leela', 'Hotel', 5000, 'Gandhinagar', 12300.00, 'uploads/1741227384_Ven6.jpg', '2025-03-06 02:16:24', 14);
-
 --
 -- Indexes for dumped tables
---
-
 --
 -- Indexes for table `admin`
 --
