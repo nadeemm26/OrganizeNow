@@ -3,8 +3,8 @@ require '../razorpay-php/Razorpay.php';
 
 use Razorpay\Api\Api;
 
-$key_id = "rzp_test_V1lMsadicHcdXy";
-$key_secret = "MBTWmcyoqijBHZLnZTyFalWr";
+$key_id = "your key";
+$key_secret = "your key";
 $api = new Api($key_id, $key_secret);
 
 // 🔹 POST Data (From Razorpay)
