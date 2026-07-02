@@ -5,58 +5,67 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Razorpay](https://img.shields.io/badge/Razorpay-Payment-0C61F7?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Educational-green?style=for-the-badge)
 
-A complete Event Management System developed using **PHP, MySQL, HTML, CSS and JavaScript**. The platform connects customers with merchants by providing an end-to-end event booking solution including booking management, payment integration, email notifications, PDF invoice generation, and role-based dashboards.
+A complete **Event Management System** developed using **PHP, MySQL, HTML, CSS, and JavaScript**. OrganizeNow connects customers with event service providers through a complete event booking platform featuring secure authentication, booking management, Razorpay payment integration, PDF invoice generation, email notifications, and dedicated dashboards for Customers, Merchants, and Administrators.
 
 ---
 
-## ✨ Key Features
+## 📌 Features
 
-### 👤 Customer
-- Secure Registration & Login
+### 👤 Customer Module
+
+- Customer Registration & Login
 - Browse Events & Services
 - View Event Details
 - Book Events with Preferred Date
-- Track Booking Status
-- Online Payment using Razorpay
+- Track Booking Status (Pending, Accepted, Rejected)
+- Secure Online Payment using Razorpay
+- View Booking History
 - Download PDF Invoice
 - Receive Email Notifications
-- View Booking History
+- Submit Reviews & Ratings
 
-### 🏢 Merchant
+---
+
+### 🏢 Merchant Module
+
 - Merchant Registration & Login
+- Dashboard Overview
 - Create Full Event Packages
 - Create Individual Services
-- Edit/Delete Events
-- Accept/Reject Booking Requests
+- Edit/Delete Events & Services
+- Accept or Reject Booking Requests
 - View Customer Information
-- Track Payments
-- Manage Services
+- Track Payment Status
+- Manage Bookings
+- View Customer Reviews & Ratings
 
-### 👨‍💼 Admin
-- Secure Admin Dashboard
+---
+
+### 👨‍💼 Admin Module
+
+- Secure Admin Login
 - Manage Customers
 - Manage Merchants
 - Manage Events
 - Manage Services
 - Manage Bookings
 - Monitor Payments
-- Complete System Control
+- Full System Administration
 
 ---
 
-# 🎊 Event Categories
+## 🎊 Event Categories
 
-- Wedding
-- Birthday
-- Engagement
-- Anniversary
+- Wedding Event
+- Birthday Event
+- Engagement Event
+- Anniversary Event
 
 ---
 
-# 🛠 Service Categories
+## 🛠️ Service Categories
 
 - Catering
 - Venue
@@ -66,22 +75,22 @@ A complete Event Management System developed using **PHP, MySQL, HTML, CSS and J
 
 ---
 
-# 💳 Payment Features
+## 💳 Payment Features
 
-- Razorpay Payment Gateway
+- Razorpay Payment Gateway Integration
+- Secure Online Payment
 - Payment Verification
 - Payment Status Tracking
 - PDF Invoice Generation
-- Transaction History
 
 ---
 
-# 📧 Email Features
+## 📧 Email Notification Features
 
 - Registration Confirmation
 - Booking Request Notification
-- Booking Accepted Email
-- Booking Rejected Email
+- Booking Accepted Notification
+- Booking Rejected Notification
 - Payment Confirmation Email
 
 ---
@@ -102,22 +111,25 @@ A complete Event Management System developed using **PHP, MySQL, HTML, CSS and J
 
 - MySQL
 
-## Libraries
+## Libraries & APIs
 
 - Razorpay PHP SDK
-- TCPDF
 - PHPMailer
+- TCPDF
 
 ---
 
 # 📂 Project Structure
+
+```text
 OrganizeNow/
 │
 ├── Admin/
 ├── Customer/
 ├── Merchant/
 ├── razorpay-php/
-├── uploads/
+├── .gitattributes
+├── .gitignore
 ├── connection.php
 ├── index.php
 ├── merchant_login.php
@@ -126,129 +138,182 @@ OrganizeNow/
 ├── AboutUs.php
 ├── DB_Structure.sql
 └── README.md
+```
 
 ---
 
 # 🔄 Customer Workflow
+
+```text
 Register/Login
-│
-▼
+      │
+      ▼
 Browse Events
-│
-▼
+      │
+      ▼
 Book Event
-│
-▼
+      │
+      ▼
 Merchant Receives Request
-│
-▼
+      │
+      ▼
 Accept / Reject
-│
-▼
+      │
+      ▼
 Online Payment
-│
-▼
+      │
+      ▼
 Booking Confirmed
-│
-▼
+      │
+      ▼
 Download Invoice
+      │
+      ▼
+Review & Rating
+```
 
 ---
 
 # 🔄 Merchant Workflow
+
+```text
 Merchant Login
-│
-▼
+       │
+       ▼
 Create Event / Service
-│
-▼
-Receive Booking
-│
-▼
-Accept / Reject
-│
-▼
+       │
+       ▼
+Receive Booking Request
+       │
+       ▼
+Accept / Reject Booking
+       │
+       ▼
 Payment Received
-│
-▼
+       │
+       ▼
 Manage Customers
+```
 
 ---
 
-# 🚀 Installation
+# 🚀 Installation Guide
 
-## Clone Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/nadeemm26/OrganizeNow.git
+```
 
-Database
-Create Database
-Import DB_Structure.sql
-Configure Database
+### 2. Move the Project
 
-Edit
-connection.php
-$host="localhost";
-$user="root";
-$password="";
-$db="organizenow";
+Copy the project folder into your XAMPP `htdocs` directory.
 
-Start XAMPP
-Apache
-MySQL
+```text
+C:\xampp\htdocs\OrganizeNow
+```
 
-Open
+### 3. Create Database
+
+Create a database named:
+
+```text
+organizenow
+```
+
+### 4. Import Database
+
+Import the following SQL file:
+
+```text
+DB_Structure.sql
+```
+
+### 5. Configure Database
+
+Open `connection.php` and update your database credentials.
+
+```php
+$host = "localhost";
+$user = "root";
+$password = "";
+$db = "organizenow";
+```
+
+### 6. Start XAMPP
+
+- Apache
+- MySQL
+
+### 7. Open Project
+
+```text
 http://localhost/OrganizeNow
+```
 
-📚 Learning Outcomes
+---
 
-This project demonstrates
+# 🔐 User Roles
 
-Authentication
-Authorization
-CRUD Operations
-Role-Based Access Control
-Session Management
-Payment Gateway Integration
-Email Notification System
-PDF Generation
-Booking Management
-Database Design
-Responsive Web Development
-🔮 Future Improvements
-Event Recommendation
-Event Calendar
-OTP Verification
-Google Login
-Dashboard Analytics
-Live Chat Support
-SMS Notifications
-Mobile Responsive UI
-Multi-language Support
-👨‍💻 Developer
-Nadeem Makwana
+| Role | Responsibilities |
+|------|------------------|
+| Customer | Browse, Book Events, Make Payments, Review Services |
+| Merchant | Manage Events, Services, Bookings & Payments |
+| Admin | Manage Entire System |
 
-MCA Student
+---
 
-Technical Skills
-PHP
-MySQL
-HTML5
-CSS3
-JavaScript
-GitHub
+# 📚 Learning Outcomes
+
+This project demonstrates practical implementation of:
+
+- Authentication & Authorization
+- Role-Based Access Control
+- CRUD Operations
+- Session Management
+- Booking Management System
+- Payment Gateway Integration
+- Email Notification System
+- PDF Invoice Generation
+- MySQL Database Design
+- Responsive User Interface
+
+---
+
+# 👨‍💻 Developer
+
+## Nadeem Makwana
+
+**MCA Student | Aspiring PHP & Python Developer**
+
+### Technical Skills
+
+- PHP
+- MySQL
+- HTML5
+- CSS3
+- JavaScript
+
+### GitHub
 
 https://github.com/nadeemm26
 
-LinkedIn
+### LinkedIn
 
 https://linkedin.com/in/nadeem-makwana
 
-⭐ Support
+---
 
-If you found this project useful, please consider giving it a ⭐ on GitHub.
+# ⭐ Support
 
-📄 License
+If you found this project helpful, don't forget to ⭐ Star this repository.
 
-This project is developed for educational and learning purposes.
+---
+
+# 📄 License
+
+This project is developed for **educational and learning purposes only**.
+
+---
+
+### ❤️ Thank you for visiting OrganizeNow!
