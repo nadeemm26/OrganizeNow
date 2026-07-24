@@ -32,13 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['customer_email']) && i
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Change to your SMTP server
         $mail->SMTPAuth = true;
-        $mail->Username = 'makwananadeem3@gmail.com'; // Replace with your Gmail
-        $mail->Password = 'asfz zife ytvk fdgl'; // Replace with your App Password
+        $mail->Username = 'mail@gmail.com'; // Replace with your Gmail
+        $mail->Password = ''; // Replace with your App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
         
         // Email Content
-        $mail->setFrom('makwananadeem3@gmail.com', 'Event Management Team');
+        $mail->setFrom('mail@gmail.com', 'Event Management Team');
         $mail->addAddress($customer_email);
         $mail->Subject = "Payment Reminder for Your Booking";
         

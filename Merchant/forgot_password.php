@@ -20,12 +20,12 @@ function sendOTP($email, $otp) {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'makwananadeem3@gmail.com'; // Gmail ID
-        $mail->Password   = 'asfz zife ytvk fdgl'; // App Password
+        $mail->Username   = 'mail@gmail.com'; // Gmail ID
+        $mail->Password   = ''; // App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
-        $mail->setFrom('makwananadeem3@gmail.com', 'Organize Now');
+        $mail->setFrom('mail@gmail.com', 'Organize Now');
         $mail->addAddress($email);
         $mail->Subject = 'Your OTP Code';
 
