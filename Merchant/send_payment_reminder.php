@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['customer_email']) && i
         $mail->Port = 587;
         
         // Email Content
-        $mail->setFrom('makwananadeem3@gmail.com', 'Event Management Team');
+        $mail->setFrom('mail@gmail.com', 'Event Management Team');
         $mail->addAddress($customer_email);
         $mail->Subject = "Payment Reminder for Your Booking";
         

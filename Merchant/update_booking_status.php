@@ -45,13 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['booking_id'], $_POST['
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com'; // SMTP server (use your email provider's SMTP)
                 $mail->SMTPAuth = true;
-                $mail->Username = 'makwananadeem3@gmail.com'; // Your email
-                $mail->Password = 'asfz zife ytvk fdgl'; // Your email password (use App Password if using Gmail)
+                $mail->Username = 'mail@gmail.com'; // Your email
+                $mail->Password = ''; // Your email password (use App Password if using Gmail)
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
                 // Email settings
-                $mail->setFrom('makwananadeem3@gmail.com', 'Organize Now || Event Management Team');
+                $mail->setFrom('mail@gmail.com', 'Organize Now || Event Management Team');
                 $mail->addAddress($customer_email, $customer_name);
                 $mail->Subject = "Booking " . $new_status;
 
